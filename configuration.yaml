@@ -88,7 +88,6 @@ sensor:
       - 45
       - 50
     monitored_conditions:
-      - ping
       - download
       - upload
 
@@ -229,4 +228,5 @@ input_boolean: !include input_boolean.yaml
 
 shell_command:
   radio: '/home/pi/.homeassistant/scripts/radio.sh {{ mediaplayer }} {{ station }}'
+  backup_hass: '/home/pi/.homeassistant/scripts/backup_hass.sh'
 
