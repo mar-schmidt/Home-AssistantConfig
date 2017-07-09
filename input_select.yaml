@@ -1,0 +1,14 @@
+radio_station:
+  name: 'Select Radio Station:'
+  options:
+    - P1
+    - P2
+    - P3
+    - NRJ
+
+speaker:
+  name: 'Select Speaker:'
+  options:
+    - Sovrum
+    - Vardagsrum
+  icon: mdi:speaker-wireless

@@ -1,0 +1,20 @@
+radioscript:
+  sequence:
+    - service: shell_command.radio
+      data_template:
+        mediaplayer: >
+          {% if is_state("input_select.speaker", "Sovrum") %}
+            Sovrum
+          {% elif is_state("input_select.speaker", "Vardagsrum") %}
+            Vardagsrum
+          {% endif %}
+        station: >
+          {% if is_state("input_select.radio_station", "P1") %}
+            http://sverigesradio.se/topsy/direkt/164-hi.mp3
+          {% elif is_state("input_select.radio_station", "P2") %}
+            http://sverigesradio.se/topsy/direkt/164-hi.mp3
+          {% elif is_state("input_select.radio_station", "P3") %}
+            http://sverigesradio.se/topsy/direkt/164-hi.mp3
+          {% elif is_state("input_select.radio_station", "NRJ") %}
+            http://tx-bauerse.sharp-stream.com/http_live.php?i=nrj_instreamtest_se_mp3
+          {% endif %}

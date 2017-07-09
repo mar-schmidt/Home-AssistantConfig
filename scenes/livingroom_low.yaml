@@ -1,0 +1,20 @@
+name: livingroom_low
+entities:
+  #Fönsterlampa
+  light.hue_color_lamp_1:
+    state: on
+    transition: 2
+    brightness: 50
+    rgb_color: [255, 214, 170]
+  #Golvlampa
+  light.hue_color_lamp_2:
+    state: on
+    transition: 2
+    brightness: 75
+    rgb_color: [255, 214, 170]
+  #Taklampa
+  light.hue_color_lamp_3:
+    state: on
+    transition: 2
+    brightness: 40
+    rgb_color: [255, 214, 170]

@@ -1,0 +1,169 @@
+############################################################
+#
+# Views
+#
+############################################################
+radio:
+  view: no
+  name: Radio
+  entities:
+  - input_select.radio_station
+  - input_select.speaker
+  - script.radioscript
+
+livingroom_view:
+  view: yes
+  name: Vardagsrum
+  entities:
+    - group.livingroom_environment
+    - group.livingroom_lights
+    - group.livingroom_mediaplayers
+
+bedroom_view:
+  view: yes
+  name: Sovrum
+  entities:
+    - group.bedroom_lights
+    - group.bedroom_mediaplayers
+
+car_view:
+  view: yes
+  name: Bil
+  entities:
+    - group.car
+
+family_view:
+  view: yes
+  name: Familj
+  entities:
+    - group.phone_status
+
+kitchen_view:
+  view: yes
+  name: Kök
+  entities:
+    - group.kitchen_environment
+    - group.flower1
+
+flowers_view:
+  view: yes
+  name: Växter
+  entities:
+    - group.flower1
+
+mediaplayers_view:
+  view: yes
+  name: Mediaspelare
+  entities:
+    - group.livingroom_mediaplayers
+    - group.bedroom_mediaplayers
+
+scenes_view:
+  view: yes
+  name: Scener
+  entities:
+    - group.livingroom_scenes
+
+
+############################################################
+#
+# Groups
+#
+############################################################
+
+###### Livingroom ######
+livingroom_environment:
+  name: Vardagsrum
+  entities:
+    - sensor.aeotec_zw100_multisensor_6_temperature
+    - sensor.aeotec_zw100_multisensor_6_luminance
+    - sensor.aeotec_zw100_multisensor_6_relative_humidity
+
+livingroom_lights:
+  name: Lampor
+  entities:
+    - light.hue_color_lamp_1
+    - light.hue_color_lamp_2
+    - light.hue_color_lamp_3
+
+livingroom_mediaplayers:
+  name: Mediaspelare
+  entities:
+    - media_player.vardagsrum
+
+livingroom_scenes:
+  name: Vardagsrum
+  entities:
+    - scene.livingroom_normal
+    - scene.livingroom_movie
+    - scene.livingroom_low
+    - scene.livingroom_off
+
+###### Bedroom ######
+bedroom_lights:
+  name: Lampor
+  entities:
+
+bedroom_mediaplayers:
+  name: Mediaspelare
+  entities:
+    - media_player.sovrum
+
+###### Kitchen ######
+kitchen_environment:
+  name: Kök
+  entities:
+    - sensor.miflower_kitchenflower_temperature
+    - sensor.miflower_kitchenflower_light_intensity
+
+###### Flowers ######
+flower1:
+  name: Julstjärna
+  entities:
+    - sensor.miflower_kitchenflower_moisture
+    - sensor.miflower_kitchenflower_battery
+
+###### Car ######
+car:
+  name: Bil
+  entities:
+    - sensor.car_model
+    - sensor.car_regnr
+    - sensor.ete881_odometer_template
+    - sensor.ete881_fuel_level
+    - sensor.ete881_range_template
+    - sensor.car_locked
+    - lock.ete881_lock
+    - switch.ete881_heater
+    - binary_sensor.ete881_brake_fluid
+    - binary_sensor.ete881_bulbs
+    - binary_sensor.ete881_doors
+    - binary_sensor.ete881_service
+    - binary_sensor.ete881_washer_fluid
+    - binary_sensor.ete881_windows
+    - camera.car_location
+
+###### Family ######
+family_devices:
+  entities:
+    - device_tracker.marcus_iphone
+    - device_tracker.katarinas_iphone
+
+phone_status:
+  name: Telefoner
+  entities:
+    - sensor.marcus_iphone_battery_level
+    - sensor.marcus_iphone_battery_state
+    - sensor.katarinas_iphone_battery_level
+    - sensor.katarinas_iphone_battery_state
+
+weather_data:
+  name: Väder
+  entities:
+    - sensor.yr_temperature
+    - sensor.yr_cloudiness
+    - sensor.yr_fog
+    - sensor.yr_humidity
+    - sensor.yr_pressure
+    - sensor.yr_wind_direction
+    - sensor.yr_wind_speed

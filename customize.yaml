@@ -1,0 +1,538 @@
+###########################################################
+#
+# Home Assistant Customisations
+#
+############################################################
+
+
+############################################################
+#
+# Input_Boolean
+#
+############################################################
+input_boolean.trigger_first_morning:
+    hidden: true
+    homebridge_hidden: true
+
+input_boolean.someone_home:
+    hidden: true
+    homebridge_hidden: true
+
+
+############################################################
+#
+# Scripts
+#
+############################################################
+script.radioscript:
+    friendly_name: ''
+    homebridge_hidden: true
+    icon: mdi:play
+
+
+############################################################
+#
+# Devices
+#
+############################################################
+
+device_tracker.marcusmbp:
+    hidden: true
+    homebridge_hidden: true
+
+device_tracker.philipshue:
+    hidden: true
+    homebridge_hidden: true
+
+device_tracker.philipstv:
+    hidden: true
+    homebridge_hidden: true
+
+device_tracker.raspberrypi:
+    hidden: true
+    homebridge_hidden: true
+
+device_tracker.sovrum:
+    hidden: true
+    homebridge_hidden: true
+
+device_tracker.vardagsrum:
+    hidden: true
+    homebridge_hidden: true
+
+device_tracker.malinsiphone:
+    hidden: true
+    homebridge_hidden: true
+
+device_tracker.malinsiphone_2:
+    hidden: true
+    homebridge_hidden: true
+
+device_tracker.robertsiphone:
+    hidden: true
+    homebridge_hidden: true
+
+device_tracker.dansiniphone:
+    hidden: true
+    homebridge_hidden: true
+
+device_tracker.desktopm1n5h56:
+    hidden: true
+    homebridge_hidden: true
+
+device_tracker.maronw10:
+    hidden: true
+    homebridge_hidden: true
+
+device_tracker.marcus_iphone:
+    homebridge_hidden: true
+
+device_tracker.katarinas_iphone:
+    homebridge_hidden: true
+
+device_tracker.kristiansiphone:
+    hidden: true
+    homebridge_hidden: true
+
+device_tracker.tgotp2747:
+    hidden: true
+    homebridge_hidden: true
+
+
+############################################################
+#
+# Z-Wave
+#
+############################################################
+zwave.zwaveme_razberry_controller_2016_zwave:
+    hidden: true
+    homebridge_hidden: true
+
+#######################
+#
+# Z-Wave Multisensor 6 
+#
+#######################
+zwave.aeotec_zw100_multisensor_6:
+    hidden: true
+    homebridge_hidden: true
+
+sensor.aeotec_zw100_multisensor_6_alarm_level:
+    hidden: true
+    homebridge_hidden: true
+
+sensor.aeotec_zw100_multisensor_6_alarm_type:
+    hidden: true
+    homebridge_hidden: true
+
+sensor.aeotec_zw100_multisensor_6_burglar:
+    hidden: true
+    homebridge_hidden: true
+
+sensor.aeotec_zw100_multisensor_6_sourcenodeid:
+    hidden: true
+    homebridge_hidden: true
+
+sensor.aeotec_zw100_multisensor_6_ultraviolet:
+    hidden: true
+    homebridge_hidden: true
+
+binary_sensor.aeotec_zw100_multisensor_6_sensor:
+    friendly_name: Rörelsesensor
+    hidden: true
+    homebridge_hidden: true
+
+sensor.aeotec_zw100_multisensor_6_luminance:
+    friendly_name: Ljus
+    icon: mdi:theme-light-dark
+
+sensor.aeotec_zw100_multisensor_6_relative_humidity:
+    friendly_name: Luftfuktighet
+    icon: mdi:water-percent
+
+sensor.aeotec_zw100_multisensor_6_temperature:
+    friendly_name: Temperatur
+    icon: mdi:temperature-celsius
+
+
+
+############################################################
+#
+# Automations
+#
+############################################################
+
+automation.christmasstar_battery_notification:
+    hidden: true
+    homebridge_hidden: true
+
+automation.christmasstar_moisture_notification:
+    hidden: true
+    homebridge_hidden: true
+
+automation.katarina_battery_notification:
+    hidden: true
+    homebridge_hidden: true
+
+automation.marcus_battery_notification:
+    hidden: true
+    homebridge_hidden: true
+
+automation.mediaplayer_livingroom_pausedstopped:
+    hidden: true
+    homebridge_hidden: true
+
+automation.mediaplayer_livingroom_playing:
+    hidden: true
+    homebridge_hidden: true
+
+automation.voc_heater_notification_start:
+    hidden: true
+    homebridge_hidden: true
+
+automation.voc_heater_notification_stop:
+    hidden: true
+    homebridge_hidden: true
+
+automation.lights_off_in_livingroom_when_bedtime:
+    hidden: true
+    homebridge_hidden: true
+
+automation.multisensor_livingroom_battery_notification:
+    hidden: true
+    homebridge_hidden: true
+
+automation.livingroom_lights_turn_on_to_low_light_scene_if_light_is_above_3_and_below_7_and_me_andor_katarina_is_home:
+    hidden: true
+    homebridge_hidden: true
+
+automation.livingroom_lights_turn_on_to_normal_light_scene_if_light_is_below_5_and_me_andor_katarina_is_home:
+    hidden: true
+    homebridge_hidden: true
+
+automation.disable_first_morning_trigger:
+    hidden: true
+    homebridge_hidden: true
+
+automation.enable_first_morning_trigger:
+    hidden: true
+    homebridge_hidden: true
+
+automation.first_morning_motion_livingroom:
+    hidden: true
+    homebridge_hidden: true
+
+automation.family_away:
+    hidden: true
+    homebridge_hidden: true
+
+automation.family_home:
+    hidden: true
+    homebridge_hidden: true
+
+automation.lights_off_when_no_one_is_home:
+    hidden: true
+    homebridge_hidden: true
+
+
+
+############################################################
+#
+# Plants
+#
+############################################################
+
+plant.miflower_christmasstar:
+    friendly_name: Status
+    homebridge_hidden: true
+
+
+############################################################
+#
+# Scenes
+#
+############################################################
+
+scene.livingroom_normal:
+    homebridge_hidden: true
+    friendly_name: Normal belysning
+
+scene.livingroom_movie:
+    homebridge_hidden: true
+    friendly_name: Filmbelysning
+
+scene.livingroom_low:
+    homebridge_hidden: true
+    friendly_name: Låg belysning
+
+scene.livingroom_off:
+    homebridge_hidden: true
+    friendly_name: Släck
+
+
+############################################################
+#
+# Groups
+#
+############################################################
+
+group.all_lights:
+    hidden: true
+    homebridge_hidden: true
+
+group.all_automations:
+    hidden: true
+    homebridge_hidden: true
+
+group.all_plants:
+    friendly_name: Växter
+    homebridge_hidden: true
+
+group.family_devices:
+    hidden: true
+    homebridge_hidden: true
+
+
+############################################################
+#
+# Lights
+#
+############################################################
+
+light.hue_color_lamp_1:
+    friendly_name: Fönsterlampa
+
+light.hue_color_lamp_2:
+    friendly_name: Golvlampa
+
+light.hue_color_lamp_3:
+    friendly_name: Taklampa
+
+light.kok:
+    hidden: true
+    homebridge_hidden: true
+
+light.sovrum:
+    hidden: true
+    homebridge_hidden: true
+
+light.vardagsrum:
+    hidden: true
+    homebridge_hidden: true
+
+
+
+############################################################
+#
+# Media Players
+#
+############################################################
+
+media_player.sovrum:
+    friendly_name: Apple TV Sovrum
+
+media_player.vardagsrum:
+    friendly_name: Apple TV Vardagsrum
+
+
+
+############################################################
+#
+# Zones
+#
+############################################################
+
+zone.home:
+    #track_ios: true
+    radius: 250
+
+zone.work:
+    #track_ios: true
+    icon: mdi:briefcase
+
+
+
+############################################################
+#
+# Volvo on Call
+#
+############################################################
+sensor.ete881_range_template:
+    friendly_name: Distans till tom tank
+    icon: mdi:ruler
+
+sensor.ete881_fuel_level:
+    friendly_name: Bränslenivå
+    icon: mdi:gas-station
+
+sensor.ete881_odometer_template:
+    friendly_name: Totalt antal mil
+    icon: mdi:gauge
+
+sensor.ete881_fuel_amount:
+    hidden: true
+    homebridge_hidden: true
+
+sensor.car_model: 
+    friendly_name: Modell
+    icon: mdi:car
+
+sensor.car_regnr:
+    friendly_name: Registreringsnummer
+    icon: mdi:clipboard-account
+
+sensor.car_locked_state:
+    hidden: true
+    homebridge_hidden: true
+
+sensor.car_locked:
+    icon: mdi:lock-open
+
+sensor.car_location_latitude:
+    hidden: true
+    homebridge_hidden: true
+
+sensor.car_location_longitude:
+    hidden: true
+    homebridge_hidden: true
+
+binary_sensor.ete881_brake_fluid:
+    friendly_name: Status Bromstvätska
+    hidden: true
+    homebridge_hidden: true
+
+binary_sensor.ete881_bulbs:
+    friendly_name: Status Trasiga lampor
+    hidden: true
+    homebridge_hidden: true
+
+binary_sensor.ete881_service:
+    friendly_name: Status Tid för service
+    hidden: true
+    homebridge_hidden: true
+
+binary_sensor.ete881_washer_fluid:
+    friendly_name: Status Spolarvätska
+    hidden: true
+    homebridge_hidden: true
+
+binary_sensor.ete881_windows:
+    friendly_name: Status Fönster öppna
+    hidden: true
+    homebridge_hidden: true
+
+binary_sensor.ete881_doors:
+    hidden: true
+    homebridge_hidden: true
+
+camera.car_location:
+    friendly_name: ETE881
+
+sensor.ete881_odometer:
+    hidden: true
+    homebridge_hidden: true
+
+sensor.ete881_range:
+    hidden: true
+    homebridge_hidden: true
+
+switch.ete881_heater:
+    friendly_name: Motorvärmare
+    assumed_state: false
+
+lock.ete881_lock:
+    friendly_name: Lås
+    assumed_state: false
+
+device_tracker.volvo_ete881:
+    entity_picture: /local/volvo.jpg
+    homebridge_hidden: true
+
+
+
+############################################################
+#
+# iCloud
+#
+############################################################
+
+sensor.katarinas_iphone_battery_level:
+    friendly_name: Katarinas iPhone - Batteri
+    unit_of_measurement: "%"
+
+sensor.marcus_iphone_battery_level:
+    friendly_name: Marcus iPhone - Batteri
+    unit_of_measurement: "%"
+
+sensor.marcus_iphone_battery_state:
+    friendly_name: Marcus iPhone - Laddning
+
+sensor.katarinas_iphone_battery_state:
+    friendly_name: Katarinas iPhone - Laddning
+
+
+
+
+############################################################
+#
+# Weather (YR)
+#
+############################################################
+
+sensor.yr_symbol:
+    friendly_name: Väder
+
+sensor.yr_cloudiness:
+    friendly_name: Molnighet
+    icon: mdi:weather-cloudy
+
+sensor.yr_fog:
+    friendly_name: Dimma
+    icon: mdi:weather-fog
+
+sensor.yr_humidity:
+    friendly_name: Luftfuktighet
+    icon: mdi:water-percent
+
+sensor.yr_pressure:
+    friendly_name: Lufttryck
+    icon: mdi:format-line-weight
+
+sensor.yr_temperature:
+    friendly_name: Temperatur
+
+sensor.yr_wind_direction:
+    friendly_name: Vindriktning
+    icon: mdi:weather-windy-variant
+
+sensor.yr_wind_speed:
+    friendly_name: Vindhastighet
+    icon: mdi:weather-windy
+
+
+
+############################################################
+#
+# MiFlora
+#
+############################################################
+
+sensor.miflower_kitchenflower_moisture:
+    friendly_name: Fuktighet
+    icon: mdi:water-percent
+
+sensor.miflower_kitchenflower_battery:
+    friendly_name: Batterinivå
+    icon: mdi:battery-80
+
+sensor.miflower_kitchenflower_temperature:
+    friendly_name: Temperatur
+    icon: mdi:temperature-celsius
+
+sensor.miflower_kitchenflower_light_intensity:
+    friendly_name: Ljus
+    icon: mdi:theme-light-dark
+
+sensor.miflower_kitchenflower_conductivity:
+    hidden: true
+    homebridge_hidden: true

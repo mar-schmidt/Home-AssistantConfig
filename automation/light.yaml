@@ -1,0 +1,177 @@
+#######################
+#
+# Morning light
+# Rooms: Livingroom
+#
+#######################
+
+# This is the main automation. It triggers when motion sensor in livingroom is triggered
+- alias: First Morning Motion Livingroom
+  trigger:
+    platform: state
+    entity_id: binary_sensor.aeotec_zw100_multisensor_6_sensor
+    to: 'on'
+  # only complete the automation if we're still waiting for the first motion and lumiance is below 3
+  condition:
+    - condition: and
+      conditions:
+      - condition: numeric_state
+        entity_id: sensor.aeotec_zw100_multisensor_6_luminance
+        below: 3
+      - condition: state
+        entity_id: input_boolean.trigger_first_morning
+        state: 'on'
+      # But only turn on lights if the living room lights are off or dimmed
+      - condition: state
+        entity_id: group.livingroom_lights
+        state: 'off'
+  action:
+    # turn off the "waiting" boolean regardless of whether lights will turn on
+    # so that this happens only once
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.trigger_first_morning
+
+    # Trigger a scene
+    # You could add as many services or scenes as you'd like
+    - service: scene.turn_on
+      entity_id: scene.livingroom_low
+
+
+
+#######################
+#
+# Bed time
+# Rooms: Livingroom
+#
+#######################
+- alias: 'Lights off in livingroom when bedtime'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.aeotec_zw100_multisensor_6_sensor
+      to: 'off'
+      for:
+        minutes: 10
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        after: '21:30'
+      - condition: state
+        entity_id: media_player.vardagsrum
+        state: 'paused'
+      - condition: state
+        entity_id: media_player.spotify
+        state: 'paused'
+  action:
+    service: scene.turn_on
+    entity_id: scene.livingroom_off
+
+
+#######################
+#
+# Leaving home
+# Rooms: All
+#
+#######################
+- alias: 'Lights off when no one is home'
+  trigger:
+    - platform: state
+      entity_id: input_boolean.someone_home
+      to: 'off'
+      for:
+        minutes: 5
+  action:
+    service: scene.turn_on
+    entity_id: scene.livingroom_off
+
+
+#######################
+#
+# Normal light if lumiance below 5
+# Rooms: Livingroom
+#
+#######################
+- alias: 'Livingroom lights turn on to normal light scene if light is below 5 and me and-or katarina is home'
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.aeotec_zw100_multisensor_6_luminance
+      below: 5
+  condition:
+    - condition: or
+      conditions:
+      - condition: time
+        after: '08:00'
+        before: '23:00'
+  action:
+    service: scene.turn_on
+    entity_id: scene.livingroom_normal
+
+
+
+#######################
+#
+# Low light if lumiance between 4 and 8
+# Rooms: Livingroom
+#
+#######################
+- alias: 'Livingroom lights turn on to low light scene if light is above 3 and below 7 and me and-or katarina is home'
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.aeotec_zw100_multisensor_6_luminance
+      above: 4
+      below: 8
+  condition:
+    - condition: or
+      conditions:
+      - condition: time
+        after: '08:00'
+        before: '23:00'
+  action:
+    service: scene.turn_on
+    entity_id: scene.livingroom_low
+
+
+
+#######################
+#
+# Normal light when mediaplayer paused/stopped
+# Rooms: Livingroom
+#
+#######################
+- alias: 'Mediaplayer (livingroom) paused/stopped'
+  trigger:
+    - platform: state
+      entity_id: media_player.vardagsrum
+      from: 'playing'
+      to: 'paused'
+  condition:
+    - condition: sun
+      after: sunset
+      after_offset: "-1:30:00"
+  action:
+      service: scene.turn_on
+      entity_id: scene.livingroom_normal
+
+
+
+#######################
+#
+# Low light when mediaplayer playing
+# Rooms: Livingroom
+#
+#######################
+- alias: "Mediaplayer (livingroom) playing"
+  trigger:
+    - platform: state
+      entity_id: media_player.vardagsrum
+      to: 'playing'
+      from: 'paused'
+  condition:
+    - condition: sun
+      after: sunset
+      after_offset: "-1:30:00"
+  action:
+      service: scene.turn_on
+      entity_id: scene.livingroom_movie
+
+

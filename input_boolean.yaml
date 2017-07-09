@@ -1,0 +1,5 @@
+trigger_first_morning:
+  initial: off
+
+someone_home:
+  initial: on
