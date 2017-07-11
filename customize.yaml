@@ -268,20 +268,23 @@ plant.miflower_christmasstar:
 ############################################################
 
 scene.livingroom_normal:
+    hidden: true
     homebridge_hidden: true
     friendly_name: Normal belysning
 
 scene.livingroom_movie:
+    hidden: true
     homebridge_hidden: true
     friendly_name: Filmbelysning
 
 scene.livingroom_low:
+    hidden: true
     homebridge_hidden: true
     friendly_name: Låg belysning
 
 scene.livingroom_off:
+    hidden: true
     homebridge_hidden: true
-    friendly_name: Släck
 
 
 ############################################################

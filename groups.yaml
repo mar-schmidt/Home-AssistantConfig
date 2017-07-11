@@ -15,6 +15,7 @@ livingroom_view:
   view: yes
   name: Vardagsrum
   entities:
+    - input_select.scene_livingroom
     - group.livingroom_environment
     - group.livingroom_lights
     - group.livingroom_mediaplayers
@@ -62,7 +63,7 @@ scenes_view:
   view: yes
   name: Scener
   entities:
-    - group.livingroom_scenes
+    - input_select.scene_livingroom
 
 
 ############################################################
@@ -91,13 +92,6 @@ livingroom_mediaplayers:
   entities:
     - media_player.vardagsrum
 
-livingroom_scenes:
-  name: Vardagsrum
-  entities:
-    - scene.livingroom_normal
-    - scene.livingroom_movie
-    - scene.livingroom_low
-    - scene.livingroom_off
 
 ###### Bedroom ######
 bedroom_lights:

@@ -8,7 +8,16 @@ radio_station:
 
 speaker:
   name: 'Select Speaker:'
+  icon: mdi:speaker-wireless
   options:
     - Sovrum
     - Vardagsrum
-  icon: mdi:speaker-wireless
+
+scene_livingroom:
+  name: 'Belysning Vardagsrum:'
+  icon: mdi:brightness-auto
+  options:
+    - Normal
+    - Dimmad
+    - Film
+    - Av
