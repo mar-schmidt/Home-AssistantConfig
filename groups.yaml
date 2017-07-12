@@ -15,7 +15,7 @@ livingroom_view:
   view: yes
   name: Vardagsrum
   entities:
-    - input_select.scene_livingroom
+    - group.livingroom_scene
     - group.livingroom_environment
     - group.livingroom_lights
     - group.livingroom_mediaplayers
@@ -63,7 +63,7 @@ scenes_view:
   view: yes
   name: Scener
   entities:
-    - input_select.scene_livingroom
+    - group.livingroom_scene
 
 
 ############################################################
@@ -71,8 +71,11 @@ scenes_view:
 # Groups
 #
 ############################################################
-
-###### Livingroom ######
+#####################
+#
+# Livingroom
+#
+#####################
 livingroom_environment:
   name: Vardagsrum
   entities:
@@ -92,8 +95,16 @@ livingroom_mediaplayers:
   entities:
     - media_player.vardagsrum
 
+livingroom_scene:
+  name: Belysning
+  entities: 
+    - input_select.scene_livingroom
 
-###### Bedroom ######
+#####################
+#
+# Bedroom
+#
+#####################
 bedroom_lights:
   name: Lampor
   entities:
@@ -103,21 +114,42 @@ bedroom_mediaplayers:
   entities:
     - media_player.sovrum
 
-###### Kitchen ######
+bedroom_scene:
+  name: Belysning
+  entities: 
+
+
+#####################
+#
+# Kitchen
+#
+#####################
 kitchen_environment:
   name: Kök
   entities:
     - sensor.miflower_kitchenflower_temperature
     - sensor.miflower_kitchenflower_light_intensity
 
-###### Flowers ######
+kitchen_scene:
+  name: Belysning
+  entities: 
+
+#####################
+#
+# Flowers
+#
+#####################
 flower1:
   name: Julstjärna
   entities:
     - sensor.miflower_kitchenflower_moisture
     - sensor.miflower_kitchenflower_battery
 
-###### Car ######
+#####################
+#
+# Car
+#
+#####################
 car:
   name: Bil
   entities:
@@ -137,13 +169,25 @@ car:
     - binary_sensor.ete881_windows
     - camera.car_location
 
-###### Family ######
+
+#####################
+#
+# Family
+#
+#####################
 family_devices:
   entities:
     - device_tracker.marcus_iphone
     - device_tracker.katarinas_iphone
 
+
+#####################
+#
+# Phone
+#
+#####################
 phone_status:
+
   name: Telefoner
   entities:
     - sensor.marcus_iphone_battery_level
@@ -151,6 +195,12 @@ phone_status:
     - sensor.katarinas_iphone_battery_level
     - sensor.katarinas_iphone_battery_state
 
+
+#####################
+#
+# Weather
+#
+#####################
 weather_data:
   name: Väder
   entities:

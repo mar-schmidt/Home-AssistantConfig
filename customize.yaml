@@ -249,6 +249,10 @@ automation.backup_home_assistant_configuration_files:
     hidden: true
     homebridge_hidden: true
 
+automation.scene_livingroom:
+    hidden: true
+    homebridge_hidden: true
+
 
 ############################################################
 #

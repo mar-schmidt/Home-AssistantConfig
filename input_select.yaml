@@ -16,7 +16,9 @@ speaker:
 scene_livingroom:
   name: 'Belysning Vardagsrum:'
   icon: mdi:brightness-auto
+  initial: Välj
   options:
+    - Välj
     - Normal
     - Dimmad
     - Film
