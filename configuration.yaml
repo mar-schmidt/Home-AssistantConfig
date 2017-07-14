@@ -162,7 +162,7 @@ logger:
     homeassistant.components.device_sun_light_trigger: debug
 #    homeassistant.components.script: info
 #    homeassistant.components.rfxtrx: info
-#    custom_components.xiaomi: debug
+    custom_components.xiaomi: debug
 #    miflora.miflora_poller: debug
 #    homeassistant.components.sensor.miflora: debug
 #    homeassistant.core: info
@@ -204,6 +204,8 @@ zone:
   #track_ios: true
 
 switch:
+
+xiaomi:
 
 light:
   - platform: hue
