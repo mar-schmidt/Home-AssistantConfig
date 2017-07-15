@@ -7,7 +7,8 @@
     service: homeassistant.turn_on
     entity_id: input_boolean.trigger_first_morning
 
-# turns it off after sunrise only if it hasnt already turned off
+# turns it off after sunrise only if it hasnt already turned off. 
+# Its being turned off in light automation "First Morning Motion Livingroom"
 - alias: Disable First Morning Trigger
   trigger:
     - platform: sun
@@ -32,7 +33,7 @@
     condition: and
     conditions:
       - condition: time
-        after: '05:00'
+        after: '06:30'
         before: '23:30'
       - condition: state
         entity_id: input_boolean.someone_home    

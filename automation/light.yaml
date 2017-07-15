@@ -55,7 +55,7 @@
     condition: and
     conditions:
       - condition: time
-        after: '21:30'
+        after: '22:00'
       - condition: state
         entity_id: media_player.vardagsrum
         state: 'paused'
@@ -95,7 +95,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.aeotec_zw100_multisensor_6_luminance
-      below: 5
+      below: 6
   condition:
     - condition: or
       conditions:
@@ -118,8 +118,8 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.aeotec_zw100_multisensor_6_luminance
-      above: 4
-      below: 8
+      above: 5
+      below: 9
   condition:
     - condition: or
       conditions:
