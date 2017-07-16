@@ -97,8 +97,20 @@ sensor:
         unit_of_measurement: 'mil'
         value_template: '{{ states.sensor.ete881_odometer.state | multiply(1) / 10 }}'
       ete881_range_template:
-        unit_of_measurement: "mil"
+        unit_of_measurement: 'mil'
         value_template: '{{ states.sensor.ete881_range.state | multiply(1) / 10 }}'
+      yr_wind_direction_template: 
+        unit_of_measurement: 'Vind'
+        value_template: >-
+          {%- if states('sensor.yr_wind_direction') | float > 304 | float < 55 %}
+            Nordlig
+          {% elif states('sensor.yr_wind_direction') | float > 55 | float < 146 %}
+            Ostlig
+          {% elif states('sensor.yr_wind_direction') | float > 146 | float < 213 %}
+            Sydlig
+          {% elif states('sensor.yr_wind_direction') | float > 213 | float < 304 %}
+            Vastlig
+          {%- endif %}
 
   - platform: mqtt
     name: "car_regnr"
