@@ -99,18 +99,13 @@ sensor:
       ete881_range_template:
         unit_of_measurement: 'mil'
         value_template: '{{ states.sensor.ete881_range.state | multiply(1) / 10 }}'
-      yr_wind_direction_template: 
-        unit_of_measurement: 'Vind'
-        value_template: >-
-          {%- if states('sensor.yr_wind_direction') | float > 304 | float < 55 %}
-            Nordlig
-          {% elif states('sensor.yr_wind_direction') | float > 55 | float < 146 %}
-            Ostlig
-          {% elif states('sensor.yr_wind_direction') | float > 146 | float < 213 %}
-            Sydlig
-          {% elif states('sensor.yr_wind_direction') | float > 213 | float < 304 %}
-            Vastlig
-          {%- endif %}
+      yr_wind_direction_template:
+        value_template: '{{ states.sensor.yr_wind_direction.state | int }}'
+
+  - platform: command_line
+    name: yr wind direction cmd
+    command: 'sh /home/pi/.homeassistant/scripts/wind_direction.sh {{ states.sensor.yr_wind_direction_template.state }}'
+    unit_of_measurement: "Vind"
 
   - platform: mqtt
     name: "car_regnr"
@@ -175,6 +170,8 @@ logger:
 #    homeassistant.components.script: info
 #    homeassistant.components.rfxtrx: info
     custom_components.xiaomi: debug
+    homeassistant.components.sensor.command_line: debug
+    homeassistant.components.shell_command: debug
 #    miflora.miflora_poller: debug
 #    homeassistant.components.sensor.miflora: debug
 #    homeassistant.core: info
