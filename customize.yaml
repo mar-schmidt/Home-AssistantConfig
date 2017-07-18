@@ -522,9 +522,17 @@ sensor.yr_pressure:
 sensor.yr_temperature:
     friendly_name: Temperatur
 
-sensor.yr_wind_direction:
+sensor.yr_wind_direction_cmd:
     friendly_name: Vindriktning
     icon: mdi:weather-windy-variant
+
+sensor.yr_wind_direction:
+    hidden: true
+    homebridge_hidden: true
+
+sensor.yr_wind_direction_template:
+    hidden: true
+    homebridge_hidden: true
 
 sensor.yr_wind_speed:
     friendly_name: Vindhastighet

@@ -209,5 +209,5 @@ weather_data:
     - sensor.yr_fog
     - sensor.yr_humidity
     - sensor.yr_pressure
-    - sensor.yr_wind_direction
+    - sensor.yr_wind_direction_cmd
     - sensor.yr_wind_speed
