@@ -345,17 +345,23 @@ light.vardagsrum:
 
 ############################################################
 #
-# Media Players
+# Media Players & Remotes
 #
 ############################################################
 
-media_player.sovrum:
+media_player.apple_tv_sovrum:
     friendly_name: Apple TV Sovrum
 
-media_player.vardagsrum:
+media_player.apple_tv_vardagsrum:
     friendly_name: Apple TV Vardagsrum
 
+remote.apple_tv_vardagsrum:
+    hidden: true
+    homebridge_hidden: true
 
+remote.apple_tv_sovrum:
+    hidden: true
+    homebridge_hidden: true
 
 ############################################################
 #

@@ -93,7 +93,7 @@ livingroom_lights:
 livingroom_mediaplayers:
   name: Mediaspelare
   entities:
-    - media_player.vardagsrum
+    - media_player.apple_tv_vardagsrum
 
 livingroom_scene:
   name: Belysning
@@ -112,7 +112,7 @@ bedroom_lights:
 bedroom_mediaplayers:
   name: Mediaspelare
   entities:
-    - media_player.sovrum
+    - media_player.apple_tv_sovrum
 
 bedroom_scene:
   name: Belysning

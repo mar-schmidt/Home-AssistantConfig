@@ -57,7 +57,7 @@
       - condition: time
         after: '22:00'
       - condition: state
-        entity_id: media_player.vardagsrum
+        entity_id: media_player.apple_tv_vardagsrum
         state: 'paused'
       - condition: state
         entity_id: media_player.spotify
@@ -147,7 +147,7 @@
 - alias: 'Mediaplayer (livingroom) paused/stopped'
   trigger:
     - platform: state
-      entity_id: media_player.vardagsrum
+      entity_id: media_player.apple_tv_vardagsrum
       from: 'playing'
       to: 'paused'
   condition:
@@ -169,7 +169,7 @@
 - alias: "Mediaplayer (livingroom) playing"
   trigger:
     - platform: state
-      entity_id: media_player.vardagsrum
+      entity_id: media_player.apple_tv_vardagsrum
       to: 'playing'
       from: 'paused'
   condition:
