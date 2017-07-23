@@ -45,6 +45,7 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
     name = config.get(CONF_NAME)
     unit = config.get(CONF_UNIT_OF_MEASUREMENT)
     data = CarMilageData(hass, odometer_entity)
+    _LOGGER.info("asdasdasd %s", odometer_entity)
 
     add_devices([CarMilageSensor(hass, odometer_entity, name, unit, data)])
 
@@ -61,6 +62,7 @@ class CarMilageSensor(Entity):
         self._unit_of_measurement = unit_of_measurement
         self._state = STATE_UNKNOWN
         self.data = data
+
         self.update()
 
     @property
@@ -77,7 +79,6 @@ class CarMilageSensor(Entity):
     def unit_of_measurement(self):
         """Return the unit of measurement."""
         return self._unit_of_measurement
-
 
     @property
     def device_state_attributes(self):
@@ -110,7 +111,9 @@ class CarMilageData(object):
         calendar.month_name[11]: 0,
         calendar.month_name[12]: 0
         }
+        _LOGGER.info("asdasdasd %s", hass)
         self.hass = hass
+        _LOGGER.info("asdasdasd %s", odometer_entity)
         self.odometer_entity = odometer_entity
 
         self.milageFile = '/home/pi/.homeassistant/milage.properties'
@@ -119,20 +122,14 @@ class CarMilageData(object):
             open(self.milageFile, 'w').close()
 
     def update(self):
+        _LOGGER.info("asdasdasd %s", self.odometer_entity)
+        odometer_value = self.getOdometerValueFromEntity(self.odometer_entity)
+        self.updateLastKnownValue(odometer_value)
+
         self.values['current_month'] = self.getMilageCurrentMonth()
-        #for val in self.values:
-        self.values[calendar.month_name[1]] = self.getMilageForMonth(1)
-        self.values[calendar.month_name[2]] = self.getMilageForMonth(2)
-        self.values[calendar.month_name[3]] = self.getMilageForMonth(3)
-        self.values[calendar.month_name[4]] = self.getMilageForMonth(4)
-        self.values[calendar.month_name[5]] = self.getMilageForMonth(5)
-        self.values[calendar.month_name[6]] = self.getMilageForMonth(6)
-        self.values[calendar.month_name[7]] = self.getMilageForMonth(7)
-        self.values[calendar.month_name[8]] = self.getMilageForMonth(8)
-        self.values[calendar.month_name[9]] = self.getMilageForMonth(9)
-        self.values[calendar.month_name[10]] = self.getMilageForMonth(10)
-        self.values[calendar.month_name[11]] = self.getMilageForMonth(11)
-        self.values[calendar.month_name[12]] = self.getMilageForMonth(12)
+        for i in range(1, 12):
+            self.values[calendar.month_name[i]] = self.getMilageForMonth(i)
+            _LOGGER.info("Updating month %s with value", i, self.values[calendar.month_name[i]])
         
         _LOGGER.info("%s", self.values)
 
@@ -148,3 +145,13 @@ class CarMilageData(object):
                 if int(key) == int(month):
                     _LOGGER.debug("Writing value: %s to month %s", value, month)
                     return value
+
+    def getOdometerValueFromEntity(self, entity):
+        odometer_entity = self.hass.states.get(entity)
+        _LOGGER.info("%s", odometer_entity)
+        return odometer_entity.state
+
+    def updateLastKnownValue(self, odometer_value):
+        with open(self.milageFile) as milage:
+            _LOGGER.debug("Setting last known odometer value: %s", odometer_value)
+            jprops.write_property(milage, 'last_known_value', odometer_value)
