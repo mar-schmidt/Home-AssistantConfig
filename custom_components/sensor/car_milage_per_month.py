@@ -10,6 +10,7 @@ car_milage_per_month:
   odometer_sensor: sensor.ete123_odometer (the sensor that holds the total amount of km)
 
 """
+import json
 import logging
 import jprops
 import calendar
@@ -27,6 +28,7 @@ from homeassistant.const import (
 )
 from homeassistant.helpers.entity import Entity
 from homeassistant.components.sensor import PLATFORM_SCHEMA
+from homeassistant.core import HomeAssistant, CoreState
 
 _LOGGER = logging.getLogger(__name__)
 DEFAULT_NAME = 'car_milage_per_month'
@@ -45,11 +47,9 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
     name = config.get(CONF_NAME)
     unit = config.get(CONF_UNIT_OF_MEASUREMENT)
     data = CarMilageData(hass, odometer_entity)
-    _LOGGER.info("asdasdasd %s", odometer_entity)
 
     add_devices([CarMilageSensor(hass, odometer_entity, name, unit, data)])
 
-    _LOGGER.info('%s', odometer_entity)
 
 class CarMilageSensor(Entity):
     """Representation of a Sensor."""
@@ -90,13 +90,15 @@ class CarMilageSensor(Entity):
 
         This is the only method that should fetch new data for Home Assistant.
         """
-        self.data.update()
-        value = self.data.values
+        if self._hass.state not in (CoreState.starting, CoreState.not_running):
+            self.data.update()
+            value = self.data.values
 
 class CarMilageData(object):
     """docstring for CarMilageData"""
     def __init__(self, hass, odometer_entity):
         self.values = {
+        'last_known_value': 0,
         'current_month': 0, 
         calendar.month_name[1]: 0,
         calendar.month_name[2]: 0,
@@ -111,25 +113,25 @@ class CarMilageData(object):
         calendar.month_name[11]: 0,
         calendar.month_name[12]: 0
         }
-        _LOGGER.info("asdasdasd %s", hass)
+
         self.hass = hass
-        _LOGGER.info("asdasdasd %s", odometer_entity)
         self.odometer_entity = odometer_entity
 
-        self.milageFile = '/home/pi/.homeassistant/milage.properties'
+        self.milageFile = '/home/pi/.homeassistant/milage.json'
         # Create the file if not exist
         if not os.path.exists(self.milageFile):
-            open(self.milageFile, 'w').close()
+            with open(self.milageFile, 'w') as milage:
+                json.dump(self.values, milage)
 
     def update(self):
-        _LOGGER.info("asdasdasd %s", self.odometer_entity)
         odometer_value = self.getOdometerValueFromEntity(self.odometer_entity)
-        self.updateLastKnownValue(odometer_value)
+        self.setLastKnownValue(odometer_value)
 
+        self.values['last_known_value'] = self.getLastKnownValue()
         self.values['current_month'] = self.getMilageCurrentMonth()
         for i in range(1, 12):
             self.values[calendar.month_name[i]] = self.getMilageForMonth(i)
-            _LOGGER.info("Updating month %s with value", i, self.values[calendar.month_name[i]])
+            _LOGGER.info("Updating attribute %s with value %s from file", calendar.month_name[i], self.values[calendar.month_name[i]])
         
         _LOGGER.info("%s", self.values)
 
@@ -139,19 +141,38 @@ class CarMilageData(object):
         
 
     def getMilageForMonth(self, month):
-        _LOGGER.debug("Getting Milage for month: %s", month)
+        monthName = calendar.month_name[int(month)]
         with open(self.milageFile) as milage:
-            for key, value in jprops.iter_properties(milage):
-                if int(key) == int(month):
-                    _LOGGER.debug("Writing value: %s to month %s", value, month)
+            data = json.load(milage)
+            for key, value in data.items():
+                if str(key) == str(monthName):
                     return value
 
     def getOdometerValueFromEntity(self, entity):
-        odometer_entity = self.hass.states.get(entity)
-        _LOGGER.info("%s", odometer_entity)
-        return odometer_entity.state
+        odometer_value = self.hass.states.get(entity)
+        return odometer_value.state
 
-    def updateLastKnownValue(self, odometer_value):
+    def getLastKnownValue(self):
         with open(self.milageFile) as milage:
-            _LOGGER.debug("Setting last known odometer value: %s", odometer_value)
-            jprops.write_property(milage, 'last_known_value', odometer_value)
+            data = json.load(milage)
+            return data['last_known_value']
+
+    def setLastKnownValue(self, odometer_value):
+        _LOGGER.info("Updating last_known_value to: %s", odometer_value)
+
+        with open(self.milageFile, 'r') as milage:
+            data = json.load(milage)
+            data['last_known_value'] = odometer_value
+
+        os.remove(self.milageFile)
+        with open(self.milageFile, 'w') as milage:
+            json.dump(data, milage)
+
+
+
+
+
+
+
+
+

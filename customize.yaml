@@ -98,6 +98,9 @@ device_tracker.tgotp2747:
     hidden: true
     homebridge_hidden: true
 
+device_tracker.kalleboosiphone:
+    hidden: true
+    homebridge_hidden: true
 
 ############################################################
 #
