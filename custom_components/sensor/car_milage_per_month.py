@@ -73,7 +73,7 @@ class CarMilageSensor(Entity):
     @property
     def state(self):
         """Return the state of the sensor."""
-        return self._state
+        return self.data.getMilageForCurrentMonth()
 
     @property
     def unit_of_measurement(self):
@@ -124,23 +124,73 @@ class CarMilageData(object):
                 json.dump(self.values, milage)
 
     def update(self):
-        odometer_value = self.getOdometerValueFromEntity(self.odometer_entity)
+        odometer_value = self.getStateValueFromEntity(self.odometer_entity)
+
+        # If last_known_value is zero, it means that this is the first time running this component,
+        # or the self.milageFile has been removed. Handle this by setting the current last_known_value
+        # to the same value as the odometer_value. Which means that we will start calculating the diff
+        # at the next odometer change
+        if self.values['last_known_value'] == 0:
+            self.setLastKnownValue(odometer_value)
+
+        # This will ensure we set the new value for current month.
+        if self.getLastKnownValue() < odometer_value:
+            # Get the diff, the milage to add to our month
+            diff = abs(odometer_value - self.values['last_known_value'])
+
+            _LOGGER.info(
+                "New odometer value detected. Updating current months milage count. Before: %s After: %s", 
+                self.getMilageForCurrentMonth(),
+                self.getMilageForCurrentMonth() + diff
+            )
+            new_value = self.getMilageForCurrentMonth() + diff
+            self.setMilageForCurrentMonth(new_value)
+
+        # Set the last known value, after we have updated the current month milage value
         self.setLastKnownValue(odometer_value)
 
-        self.values['last_known_value'] = self.getLastKnownValue()
-        self.values['current_month'] = self.getMilageCurrentMonth()
+        # We interate over all months and set corresponding values, this is not really needed during normal operations, 
+        # since the self.values already contains recent values. 
+        # But we'll loose them after restart of hass, so we might as well set them every time from file.
         for i in range(1, 12):
-            self.values[calendar.month_name[i]] = self.getMilageForMonth(i)
             _LOGGER.info("Updating attribute %s with value %s from file", calendar.month_name[i], self.values[calendar.month_name[i]])
+            self.values[calendar.month_name[i]] = self.getMilageForMonth(i)
         
         _LOGGER.info("%s", self.values)
 
-    def getMilageCurrentMonth(self):
-        currentMonth = str(datetime.now().month).lstrip("0")
-        return self.getMilageForMonth(currentMonth)
+
+    def getMilageForCurrentMonth(self):
+        """
+        Returns the current month milage value
+        """
+        current_month = str(datetime.now().month).lstrip("0")
+        return self.getMilageForMonth(current_month)
+
+    def setMilageForCurrentMonth(self, odometer_value):
+        """
+        Sets the passed value to the current month milage value 
+        in the self.milageFile file
+        """
+        current_month = str(datetime.now().month).lstrip("0")
+        current_month_name = calendar.month_name[int(current_month)]
+        _LOGGER.info("Updating milage for month: %s to: %s", current_month_name, odometer_value)
+
+        self.values['current_month'] = odometer_value
+
+        with open(self.milageFile, 'r') as milage:
+            data = json.load(milage)
+            data[current_month_name] = odometer_value
+
+        os.remove(self.milageFile)
+        with open(self.milageFile, 'w') as milage:
+            json.dump(data, milage)
         
 
     def getMilageForMonth(self, month):
+        """
+        This method will return corresponding milage odometer value
+        for the passed month by reading it from the self.milageFile file.
+        """
         monthName = calendar.month_name[int(month)]
         with open(self.milageFile) as milage:
             data = json.load(milage)
@@ -148,17 +198,25 @@ class CarMilageData(object):
                 if str(key) == str(monthName):
                     return value
 
-    def getOdometerValueFromEntity(self, entity):
-        odometer_value = self.hass.states.get(entity)
-        return odometer_value.state
+    def getStateValueFromEntity(self, entity):
+        """
+        Get the current state from the passed entity
+        """
+        state = self.hass.states.get(entity)
+        return int(state.state)
 
     def getLastKnownValue(self):
         with open(self.milageFile) as milage:
             data = json.load(milage)
-            return data['last_known_value']
+            return int(data['last_known_value'])
 
     def setLastKnownValue(self, odometer_value):
+        """
+        Sets the passed value to the last_known_value 
+        in the self.milageFile file and in the list
+        """
         _LOGGER.info("Updating last_known_value to: %s", odometer_value)
+        self.values['last_known_value'] = odometer_value
 
         with open(self.milageFile, 'r') as milage:
             data = json.load(milage)
@@ -167,12 +225,3 @@ class CarMilageData(object):
         os.remove(self.milageFile)
         with open(self.milageFile, 'w') as milage:
             json.dump(data, milage)
-
-
-
-
-
-
-
-
-

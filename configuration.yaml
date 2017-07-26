@@ -49,97 +49,6 @@ zwave:
 #    country: SE
 
 
-
-# Sensors
-sensor:
-  - platform: car_milage_per_month
-    odometer_sensor: sensor.ete881_odometer
-  - platform: miflora
-    name: miflower_kitchenflower
-    mac: 'C4:7C:8D:61:FD:A7'
-    monitored_conditions:
-      - moisture
-      - temperature
-      - light
-      - conductivity
-      - battery
-
-  - platform: yr
-    name: "weather"
-    friendly_name: "Väder"
-    monitored_conditions:
-      - temperature
-      - symbol
-      - windSpeed
-      - pressure
-      - windDirection
-      - humidity
-      - fog
-      - cloudiness
-  - platform: speedtest
-    minute:
-      - 0
-      - 5
-      - 10
-      - 15
-      - 20
-      - 25
-      - 30
-      - 35
-      - 40
-      - 45
-      - 50
-    monitored_conditions:
-      - download
-      - upload
-
-  - platform: template
-    sensors:
-      ete881_odometer_template:
-        unit_of_measurement: 'mil'
-        value_template: '{{ states.sensor.ete881_odometer.state | multiply(1) / 10 }}'
-      ete881_range_template:
-        unit_of_measurement: 'mil'
-        value_template: '{{ states.sensor.ete881_range.state | multiply(1) / 10 }}'
-      yr_wind_direction_template:
-        value_template: '{{ states.sensor.yr_wind_direction.state | int }}'
-
-  - platform: command_line
-    name: yr wind direction cmd
-    command: 'sh /home/pi/.homeassistant/scripts/wind_direction.sh {{ states.sensor.yr_wind_direction_template.state }}'
-    unit_of_measurement: "Vind"
-
-  - platform: mqtt
-    name: "car_regnr"
-    state_topic: "/home/car"
-    value_template: '{{ value_json.regnr }}'
-
-  - platform: mqtt
-    name: "car_model"
-    state_topic: "/home/car"
-    value_template: '{{ value_json.model }}'
-
-  - platform: mqtt
-    name: "car_locked_state"
-    state_topic: "/home/car"
-    value_template: '{{ value_json.locked }}'
-
-  - platform: mqtt
-    name: car_location_latitude
-    state_topic: "/home/car"
-    value_template: '{{ value_json.location_latitude}}'
-
-  - platform: mqtt
-    name: car_location_longitude
-    state_topic: "/home/car"
-    value_template: '{{ value_json.location_longitude}}'
-
-  - platform: template
-    sensors:
-      car_locked:
-        value_template: '{% if is_state("sensor.car_locked_state", False) %} Öppet {% else %} Låst {% endif %}'
-        friendly_name: Dörrar & lås
-
 camera:
   name: car_location
   platform: generic
@@ -164,24 +73,25 @@ media_player:
     client_id: !secret spotify_clientid
     client_secret: !secret spotify_secret
 
-#apple_tv:
-#  - name: apple_tv_vardagsrum
-#    host: 192.168.1.3
-#    login_id: "00000000-1092-dc12-7d1d-158da0c84566"
-#    start_off: false
-#    credentials: "4A2E6F4FD81D6AC3:678148F0334ACC33B969467B388117A85084F1C20F2A3725AB073C6946089F91"
-#  - name: apple_tv_sovrum
-#    host: 192.168.1.7
-#    login_id: "00000000-1092-dc12-7d1d-158da0c84566"
-#    start_off: false
+apple_tv:
+  - name: apple_tv_vardagsrum
+    host: 192.168.1.3
+    login_id: "00000000-1092-dc12-7d1d-158da0c84566"
+    start_off: false
+    credentials: "4A2E6F4FD81D6AC3:678148F0334ACC33B969467B388117A85084F1C20F2A3725AB073C6946089F91"
+  - name: apple_tv_sovrum
+    host: 192.168.1.7
+    login_id: "00000000-1092-dc12-7d1d-158da0c84566"
+    start_off: false
+    credentials: "DC2F5063202BEEDD:4E55203F2655F276DDEF137A5FA029589F1EF4C26BB4C7E3D2D5467D313D7802"
 
 logger:
   default: warning
   logs:
     homeassistant.components.automation: info
 #    homeassistant.components.device_sun_light_trigger: debug
-#    homeassistant.components.script: info
-#    homeassistant.components.rfxtrx: info
+    custom_components.restore_states: debug
+#    homeassistant.components.apple_tv: info
     custom_components.sensor.car_milage_per_month: debug
 #    homeassistant.components.sensor.command_line: debug
 #    homeassistant.components.shell_command: debug
@@ -245,13 +155,19 @@ volvooncall:
   name:
     ete881: 'ETE881'
 
+recorder:
+  purge_days: 7
+  db_url: !secret recorder_db_url
+
+#restore_states:
+
 group: !include groups.yaml
 scene: !include_dir_list scenes
 automation: !include_dir_merge_list automation
 script: !include scripts/radio.yaml
 input_select: !include input_select.yaml
 input_boolean: !include input_boolean.yaml
-
+sensor: !include sensors.yaml
 shell_command:
   radio: '/home/pi/.homeassistant/scripts/radio.sh {{ mediaplayer }} {{ station }}'
   backup_hass: '/home/pi/.homeassistant/scripts/backup_hass.sh'

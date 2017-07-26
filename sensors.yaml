@@ -1,0 +1,90 @@
+- platform: car_milage_per_month
+  odometer_sensor: sensor.ete881_odometer
+  scan_interval: 3600
+  unit_of_measurement: 'km'
+
+- platform: miflora
+  name: miflower_kitchenflower
+  mac: 'C4:7C:8D:61:FD:A7'
+  monitored_conditions:
+    - moisture
+    - temperature
+    - light
+    - conductivity
+    - battery
+
+- platform: yr
+  name: "weather"
+  friendly_name: "Väder"
+  monitored_conditions:
+    - temperature
+    - symbol
+    - windSpeed
+    - pressure
+    - windDirection
+    - humidity
+    - fog
+    - cloudiness
+- platform: speedtest
+  minute:
+    - 0
+    - 5
+    - 10
+    - 15
+    - 20
+    - 25
+    - 30
+    - 35
+    - 40
+    - 45
+    - 50
+  monitored_conditions:
+    - download
+    - upload
+
+- platform: template
+  sensors:
+    ete881_odometer_template:
+      unit_of_measurement: 'mil'
+      value_template: '{{ states.sensor.ete881_odometer.state | multiply(1) / 10 }}'
+    ete881_range_template:
+      unit_of_measurement: 'mil'
+      value_template: '{{ states.sensor.ete881_range.state | multiply(1) / 10 }}'
+    yr_wind_direction_template:
+      value_template: '{{ states.sensor.yr_wind_direction.state | int }}'
+
+- platform: command_line
+  name: yr wind direction cmd
+  command: 'sh /home/pi/.homeassistant/scripts/wind_direction.sh {{ states.sensor.yr_wind_direction_template.state }}'
+  unit_of_measurement: "Vind"
+
+- platform: mqtt
+  name: "car_regnr"
+  state_topic: "/home/car"
+  value_template: '{{ value_json.regnr }}'
+
+- platform: mqtt
+  name: "car_model"
+  state_topic: "/home/car"
+  value_template: '{{ value_json.model }}'
+
+- platform: mqtt
+  name: "car_locked_state"
+  state_topic: "/home/car"
+  value_template: '{{ value_json.locked }}'
+
+- platform: mqtt
+  name: car_location_latitude
+  state_topic: "/home/car"
+  value_template: '{{ value_json.location_latitude}}'
+
+- platform: mqtt
+  name: car_location_longitude
+  state_topic: "/home/car"
+  value_template: '{{ value_json.location_longitude}}'
+
+- platform: template
+  sensors:
+    car_locked:
+      value_template: '{% if is_state("sensor.car_locked_state", False) %} Öppet {% else %} Låst {% endif %}'
+      friendly_name: Dörrar & lås
