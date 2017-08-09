@@ -11,6 +11,18 @@ radio:
   - input_select.speaker
   - script.radioscript
 
+hallway_view:
+  view: yes
+  name: Hall
+  entities:
+    - group.hallway_sensors
+
+bathroom_view:
+  view: yes
+  name: Badrum
+  entities:
+    - group.bathroom_sensors
+
 livingroom_view:
   view: yes
   name: Vardagsrum
@@ -19,6 +31,7 @@ livingroom_view:
     - group.livingroom_environment
     - group.livingroom_lights
     - group.livingroom_mediaplayers
+    - group.livingroom_sensors
 
 bedroom_view:
   view: yes
@@ -26,6 +39,7 @@ bedroom_view:
   entities:
     - group.bedroom_lights
     - group.bedroom_mediaplayers
+    - group.bedroom_sensors
 
 car_view:
   view: yes
@@ -72,9 +86,23 @@ scenes_view:
 #
 ############################################################
 #####################
-#
+# Hallway
+#####################
+hallway_sensors:
+  name: Sensorer
+  entities:
+    - binary_sensor.door_window_sensor_158d00018383cc
+
+#####################
+# Bathroom
+#####################
+bathroom_sensors:
+  name: Sensorer
+  entities:
+    - binary_sensor.door_window_sensor_158d00018379dd
+
+#####################
 # Livingroom
-#
 #####################
 livingroom_environment:
   name: Vardagsrum
@@ -95,15 +123,18 @@ livingroom_mediaplayers:
   entities:
     - media_player.apple_tv_vardagsrum
 
+livingroom_sensors:
+  name: Sensorer
+  entities:
+    - binary_sensor.door_window_sensor_158d00018374aa
+
 livingroom_scene:
   name: Belysning
   entities: 
     - input_select.scene_livingroom
 
 #####################
-#
 # Bedroom
-#
 #####################
 bedroom_lights:
   name: Lampor
@@ -114,15 +145,18 @@ bedroom_mediaplayers:
   entities:
     - media_player.apple_tv_sovrum
 
+bedroom_sensors:
+  name: Sensorer
+  entities:
+    - binary_sensor.door_window_sensor_158d0001837372
+
 bedroom_scene:
   name: Belysning
   entities: 
 
 
 #####################
-#
 # Kitchen
-#
 #####################
 kitchen_environment:
   name: Kök
@@ -135,9 +169,7 @@ kitchen_scene:
   entities: 
 
 #####################
-#
 # Flowers
-#
 #####################
 flower1:
   name: Julstjärna
@@ -146,9 +178,7 @@ flower1:
     - sensor.miflower_kitchenflower_battery
 
 #####################
-#
 # Car
-#
 #####################
 car:
   name: Bil
@@ -172,9 +202,7 @@ car:
 
 
 #####################
-#
 # Family
-#
 #####################
 family_devices:
   entities:
@@ -183,9 +211,7 @@ family_devices:
 
 
 #####################
-#
 # Phone
-#
 #####################
 phone_status:
 
@@ -198,9 +224,7 @@ phone_status:
 
 
 #####################
-#
 # Weather
-#
 #####################
 weather_data:
   name: Väder

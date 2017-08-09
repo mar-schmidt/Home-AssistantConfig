@@ -102,6 +102,16 @@ device_tracker.kalleboosiphone:
     hidden: true
     homebridge_hidden: true
 
+device_tracker.samsunggalaxys7:
+    hidden: true
+    homebridge_hidden: true
+
+device_tracker.lumigatewayv3_miio56297789:
+    hidden: true
+    homebridge_hidden: true
+
+
+
 ############################################################
 #
 # Z-Wave
@@ -162,6 +172,22 @@ sensor.aeotec_zw100_multisensor_6_temperature:
 # Sensors
 #
 ############################################################
+###############
+# Xiaomi
+###############
+binary_sensor.door_window_sensor_158d00018383cc:
+    friendly_name: Entrédörr
+
+binary_sensor.door_window_sensor_158d0001837372:
+    friendly_name: Fönster
+
+binary_sensor.door_window_sensor_158d00018374aa:
+    friendly_name: Fönster
+
+binary_sensor.door_window_sensor_158d00018379dd:
+    friendly_name: Dörr
+
+
 sensor.speedtest_download:
     friendly_name: Nedladdning
     homebridge_hidden: true

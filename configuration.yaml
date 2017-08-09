@@ -93,6 +93,7 @@ logger:
     custom_components.restore_states: debug
     homeassistant.components.apple_tv: info
     custom_components.sensor.car_milage_per_month: debug
+#    homeassistant.components.xiaomi: debug
 #    homeassistant.components.sensor.command_line: debug
 #    homeassistant.components.shell_command: debug
 #    miflora.miflora_poller: debug
@@ -138,6 +139,10 @@ zone:
 switch:
 
 xiaomi:
+  gateways:
+    - sid:
+  #- sid: '34:CE:00:81:2B:DE'
+      key: !secret xiaomi
 
 python_script:
 
