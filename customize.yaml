@@ -4,7 +4,6 @@
 #
 ############################################################
 
-
 ############################################################
 #
 # Input_Boolean
@@ -28,89 +27,6 @@ script.radioscript:
     friendly_name: ''
     homebridge_hidden: true
     icon: mdi:play
-
-
-############################################################
-#
-# Devices
-#
-############################################################
-
-device_tracker.marcusmbp:
-    hidden: true
-    homebridge_hidden: true
-
-device_tracker.philipshue:
-    hidden: true
-    homebridge_hidden: true
-
-device_tracker.philipstv:
-    hidden: true
-    homebridge_hidden: true
-
-device_tracker.raspberrypi:
-    hidden: true
-    homebridge_hidden: true
-
-device_tracker.sovrum:
-    hidden: true
-    homebridge_hidden: true
-
-device_tracker.vardagsrum:
-    hidden: true
-    homebridge_hidden: true
-
-device_tracker.malinsiphone:
-    hidden: true
-    homebridge_hidden: true
-
-device_tracker.malinsiphone_2:
-    hidden: true
-    homebridge_hidden: true
-
-device_tracker.robertsiphone:
-    hidden: true
-    homebridge_hidden: true
-
-device_tracker.dansiniphone:
-    hidden: true
-    homebridge_hidden: true
-
-device_tracker.desktopm1n5h56:
-    hidden: true
-    homebridge_hidden: true
-
-device_tracker.maronw10:
-    hidden: true
-    homebridge_hidden: true
-
-device_tracker.marcus_iphone:
-    homebridge_hidden: true
-
-device_tracker.katarinas_iphone:
-    homebridge_hidden: true
-
-device_tracker.kristiansiphone:
-    hidden: true
-    homebridge_hidden: true
-
-device_tracker.tgotp2747:
-    hidden: true
-    homebridge_hidden: true
-
-device_tracker.kalleboosiphone:
-    hidden: true
-    homebridge_hidden: true
-
-device_tracker.samsunggalaxys7:
-    hidden: true
-    homebridge_hidden: true
-
-device_tracker.lumigatewayv3_miio56297789:
-    hidden: true
-    homebridge_hidden: true
-
-
 
 ############################################################
 #
@@ -172,20 +88,7 @@ sensor.aeotec_zw100_multisensor_6_temperature:
 # Sensors
 #
 ############################################################
-###############
-# Xiaomi
-###############
-binary_sensor.door_window_sensor_158d00018383cc:
-    friendly_name: Entrédörr
 
-binary_sensor.door_window_sensor_158d0001837372:
-    friendly_name: Fönster
-
-binary_sensor.door_window_sensor_158d00018374aa:
-    friendly_name: Fönster
-
-binary_sensor.door_window_sensor_158d00018379dd:
-    friendly_name: Dörr
 
 
 sensor.speedtest_download:
@@ -338,9 +241,9 @@ group.all_automations:
     hidden: true
     homebridge_hidden: true
 
-group.all_plants:
-    friendly_name: Växter
-    homebridge_hidden: true
+#group.all_plants:
+#    friendly_name: Växter
+#    homebridge_hidden: true
 
 group.family_devices:
     hidden: true
@@ -518,18 +421,20 @@ device_tracker.volvo_ete881:
 ############################################################
 
 sensor.katarinas_iphone_battery_level:
-    friendly_name: Katarinas iPhone - Batteri
+    friendly_name: Katarina - Batteri
     unit_of_measurement: "%"
 
 sensor.marcus_iphone_battery_level:
-    friendly_name: Marcus iPhone - Batteri
+    friendly_name: Marcus - Batteri
     unit_of_measurement: "%"
 
 sensor.marcus_iphone_battery_state:
-    friendly_name: Marcus iPhone - Laddning
+    hidden: true
+    homebridge_hidden: true
 
 sensor.katarinas_iphone_battery_state:
-    friendly_name: Katarinas iPhone - Laddning
+    hidden: true
+    homebridge_hidden: true
 
 
 
@@ -587,12 +492,12 @@ sensor.yr_wind_speed:
 ############################################################
 
 sensor.miflower_kitchenflower_moisture:
-    friendly_name: Fuktighet
+    friendly_name: Julstjärna
     icon: mdi:water-percent
 
 sensor.miflower_kitchenflower_battery:
-    friendly_name: Batterinivå
-    icon: mdi:battery-80
+    hidden: true
+    homebridge_hidden: true
 
 sensor.miflower_kitchenflower_temperature:
     friendly_name: Temperatur
@@ -603,5 +508,87 @@ sensor.miflower_kitchenflower_light_intensity:
     icon: mdi:theme-light-dark
 
 sensor.miflower_kitchenflower_conductivity:
+    hidden: true
+    homebridge_hidden: true
+
+
+
+############################################################
+#
+# Devices
+#
+############################################################
+
+device_tracker.marcusmbp:
+    hidden: true
+    homebridge_hidden: true
+
+device_tracker.philipshue:
+    hidden: true
+    homebridge_hidden: true
+
+device_tracker.philipstv:
+    hidden: true
+    homebridge_hidden: true
+
+device_tracker.raspberrypi:
+    hidden: true
+    homebridge_hidden: true
+
+device_tracker.sovrum:
+    hidden: true
+    homebridge_hidden: true
+
+device_tracker.vardagsrum:
+    hidden: true
+    homebridge_hidden: true
+
+device_tracker.malinsiphone:
+    hidden: true
+    homebridge_hidden: true
+
+device_tracker.malinsiphone_2:
+    hidden: true
+    homebridge_hidden: true
+
+device_tracker.robertsiphone:
+    hidden: true
+    homebridge_hidden: true
+
+device_tracker.dansiniphone:
+    hidden: true
+    homebridge_hidden: true
+
+device_tracker.desktopm1n5h56:
+    hidden: true
+    homebridge_hidden: true
+
+device_tracker.maronw10:
+    hidden: true
+    homebridge_hidden: true
+
+device_tracker.marcus_iphone:
+    homebridge_hidden: true
+
+device_tracker.katarinas_iphone:
+    homebridge_hidden: true
+
+device_tracker.kristiansiphone:
+    hidden: true
+    homebridge_hidden: true
+
+device_tracker.tgotp2747:
+    hidden: true
+    homebridge_hidden: true
+
+device_tracker.kalleboosiphone:
+    hidden: true
+    homebridge_hidden: true
+
+device_tracker.samsunggalaxys7:
+    hidden: true
+    homebridge_hidden: true
+
+device_tracker.lumigatewayv3_miio56297789:
     hidden: true
     homebridge_hidden: true

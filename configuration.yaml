@@ -7,6 +7,62 @@ homeassistant:
   time_zone: !secret home_timezone
   temperature_unit: C
   customize: !include customize.yaml
+  customize_glob:
+    "light.*":
+      custom_ui_state_card: custom-ui
+      state_card_mode: break-slider
+      stretch_slider: true
+      hide_control: false
+      show_last_changed: true
+    "*.*":
+      custom_ui_state_card: custom-ui
+    group.livingroom_environment:
+      state_card_mode: badges
+    group.kitchen_environment:
+      state_card_mode: badges
+    group.all_sensors:
+      state_card_mode: badges
+    group.hallway_sensors:
+      state_card_mode: badges
+    group.bathroom_sensors:
+      state_card_mode: badges
+    group.livingroom_sensors:
+      state_card_mode: badges
+    group.bedroom_sensors:
+      state_card_mode: badges
+    group.flowers:
+      state_card_mode: badges
+    group.phone_status:
+      state_card_mode: badges
+
+    # Device-aware attributes
+    binary_sensor.door_window_sensor_158d00018383cc: # Hallway
+      friendly_name: Entrédörr
+      group:
+        group.hallway_sensors:
+          friendly_name: Entrédörr
+    binary_sensor.door_window_sensor_158d00018379dd: # Bathroom
+      friendly_name: Badrumsdörr
+      group:
+        group.bathroom_sensors:
+          friendly_name: Dörr
+    binary_sensor.door_window_sensor_158d00018374aa: # Livingroom
+      friendly_name: Fönster Vardagsrum
+      group:
+        group.livingroom_sensors:
+          friendly_name: Fönster
+    binary_sensor.door_window_sensor_158d0001837372: # Bedroom
+      friendly_name: Fönster Sovrum
+      group:
+        group.bedroom_sensors:
+          friendly_name: Fönster
+
+
+#    group.livingroom_lights:
+#      friendly_name: Yard Light
+#      group:
+#        group.livingroom_lights:
+#          friendly_name: Light
 
 
 # Enables the frontend

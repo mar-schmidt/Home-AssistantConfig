@@ -1,37 +1,52 @@
+default_view:
+  view: yes
+  icon: mdi:home 
+  entities:
+    - device_tracker.volvo_ete881
+    - device_tracker.katarinas_iphone
+    - device_tracker.marcus_iphone
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+    - sensor.yr_symbol
+    - group.radio
+    - group.all_sensors_badge
+    - group.livingroom_environment_badge
+    - group.livingroom_lights
+    - group.livingroom_mediaplayers
+    - group.livingroom_scene
+    - group.bedroom_mediaplayers
+    - group.kitchen_environment_badge
+    - group.flowers_badge
+    - group.car
+    - group.phone_status_badge
+    - group.weather_data
+
 ############################################################
 #
 # Views
 #
 ############################################################
-radio:
-  view: no
-  name: Radio
-  entities:
-  - input_select.radio_station
-  - input_select.speaker
-  - script.radioscript
-
 hallway_view:
   view: yes
   name: Hall
   entities:
-    - group.hallway_sensors
+    - group.hallway_sensors_badge
 
 bathroom_view:
   view: yes
   name: Badrum
   entities:
-    - group.bathroom_sensors
+    - group.bathroom_sensors_badge
 
 livingroom_view:
   view: yes
   name: Vardagsrum
   entities:
     - group.livingroom_scene
-    - group.livingroom_environment
+    - group.livingroom_environment_badge
     - group.livingroom_lights
     - group.livingroom_mediaplayers
-    - group.livingroom_sensors
+    - group.livingroom_sensors_badge
 
 bedroom_view:
   view: yes
@@ -39,7 +54,7 @@ bedroom_view:
   entities:
     - group.bedroom_lights
     - group.bedroom_mediaplayers
-    - group.bedroom_sensors
+    - group.bedroom_sensors_badge
 
 car_view:
   view: yes
@@ -51,20 +66,20 @@ family_view:
   view: yes
   name: Familj
   entities:
-    - group.phone_status
+    - group.phone_status_badge
 
 kitchen_view:
   view: yes
   name: Kök
   entities:
-    - group.kitchen_environment
-    - group.flower1
+    - group.kitchen_environment_badge
+    - group.flowers_badge
 
 flowers_view:
   view: yes
   name: Växter
   entities:
-    - group.flower1
+    - group.flowers_badge
 
 mediaplayers_view:
   view: yes
@@ -85,27 +100,54 @@ scenes_view:
 # Groups
 #
 ############################################################
+radio:
+  name: Radio
+  entities:
+  - input_select.radio_station
+  - input_select.speaker
+  - script.radioscript
+
+all_sensors_badge:
+  name: Alla sensorer
+  entities:
+    - group.all_sensors
+all_sensors:
+  entities:
+    - binary_sensor.door_window_sensor_158d00018383cc # Hallway
+    - binary_sensor.door_window_sensor_158d00018379dd # Bathroom
+    - binary_sensor.door_window_sensor_158d00018374aa # Livingroom
+    - binary_sensor.door_window_sensor_158d0001837372 # Bedroom
+
 #####################
 # Hallway
 #####################
-hallway_sensors:
+hallway_sensors_badge:
   name: Sensorer
+  entities:
+    - group.hallway_sensors
+hallway_sensors:
   entities:
     - binary_sensor.door_window_sensor_158d00018383cc
 
 #####################
 # Bathroom
 #####################
-bathroom_sensors:
+bathroom_sensors_badge:
   name: Sensorer
+  entities:
+    - group.bathroom_sensors
+bathroom_sensors:
   entities:
     - binary_sensor.door_window_sensor_158d00018379dd
 
 #####################
 # Livingroom
 #####################
-livingroom_environment:
+livingroom_environment_badge:
   name: Vardagsrum
+  entities:
+    - group.livingroom_environment
+livingroom_environment:
   entities:
     - sensor.aeotec_zw100_multisensor_6_temperature
     - sensor.aeotec_zw100_multisensor_6_luminance
@@ -123,8 +165,11 @@ livingroom_mediaplayers:
   entities:
     - media_player.apple_tv_vardagsrum
 
-livingroom_sensors:
+livingroom_sensors_badge:
   name: Sensorer
+  entities:
+    - group.livingroom_sensors
+livingroom_sensors:
   entities:
     - binary_sensor.door_window_sensor_158d00018374aa
 
@@ -145,8 +190,11 @@ bedroom_mediaplayers:
   entities:
     - media_player.apple_tv_sovrum
 
-bedroom_sensors:
+bedroom_sensors_badge:
   name: Sensorer
+  entities:
+    - group.bedroom_sensors
+bedroom_sensors:
   entities:
     - binary_sensor.door_window_sensor_158d0001837372
 
@@ -158,8 +206,11 @@ bedroom_scene:
 #####################
 # Kitchen
 #####################
-kitchen_environment:
+kitchen_environment_badge:
   name: Kök
+  entities:
+    - group.kitchen_environment
+kitchen_environment:
   entities:
     - sensor.miflower_kitchenflower_temperature
     - sensor.miflower_kitchenflower_light_intensity
@@ -171,11 +222,13 @@ kitchen_scene:
 #####################
 # Flowers
 #####################
-flower1:
-  name: Julstjärna
+flowers_badge:
+  name: Växter
+  entities:
+    - group.flowers
+flowers:
   entities:
     - sensor.miflower_kitchenflower_moisture
-    - sensor.miflower_kitchenflower_battery
 
 #####################
 # Car
@@ -213,14 +266,14 @@ family_devices:
 #####################
 # Phone
 #####################
-phone_status:
-
+phone_status_badge:
   name: Telefoner
   entities:
+    - group.phone_status
+phone_status:
+  entities:
     - sensor.marcus_iphone_battery_level
-    - sensor.marcus_iphone_battery_state
     - sensor.katarinas_iphone_battery_level
-    - sensor.katarinas_iphone_battery_state
 
 
 #####################
