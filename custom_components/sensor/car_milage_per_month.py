@@ -1,5 +1,3 @@
-# Requires jprops (pip install jprops)
-
 """
 Configuration:
 
@@ -12,7 +10,6 @@ car_milage_per_month:
 """
 import json
 import logging
-import jprops
 import calendar
 import os
 import voluptuous as vol
@@ -117,7 +114,8 @@ class CarMilageData(object):
         self.hass = hass
         self.odometer_entity = odometer_entity
 
-        self.milageFile = '/home/pi/.homeassistant/milage.json'
+        self.milageFile = self.hass.config.path('milage.json')
+        _LOGGER.info("Milage file: %s", self.milageFile)
         # Create the file if not exist
         if not os.path.exists(self.milageFile):
             with open(self.milageFile, 'w') as milage:
@@ -138,7 +136,7 @@ class CarMilageData(object):
             # Get the diff, the milage to add to our month
             diff = abs(odometer_value - self.values['last_known_value'])
 
-            _LOGGER.info(
+            _LOGGER.debug(
                 "New odometer value detected. Updating current months milage count. Before: %s After: %s", 
                 self.getMilageForCurrentMonth(),
                 self.getMilageForCurrentMonth() + diff
@@ -153,10 +151,10 @@ class CarMilageData(object):
         # since the self.values already contains recent values. 
         # But we'll loose them after restart of hass, so we might as well set them every time from file.
         for i in range(1, 12):
-            _LOGGER.info("Updating attribute %s with value %s from file", calendar.month_name[i], self.values[calendar.month_name[i]])
+            _LOGGER.debug("Updating attribute %s with value %s from file", calendar.month_name[i], self.values[calendar.month_name[i]])
             self.values[calendar.month_name[i]] = self.getMilageForMonth(i)
         
-        _LOGGER.info("%s", self.values)
+        _LOGGER.debug("%s", self.values)
 
 
     def getMilageForCurrentMonth(self):
@@ -173,7 +171,7 @@ class CarMilageData(object):
         """
         current_month = str(datetime.now().month).lstrip("0")
         current_month_name = calendar.month_name[int(current_month)]
-        _LOGGER.info("Updating milage for month: %s to: %s", current_month_name, odometer_value)
+        _LOGGER.debug("Updating milage for month: %s to: %s", current_month_name, odometer_value)
 
         self.values['current_month'] = odometer_value
 
@@ -215,7 +213,7 @@ class CarMilageData(object):
         Sets the passed value to the last_known_value 
         in the self.milageFile file and in the list
         """
-        _LOGGER.info("Updating last_known_value to: %s", odometer_value)
+        _LOGGER.debug("Updating last_known_value to: %s", odometer_value)
         self.values['last_known_value'] = odometer_value
 
         with open(self.milageFile, 'r') as milage:
