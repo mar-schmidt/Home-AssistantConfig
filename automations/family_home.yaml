@@ -1,0 +1,15 @@
+- alias: Family home
+# Will trigger if any of the below are 'home'
+  trigger:
+    - platform: state
+      entity_id: device_tracker.marcus_iphone
+      to: 'home'
+    - platform: state
+      entity_id: device_tracker.katarinas_iphone
+      to: 'home'
+  condition:
+      condition: state
+      entity_id: input_boolean.someone_home
+      state: 'off'
+  action:
+      service: script.family_away

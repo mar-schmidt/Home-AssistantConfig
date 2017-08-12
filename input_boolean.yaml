@@ -1,4 +1,4 @@
-trigger_first_morning:
+can_trigger_good_morning:
   initial: off
 
 someone_home:

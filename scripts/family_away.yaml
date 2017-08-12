@@ -1,0 +1,4 @@
+family_away:
+  sequence:
+    - service: scene.turn_on
+      entity_id: scene.livingroom_off

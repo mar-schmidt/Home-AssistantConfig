@@ -1,0 +1,97 @@
+
+
+
+#######################
+#
+# Normal light if lumiance below 5
+# Rooms: Livingroom
+#
+#######################
+- alias: 'Livingroom lights turn on to normal light scene if light is below 5 and me and-or katarina is home'
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.aeotec_zw100_multisensor_6_luminance
+      below: 6
+  condition:
+    - condition: and
+      conditions:
+      - condition: time
+        after: '08:00'
+        before: '23:00'
+      - condition: state
+        entity_id: input_boolean.someone_home
+        state: 'on'
+  action:
+    service: scene.turn_on
+    entity_id: scene.livingroom_normal
+
+
+
+#######################
+#
+# Low light if lumiance between 4 and 8
+# Rooms: Livingroom
+#
+#######################
+- alias: 'Livingroom lights turn on to low light scene if light is above 3 and below 7 and me and-or katarina is home'
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.aeotec_zw100_multisensor_6_luminance
+      above: 5
+      below: 9
+  condition:
+    - condition: and
+      conditions:
+      - condition: time
+        after: '08:00'
+        before: '23:00'
+      - condition: state
+        entity_id: input_boolean.someone_home
+        state: 'on'
+  action:
+    service: scene.turn_on
+    entity_id: scene.livingroom_low
+
+
+
+#######################
+#
+# Normal light when mediaplayer paused/stopped
+# Rooms: Livingroom
+#
+#######################
+- alias: 'Mediaplayer (livingroom) paused/stopped'
+  trigger:
+    - platform: state
+      entity_id: media_player.apple_tv_vardagsrum
+      from: 'playing'
+      to: 'paused'
+  condition:
+    - condition: sun
+      after: sunset
+      after_offset: "-1:30:00"
+  action:
+      service: scene.turn_on
+      entity_id: scene.livingroom_normal
+
+
+
+#######################
+#
+# Low light when mediaplayer playing
+# Rooms: Livingroom
+#
+#######################
+- alias: "Mediaplayer (livingroom) playing"
+  trigger:
+    - platform: state
+      entity_id: media_player.apple_tv_vardagsrum
+      to: 'playing'
+      from: 'paused'
+  condition:
+    - condition: sun
+      after: sunset
+      after_offset: "-1:30:00"
+  action:
+      service: scene.turn_on
+      entity_id: scene.livingroom_movie

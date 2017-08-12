@@ -1,7 +1,7 @@
-- alias: Scene Livingroom
+- alias: Light Scene Livingroom
   trigger:
-    platform: state
-    entity_id: input_select.scene_livingroom
+      platform: state
+      entity_id: input_select.scene_livingroom
   action:
     - service: scene.turn_on
       data_template:
