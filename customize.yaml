@@ -445,41 +445,41 @@ sensor.katarinas_iphone_battery_state:
 #
 ############################################################
 
-sensor.yr_symbol:
+sensor.weather_symbol:
     friendly_name: Väder
 
-sensor.yr_cloudiness:
+sensor.weather_cloudiness:
     friendly_name: Molnighet
     icon: mdi:weather-cloudy
 
-sensor.yr_fog:
+sensor.weather_fog:
     friendly_name: Dimma
     icon: mdi:weather-fog
 
-sensor.yr_humidity:
+sensor.weather_humidity:
     friendly_name: Luftfuktighet
     icon: mdi:water-percent
 
-sensor.yr_pressure:
+sensor.weather_pressure:
     friendly_name: Lufttryck
     icon: mdi:format-line-weight
 
-sensor.yr_temperature:
+sensor.weather_temperature:
     friendly_name: Temperatur
 
-sensor.yr_wind_direction_cmd:
+sensor.weather_wind_direction_cmd:
     friendly_name: Vindriktning
     icon: mdi:weather-windy-variant
 
-sensor.yr_wind_direction:
+sensor.weather_wind_direction:
     hidden: true
     homebridge_hidden: true
 
-sensor.yr_wind_direction_template:
+sensor.weather_wind_direction_template:
     hidden: true
     homebridge_hidden: true
 
-sensor.yr_wind_speed:
+sensor.weather_wind_speed:
     friendly_name: Vindhastighet
     icon: mdi:weather-windy
 
