@@ -1,18 +1,20 @@
 #!/bin/bash
-if [ "$1" -gt "326" ] && [ "$1" -lt "11" ]; then #NNW to NNE
+ARG="${1%\.*}"
+
+if [ "$ARG" -gt "326" ] && [ "$ARG" -lt "11" ]; then #NNW to NNE
 	echo "Nordlig"
-elif [ "$1" -gt "11" ] && [ "$1" -lt "56" ]; then #NNE to ENE
+elif [ "$ARG" -gt "11" ] && [ "$ARG" -lt "56" ]; then #NNE to ENE
 	echo "Nordostlig"
-elif [ "$1" -gt "56" ] && [ "$1" -lt "101" ]; then #ENE to ESE
+elif [ "$ARG" -gt "56" ] && [ "$ARG" -lt "101" ]; then #ENE to ESE
 	echo "Ostlig"
-elif [ "$1" -gt "101" ] && [ "$1" -lt "146" ]; then #ESE to SSE
+elif [ "$ARG" -gt "101" ] && [ "$ARG" -lt "146" ]; then #ESE to SSE
 	echo "Sydostlig"
-elif [ "$1" -gt "146" ] && [ "$1" -lt "191" ]; then #SSE to SSW
+elif [ "$ARG" -gt "146" ] && [ "$ARG" -lt "191" ]; then #SSE to SSW
 	echo "Sydlig"
-elif [ "$1" -gt "191" ] && [ "$1" -lt "236" ]; then #SSW to WSW
+elif [ "$ARG" -gt "191" ] && [ "$ARG" -lt "236" ]; then #SSW to WSW
 	echo "Sydvästlig"
-elif [ "$1" -gt "236" ] && [ "$1" -lt "281" ]; then #WSW to WNW
+elif [ "$ARG" -gt "236" ] && [ "$ARG" -lt "281" ]; then #WSW to WNW
 	echo "Västlig"
-elif [ "$1" -gt "281" ] && [ "$1" -lt "326" ]; then #WNW to NNW
+elif [ "$ARG" -gt "281" ] && [ "$ARG" -lt "326" ]; then #WNW to NNW
 	echo "Nordvästlig"
 fi

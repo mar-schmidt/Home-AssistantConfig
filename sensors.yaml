@@ -50,13 +50,11 @@
     ete881_range_template:
       unit_of_measurement: 'mil'
       value_template: '{{ states.sensor.ete881_range.state | multiply(1) / 10 }}'
-    yr_wind_direction_template:
-      value_template: '{{ states.sensor.yr_wind_direction.state | int }}'
 
 - platform: command_line
-  name: yr wind direction cmd
-  command: 'sh /home/pi/.homeassistant/scripts/wind_direction.sh {{ states.sensor.yr_wind_direction_template.state }}'
-  unit_of_measurement: "Vind"
+  name: weather wind direction cmd
+  command: 'sh /home/pi/.homeassistant/scripts/wind_direction.sh {{ states.sensor.weather_wind_direction.state }}'
+  unit_of_measurement: "Riktning"
 
 - platform: mqtt
   name: "car_regnr"
