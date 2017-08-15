@@ -1,7 +1,0 @@
-good_morning:
-  sequence:
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.can_trigger_good_morning
-
-    - service: scene.turn_on
-      entity_id: scene.livingroom_low

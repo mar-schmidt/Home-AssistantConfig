@@ -1,0 +1,35 @@
+automation:
+  - alias: Family away
+  # Will only trigger if all are 'not_home'
+    trigger:
+          platform: template
+          value_template: "{% if (is_state('device_tracker.marcus_iphone','not_home')) and (is_state('device_tracker.katarinas_iphone','not_home')) %}true{% endif %}"
+    condition:
+      condition: and
+      conditions:
+        - condition: time
+          after: '06:30'
+          before: '23:30'
+        - condition: state
+          entity_id: input_boolean.someone_home    
+          state: 'on'
+    action:
+          service: homeassistant.turn_off
+          entity_id: input_boolean.someone_home
+
+  - alias: 'Lights off when no one is home'
+    trigger:
+      - platform: state
+        entity_id: input_boolean.someone_home
+        to: 'off'
+        for:
+          minutes: 5
+    action:
+      service: script.family_away
+
+
+script:
+  family_away:
+    sequence:
+      - service: scene.turn_on
+        entity_id: scene.livingroom_off

@@ -1,4 +1,0 @@
-family_home:
-  sequence:
-    - service: homeassistant.turn_on
-      entity_id: input_boolean.someone_home

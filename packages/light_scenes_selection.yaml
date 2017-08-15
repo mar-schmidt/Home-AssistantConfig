@@ -1,0 +1,34 @@
+input_select:
+  scene_livingroom:
+    name: 'Belysning Vardagsrum:'
+    icon: mdi:brightness-auto
+    initial: Välj
+    options:
+      - Välj
+      - Normal
+      - Dimmad
+      - Film
+      - Av
+
+automation:
+  - alias: Light Scene Livingroom
+    trigger:
+        platform: state
+        entity_id: input_select.scene_livingroom
+    action:
+      - service: scene.turn_on
+        data_template:
+          entity_id: >
+            {% if is_state( "input_select.scene_livingroom", "Dimmad" ) %}
+              scene.livingroom_low
+            {%-elif is_state( "input_select.scene_livingroom", "Film" ) %}
+              scene.livingroom_movie
+            {%-elif is_state( "input_select.scene_livingroom", "Normal" ) %}
+              scene.livingroom_normal
+            {%-elif is_state( "input_select.scene_livingroom", "Av" ) %}
+              scene.livingroom_off
+            {% endif %}
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.scene_livingroom
+          option: Välj
