@@ -21,7 +21,6 @@ default_view:
     - group.phone_status_badge
     - group.weather_data
     - script.morning_news
-    - script.masterchef
 
 ############################################################
 #

@@ -114,11 +114,7 @@ light:
   - platform: hue
     host: 192.168.1.8
 
-ios:
-
 notify:
-
-
 
 recorder:
   purge_days: 7

@@ -1,0 +1,52 @@
+automation:
+#######################
+#
+# Normal light if lumiance below 5
+# Rooms: Livingroom
+#
+#######################
+  - alias: 'Normal light if lumiance below 5'
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.aeotec_zw100_multisensor_6_luminance
+        below: 6
+    condition:
+      - condition: and
+        conditions:
+        - condition: time
+          after: '08:00'
+          before: '23:00'
+        - condition: state
+          entity_id: input_boolean.someone_home
+          state: 'on'
+    action:
+      service: scene.turn_on
+      entity_id: scene.livingroom_normal
+
+
+
+#######################
+#
+# Low light if lumiance between 4 and 10
+# Rooms: Livingroom
+#
+#######################
+  - alias: 'Low light if lumiance between 4 and 10'
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.aeotec_zw100_multisensor_6_luminance
+        above: 5
+        below: 10
+    condition:
+      - condition: and
+        conditions:
+        - condition: time
+          after: '08:00'
+          before: '23:00'
+        - condition: state
+          entity_id: input_boolean.someone_home
+          state: 'on'
+    action:
+      service: scene.turn_on
+      entity_id: scene.livingroom_low
+

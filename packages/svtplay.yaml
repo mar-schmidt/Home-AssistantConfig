@@ -13,14 +13,6 @@ script:
           entity_id: media_player.apple_tv_sovrum
           program: morning news
 
-  masterchef:
-    alias: masterchef
-    sequence:
-      - service: script.svtplay_play
-        data:
-          entity_id: media_player.apple_tv_sovrum
-          program: sveriges mästerkock
-
   svtplay_play:
     alias: Play something with svtplay_dl
     sequence:

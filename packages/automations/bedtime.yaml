@@ -1,5 +1,11 @@
 automation:
-  - alias: 'Bedtime'
+############################
+#
+# Automatic Bedtime if no movement for 
+# 10 minutes and time is after 22:00
+#
+############################
+  - alias: Automatic bedtime
     trigger:
       - platform: state
         entity_id: binary_sensor.aeotec_zw100_multisensor_6_sensor
@@ -20,8 +26,78 @@ automation:
     action:
           service: script.bedtime
 
+############################
+#
+# Send actionable notification asking
+# if bedtime
+#
+############################
+  - alias: Actionable bedtime notification
+    trigger:
+      platform: time
+      at: '22:30'
+    action:
+      service: notify.notify
+      data:
+        title: "Läggdags"
+        message: "Snart dags för sängen"
+        data:
+          push:
+            badge: 0
+            category: "BEDTIME" # Needs to match the top level identifier you used in the ios configuration
+
+  - alias: Bedtime action goodnight tapped
+    trigger:
+      platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: BEDTIME_TRIGGER
+    action:
+      service: script.bedtime
+
+  - alias: Bedtime action snooze tapped
+    trigger:
+      platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: BEDTIME_SNOOZE
+    action:
+      service: script.bedtime_snooze
+
+
 script:
   bedtime:
     sequence:
       - service: scene.turn_on
         entity_id: scene.livingroom_off
+  bedtime_snooze:
+    sequence:
+      - service: notify.notify
+        data:
+          title: "Läggdags"
+          message: "Snoozat i 30 minuter"
+      - delay:
+          minutes: 30
+      - service: automation.trigger
+        entity_id: automation.actionable_bedtime_notification
+
+
+
+ios:
+  push:
+    categories:
+      - name: Bedtime
+        identifier: 'BEDTIME'
+        actions:
+          - identifier: 'BEDTIME_TRIGGER'
+            title: 'Godnatt'
+            activationMode: 'background'
+            authenticationRequired: no
+            destructive: no
+            behavior: 'default'
+          - identifier: 'BEDTIME_SNOOZE'
+            title: 'Snooze'
+            activationMode: 'background'
+            authenticationRequired: no
+            destructive: yes
+            behavior: 'default'

@@ -169,7 +169,7 @@ class Svtplay:
             return False
 
         program = data['results'][0]
-        self._url = 'http://tv4play.se/program/{0}?video_id={1}'.format(
+        self._url = 'https://www.tv4play.se/program/{0}?video_id={1}'.format(
             program['program_nid'], program['id'])
 
         _LOGGER.info('Found URL: ' + self._url)
