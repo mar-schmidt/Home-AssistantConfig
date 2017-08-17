@@ -55,14 +55,26 @@ automation:
     action:
       service: script.bedtime
 
-  - alias: Bedtime action snooze tapped
+  - alias: Bedtime action snooze 15 tapped
     trigger:
       platform: event
       event_type: ios.notification_action_fired
       event_data:
-        actionName: BEDTIME_SNOOZE
+        actionName: BEDTIME_SNOOZE15
     action:
-      service: script.bedtime_snooze
+      service: script.bedtime_snooze15
+
+  - alias: Bedtime action snooze 30 tapped
+    trigger:
+      platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: BEDTIME_SNOOZE30
+    action:
+      service: script.bedtime_snooze30
+
+
+
 
 
 script:
@@ -70,12 +82,22 @@ script:
     sequence:
       - service: scene.turn_on
         entity_id: scene.livingroom_off
-  bedtime_snooze:
+  bedtime_snooze15:
     sequence:
       - service: notify.notify
         data:
           title: "Läggdags"
-          message: "Snoozat i 30 minuter"
+          message: "Snoozar i 15 minuter"
+      - delay:
+          minutes: 15
+      - service: automation.trigger
+        entity_id: automation.actionable_bedtime_notification
+  bedtime_snooze30:
+    sequence:
+      - service: notify.notify
+        data:
+          title: "Läggdags"
+          message: "Snoozar i 30 minuter"
       - delay:
           minutes: 30
       - service: automation.trigger
@@ -95,8 +117,14 @@ ios:
             authenticationRequired: no
             destructive: no
             behavior: 'default'
-          - identifier: 'BEDTIME_SNOOZE'
-            title: 'Snooze'
+          - identifier: 'BEDTIME_SNOOZE15'
+            title: 'Snooze 15min'
+            activationMode: 'background'
+            authenticationRequired: no
+            destructive: yes
+            behavior: 'default'
+          - identifier: 'BEDTIME_SNOOZE30'
+            title: 'Snooze 30min'
             activationMode: 'background'
             authenticationRequired: no
             destructive: yes

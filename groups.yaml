@@ -21,6 +21,7 @@ default_view:
     - group.phone_status_badge
     - group.weather_data
     - script.morning_news
+    - alarm_control_panel.alarm
 
 ############################################################
 #
@@ -240,7 +241,7 @@ car:
     - sensor.car_model
     - sensor.car_regnr
     - sensor.ete881_odometer_template
-    - sensor.car_milage_per_month
+    - sensor.car_milage_per_month_template
     - sensor.ete881_fuel_level
     - sensor.ete881_range_template
     - sensor.car_locked

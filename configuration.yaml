@@ -36,12 +36,40 @@ logbook:
 
 zwave:
   usb_path: /dev/ttyUSB20
+  polling_interval: 120000
+  device_config:
+    sensor.aeotec_zw100_multisensor_6_luminance: { polling_intensity: 1 }
 
 # Waiting for Swedish support (https://pypi.python.org/pypi/holidays/)
 #binary_sensor:
 #  - platform: workday
 #    country: SE
 
+sensor:
+  - platform: speedtest
+    minute:
+      - 0
+      - 5
+      - 10
+      - 15
+      - 20
+      - 25
+      - 30
+      - 35
+      - 40
+      - 45
+      - 50
+    monitored_conditions:
+      - download
+      - upload
+
+
+panel_custom:
+  - name: alarm
+    sidebar_title: Alarm
+    sidebar_icon: mdi:security-home
+    config:
+      alarmid: alarm_control_panel.alarm
 
 
 # Text to speech
@@ -116,6 +144,14 @@ light:
 
 notify:
 
+alarm_control_panel:
+  platform: manual
+  name: "Alarm"
+  code: 1234
+  pending_time: 45
+  trigger_time: 45
+  disarm_after_trigger: false
+
 recorder:
   purge_days: 7
   db_url: !secret recorder_db_url
@@ -126,8 +162,6 @@ group: !include groups.yaml
 scene: !include_dir_list scenes
 automation: !include_dir_merge_list automations
 script: !include_dir_merge_named scripts
-input_boolean: !include input_boolean.yaml
-sensor: !include sensors.yaml
 shell_command:
   backup_hass: '/home/pi/.homeassistant/scripts/backup_hass.sh'
 

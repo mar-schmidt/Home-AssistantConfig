@@ -1,0 +1,10 @@
+sensor:
+  - platform: miflora
+    name: miflower_kitchenflower
+    mac: 'C4:7C:8D:61:FD:A7'
+    monitored_conditions:
+      - moisture
+      - temperature
+      - light
+      - conductivity
+      - battery

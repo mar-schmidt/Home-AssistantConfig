@@ -68,3 +68,11 @@ script:
 
       - service: scene.turn_on
         entity_id: scene.livingroom_low
+
+
+
+
+
+input_boolean:
+  can_trigger_good_morning:
+    initial: off

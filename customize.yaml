@@ -99,7 +99,7 @@ sensor.speedtest_upload:
     friendly_name: Uppladdning
     homebridge_hidden: true
 
-sensor.car_milage_per_month:
+sensor.car_milage_per_month_template:
     friendly_name: Antal km denna månad
     homebridge_hidden: true
 

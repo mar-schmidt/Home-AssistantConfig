@@ -24,6 +24,9 @@ sensor:
       ete881_range_template:
         unit_of_measurement: 'mil'
         value_template: '{{ states.sensor.ete881_range.state | multiply(1) / 10 }}'
+      car_milage_per_month_template:
+        unit_of_measurement: 'mil'
+        value_template: '{{ states.sensor.car_milage_per_month.state | multiply(1) / 10 }}'
 
   - platform: template
     sensors:

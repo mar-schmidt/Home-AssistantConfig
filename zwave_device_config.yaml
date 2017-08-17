@@ -1,4 +1,0 @@
-sensor.aeotec_zw100_multisensor_6_luminance:
-  ignored: false
-  polling_intensity: 1
-  polling_interval: 120000
