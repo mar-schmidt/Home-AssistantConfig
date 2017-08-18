@@ -159,8 +159,7 @@ recorder:
 #restore_states:
 
 group: !include groups.yaml
-scene: !include_dir_list scenes
-automation: !include_dir_merge_list automations
+
 script: !include_dir_merge_named scripts
 shell_command:
   backup_hass: '/home/pi/.homeassistant/scripts/backup_hass.sh'

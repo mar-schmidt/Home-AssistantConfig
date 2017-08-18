@@ -1,0 +1,12 @@
+scene:
+  name: livingroom_off
+  entities:
+    #Fönsterlampa
+    light.hue_color_lamp_1:
+      state: off
+    #Golvlampa
+    light.hue_color_lamp_2:
+      state: off
+    #Taklampa
+    light.hue_color_lamp_3:
+      state: off
