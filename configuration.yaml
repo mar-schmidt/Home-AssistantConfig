@@ -136,6 +136,12 @@ xiaomi:
   #- sid: '34:CE:00:81:2B:DE'
       key: !secret xiaomi
 
+vacuum:
+  - platform: xiaomi
+    name: 'Vacuum Thord'
+    host: 192.168.1.193
+    token: 316f3931457031436f6d686e315a304d
+
 python_script:
 
 light:

@@ -154,6 +154,7 @@ livingroom_environment:
     - sensor.aeotec_zw100_multisensor_6_temperature
     - sensor.aeotec_zw100_multisensor_6_luminance
     - sensor.aeotec_zw100_multisensor_6_relative_humidity
+    - vacuum.vacuum_thord
 
 livingroom_lights:
   name: Lampor
