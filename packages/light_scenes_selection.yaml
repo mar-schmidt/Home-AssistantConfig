@@ -1,13 +1,41 @@
 input_select:
   scene_livingroom:
     name: 'Belysning Vardagsrum:'
-    icon: mdi:brightness-auto
+    icon: mdi:sofa
     initial: Välj
     options:
       - Välj
       - Normal
       - Dimmad
       - Film
+      - Av
+  scene_kitchen:
+    name: 'Belysning Kök:'
+    icon: mdi:food-fork-drink
+    initial: Välj
+    options:
+      - Välj
+      - Normal
+      - Stämning
+      - Städ
+      - Av
+  scene_bedroom:
+    name: 'Belysning Sovrum:'
+    icon: mdi:hotel
+    initial: Välj
+    options:
+      - Välj
+      - Normal
+      - Stämning
+      - Godmorgon
+      - Godnatt
+  scene_bathroom:
+    name: 'Belysning Sovrum:'
+    icon: mdi:water-pump
+    initial: Välj
+    options:
+      - Välj
+      - Normal
       - Av
 
 automation:
@@ -31,4 +59,69 @@ automation:
       - service: input_select.select_option
         data:
           entity_id: input_select.scene_livingroom
+          option: Välj
+
+
+  - alias: Light Scene Kitchen
+    trigger:
+        platform: state
+        entity_id: input_select.scene_kitchen
+    action:
+      - service: scene.turn_on
+        data_template:
+          entity_id: >
+            {% if is_state( "input_select.scene_kitchen", "Stämning" ) %}
+              scene.kitchen_mood
+            {%-elif is_state( "input_select.scene_kitchen", "Städ" ) %}
+              scene.kitchen_cleaning
+            {%-elif is_state( "input_select.scene_kitchen", "Normal" ) %}
+              scene.kitchen_normal
+            {%-elif is_state( "input_select.scene_kitchen", "Av" ) %}
+              scene.kitchen_off
+            {% endif %}
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.scene_kitchen
+          option: Välj
+
+
+  - alias: Light Scene Bedroom
+    trigger:
+        platform: state
+        entity_id: input_select.scene_bedroom
+    action:
+      - service: scene.turn_on
+        data_template:
+          entity_id: >
+            {% if is_state( "input_select.scene_bedroom", "Stämning" ) %}
+              scene.bedroom_mood
+            {%-elif is_state( "input_select.scene_bedroom", "Godnatt" ) %}
+              scene.bedroom_off
+            {%-elif is_state( "input_select.scene_bedroom", "Normal" ) %}
+              scene.bedroom_normal
+            {%-elif is_state( "input_select.scene_bedroom", "Godmorgon" ) %}
+              scene.bedroom_goodmorning
+            {% endif %}
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.scene_bedroom
+          option: Välj
+
+
+  - alias: Light Scene Bathroom
+    trigger:
+        platform: state
+        entity_id: input_select.scene_bathroom
+    action:
+      - service: scene.turn_on
+        data_template:
+          entity_id: >
+            {% if is_state( "input_select.scene_bathroom", "Normal" ) %}
+              scene.bathroom_normal
+            {%-elif is_state( "input_select.scene_bathroom", "Av" ) %}
+              scene.bathroom_off
+            {% endif %}
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.scene_bathroom
           option: Välj

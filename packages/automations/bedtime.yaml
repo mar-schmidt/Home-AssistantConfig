@@ -23,6 +23,9 @@ automation:
         - condition: state
           entity_id: media_player.spotify
           state: 'paused'
+        - condition: state
+          entity_id: light.vardagsrum
+          state: 'on'
     action:
           service: script.bedtime
 
@@ -36,6 +39,15 @@ automation:
     trigger:
       platform: time
       at: '22:30'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: input_boolean.someone_home    
+          state: 'on'
+        - condition: state
+          entity_id: light.vardagsrum
+          state: 'on'
     action:
       service: notify.notify
       data:

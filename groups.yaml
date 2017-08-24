@@ -13,7 +13,7 @@ default_view:
     - group.livingroom_environment_badge
     - group.livingroom_lights
     - group.livingroom_mediaplayers
-    - group.livingroom_scene
+    - group.all_scenes
     - group.bedroom_mediaplayers
     - group.kitchen_environment_badge
     - group.flowers_badge
@@ -38,6 +38,7 @@ bathroom_view:
   view: yes
   name: Badrum
   entities:
+    - group.bathroom_scene
     - group.bathroom_sensors_badge
 
 livingroom_view:
@@ -54,6 +55,7 @@ bedroom_view:
   view: yes
   name: Sovrum
   entities:
+    - group.bedroom_scene
     - group.bedroom_lights
     - group.bedroom_mediaplayers
     - group.bedroom_sensors_badge
@@ -74,6 +76,7 @@ kitchen_view:
   view: yes
   name: Kök
   entities:
+    - group.kitchen_scene
     - group.kitchen_environment_badge
     - group.flowers_badge
 
@@ -94,7 +97,7 @@ scenes_view:
   view: yes
   name: Scener
   entities:
-    - group.livingroom_scene
+    - group.all_scenes
 
 
 ############################################################
@@ -120,6 +123,14 @@ all_sensors:
     - binary_sensor.door_window_sensor_158d00018374aa # Livingroom
     - binary_sensor.door_window_sensor_158d0001837372 # Bedroom
 
+all_scenes:
+  name: Belysning
+  entities: 
+    - input_select.scene_livingroom
+    - input_select.scene_kitchen
+    - input_select.scene_bedroom
+    - input_select.scene_bathroom
+
 #####################
 # Hallway
 #####################
@@ -141,6 +152,10 @@ bathroom_sensors_badge:
 bathroom_sensors:
   entities:
     - binary_sensor.door_window_sensor_158d00018379dd
+bathroom_scene:
+  name: Belysning
+  entities: 
+    - input_select.scene_bathroom
 
 #####################
 # Livingroom
@@ -203,7 +218,8 @@ bedroom_sensors:
 
 bedroom_scene:
   name: Belysning
-  entities: 
+  entities:
+    - input_select.scene_kitchen
 
 
 #####################
@@ -220,7 +236,8 @@ kitchen_environment:
 
 kitchen_scene:
   name: Belysning
-  entities: 
+  entities:
+    - input_select.scene_kitchen
 
 #####################
 # Flowers
