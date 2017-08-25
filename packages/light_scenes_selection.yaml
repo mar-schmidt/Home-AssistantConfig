@@ -30,7 +30,7 @@ input_select:
       - Godmorgon
       - Godnatt
   scene_bathroom:
-    name: 'Belysning Sovrum:'
+    name: 'Belysning Badrum:'
     icon: mdi:water-pump
     initial: Välj
     options:

@@ -8,3 +8,28 @@ sensor:
       - light
       - conductivity
       - battery
+
+automation:
+# Christmasstar low moisture
+  - alias: 'Christmasstar moisture notification'
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.miflower_kitchenflower_moisture
+        below: 21
+    action:
+      - service: notify.notify
+        data:
+          title: 'Ulfsparregatan 11D'
+          message: 'Julstjärnan i köket behöver vattnas, just nu {{ states.sensor.miflower_kitchenflower_moisture.state }}% fuktighet'
+
+# Christmasstar low battery
+  - alias: 'Christmasstar battery notification'
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.miflower_kitchenflower_battery
+        below: 11
+    action:
+      - service: notify.notify
+        data:
+          title: 'Ulfsparregatan 11D'
+          message: 'Julstjärnans sensor har låg batterinivå. Nuvarande nivå {{ states.sensor.miflower_kitchenflower_battery.state }}%'

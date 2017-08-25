@@ -58,3 +58,28 @@ sensor:
     name: car_location_longitude
     state_topic: "/home/car"
     value_template: '{{ value_json.location_longitude}}'
+
+automation:
+# Heater started notification
+  - alias: "VoC Heater notification start"
+    trigger:
+      - platform: state
+        entity_id: switch.ete881_heater
+        to: 'on'
+    action:
+      - service: notify.ios_marcus_iphone
+        data:
+          title: Volvo on Call
+          message: 'Värmare för ETE881 har startats'
+
+# Heater stopped notification
+  - alias: "VoC Heater notification stop"
+    trigger:
+      - platform: state
+        entity_id: switch.ete881_heater
+        to: 'off'
+    action:
+      - service: notify.ios_marcus_iphone
+        data:
+          title: Volvo on Call
+          message: 'Värmare för ETE881 har stoppats'

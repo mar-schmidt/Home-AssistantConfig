@@ -219,7 +219,7 @@ bedroom_sensors:
 bedroom_scene:
   name: Belysning
   entities:
-    - input_select.scene_kitchen
+    - input_select.scene_bedroom
 
 
 #####################

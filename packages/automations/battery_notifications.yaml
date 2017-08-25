@@ -1,0 +1,25 @@
+automation:
+#######################
+#
+# Multisensor
+# Livingroom
+#
+#######################
+  - alias: 'Multisensor livingroom battery notification'
+    trigger:
+      - platform: numeric_state
+        entity_id: zwave.aeotec_zw100_multisensor_6
+        value_template: '{{ state.attributes.battery_level }}'
+        below: 11
+    action:
+      - service: notify.notify
+        data:
+          title: 'Ulfsparregatan 11D'
+          message: 'Multisensorn i vardagsrummet har låg batterinivå. Nuvarande nivå 10%'
+
+
+
+
+
+
+
