@@ -14,7 +14,6 @@ automation:
     trigger:
       - platform: state
         entity_id: sensor.vacuum_tord_status
-        from: 'Returning Home'
         to: 'Charging'
     action:
       - service: notify.notify

@@ -22,6 +22,7 @@ default_view:
     - group.weather_data
     - script.morning_news
     - alarm_control_panel.alarm
+    - media_player.spotify
 
 ############################################################
 #
