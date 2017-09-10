@@ -1,0 +1,53 @@
+automation:
+  - alias: Leaving home
+  # Will only trigger if all are 'not_home'
+    trigger:
+      - platform: state
+        entity_id: device_tracker.marcus_iphone
+        to: 'not_home'
+      - platform: state
+        entity_id: device_tracker.katarinas_iphone
+        to: 'not_home'
+    condition:
+      condition: and
+      conditions:
+        - condition: time
+          after: '06:30'
+          before: '23:30'
+        - condition: state
+          entity_id: input_boolean.someone_home    
+          state: 'on'
+    action:
+          service: script.family_away
+
+
+script:
+  - family_away:
+    sequence:
+      - service: script.turn_on
+        data:
+        entity_id: script.family_away_lights_off
+#      - delay: 
+#        minutes: 5
+      - service: homeassistant.turn_off
+        entity_id: input_boolean.someone_home
+        # This is a Condition, everything after this sequence 
+        # will only be triggered if condition is true
+      - condition: state
+        entity_id: binary_sensor.door_window_sensor_158d00018379dd # Badrumsdörr
+        state: 'off'
+        # If Badrumsdörr is closed (which is state off)
+        # send a notification because Molle needs to be able
+        # to do his popo in the bathroom when family is not home
+      - service: notify.notify
+        data:
+          title: 'Ulfsparregatan 11D'
+          message: 'Badrumsdörren är stängd, åk hem igen och öppna den åt Molle'
+
+
+  - family_away_lights_off:
+    sequence:
+      - delay:
+        minutes: 5
+      - service: light.turn_off
+        entity_id: group.all_lights

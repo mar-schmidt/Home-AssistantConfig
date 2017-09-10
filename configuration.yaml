@@ -7,10 +7,12 @@ homeassistant:
   time_zone: !secret home_timezone
   temperature_unit: C
   packages: !include_dir_named packages
-  customize: !include customize.yaml
+  customize: !include customize_custom.yaml
 
 # Enables the frontend
 frontend:
+  extra_html_url:
+    - /local/custom_ui/state-card-custom-ui.html
 
 # Enables configuration UI
 config:
@@ -68,6 +70,7 @@ panel_custom:
   - name: alarm
     sidebar_title: Alarm
     sidebar_icon: mdi:security-home
+    webcomponent_path: /home/pi/.homeassistant/panels/alarm.html
     config:
       alarmid: alarm_control_panel.alarm
 
