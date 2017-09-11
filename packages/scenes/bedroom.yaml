@@ -1,0 +1,45 @@
+scene:
+  - name: bedroom_normal
+    entities:
+      # Marcus
+      light.nattduksbord_marcus:
+        state: on
+        transition: 2
+        brightness: 130
+      # Katarina
+      light.nattduksbord_katarina:
+        state: on
+        transition: 2
+        brightness: 130
+  - name: bedroom_mood
+    entities:
+      # Marcus
+      light.nattduksbord_marcus:
+        state: on
+        transition: 2
+        brightness: 40
+      # Katarina
+      light.nattduksbord_katarina:
+        state: on
+        transition: 2
+        brightness: 40
+  - name: bedroom_goodmorning
+    entities:
+      # Marcus
+      light.nattduksbord_marcus:
+        state: on
+        transition: 2
+        brightness: 5
+      # Katarina
+      light.nattduksbord_katarina:
+        state: on
+        transition: 2
+        brightness: 5
+  - name: bedroom_off
+    entities:
+      # Marcus
+      light.nattduksbord_marcus:
+        state: off
+      # Katarina
+      light.nattduksbord_katarina:
+        state: off

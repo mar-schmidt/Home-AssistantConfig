@@ -12,6 +12,7 @@ default_view:
     - group.all_sensors_badge
     - group.livingroom_environment_badge
     - group.livingroom_lights
+    - group.bedroom_lights
     - group.livingroom_mediaplayers
     - group.all_scenes
     - group.bedroom_mediaplayers
@@ -203,6 +204,8 @@ livingroom_scene:
 bedroom_lights:
   name: Lampor
   entities:
+    - light.nattduksbord_marcus
+    - light.nattduksbord_katarina
 
 bedroom_mediaplayers:
   name: Mediaspelare
