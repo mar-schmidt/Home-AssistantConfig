@@ -11,6 +11,18 @@ scene:
         state: on
         transition: 2
         brightness: 130
+  - name: bedroom_normal_slow
+    entities:
+      # Marcus
+      light.nattduksbord_marcus:
+        state: on
+        transition: 900
+        brightness: 130
+      # Katarina
+      light.nattduksbord_katarina:
+        state: on
+        transition: 900
+        brightness: 130
   - name: bedroom_mood
     entities:
       # Marcus

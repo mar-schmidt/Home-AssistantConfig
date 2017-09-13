@@ -1,0 +1,21 @@
+automation:
+  - alias: 'Lights on in bedroom 45 mins before sunset'
+    trigger:
+      - platform: sun
+        event: sunset
+        offset: "-00:45:00"
+      - platform: state
+        entity_id: input_boolean.someone_home
+        to: 'on'
+    condition:
+      - condition: and
+        conditions:
+        - condition: sun
+          after: sunset
+          after_offset: "-00:45:00"
+        - condition: state
+          entity_id: input_boolean.someone_home
+          state: 'on'
+    action:
+      service: scene.turn_on
+      entity_id: scene.bedroom_normal_slow
