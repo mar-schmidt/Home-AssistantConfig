@@ -1,5 +1,5 @@
 volvooncall:
-  username: marcus.ronelius@gmail.com
+  username: karl.marcus.schmidt@gmail.com
   password: !secret volvooncall_password
   name:
     ete881: 'ETE881'
@@ -34,30 +34,6 @@ sensor:
         value_template: '{% if is_state("sensor.car_locked_state", False) %} Öppet {% else %} Låst {% endif %}'
         friendly_name: Dörrar & lås
 
-  - platform: mqtt
-    name: "car_regnr"
-    state_topic: "/home/car"
-    value_template: '{{ value_json.regnr }}'
-
-  - platform: mqtt
-    name: "car_model"
-    state_topic: "/home/car"
-    value_template: '{{ value_json.model }}'
-
-  - platform: mqtt
-    name: "car_locked_state"
-    state_topic: "/home/car"
-    value_template: '{{ value_json.locked }}'
-
-  - platform: mqtt
-    name: car_location_latitude
-    state_topic: "/home/car"
-    value_template: '{{ value_json.location_latitude}}'
-
-  - platform: mqtt
-    name: car_location_longitude
-    state_topic: "/home/car"
-    value_template: '{{ value_json.location_longitude}}'
 
 automation:
 # Heater started notification
