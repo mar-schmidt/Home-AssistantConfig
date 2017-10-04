@@ -20,12 +20,13 @@ automation:
 script:
   family_away:
     sequence:
+      - service: homeassistant.turn_off
+        entity_id: input_boolean.someone_home
+
       - service: script.turn_on
         entity_id: script.family_away_lights_off
 #      - delay: 
 #        minutes: 5
-      - service: homeassistant.turn_off
-        entity_id: input_boolean.someone_home
         # This is a Condition, everything after this sequence 
         # will only be triggered if condition is true
       - condition: state
@@ -45,8 +46,13 @@ script:
       - service: logbook.log
         data_template:
           name: Family away delay
-          message: Waiting 5 minutes to turn off lights
-      - delay:
-          minutes: 5
+          message: Waiting 10 minutes to turn off lights
+#      - delay:
+#          minutes: 10
+      - condition: state
+        entity_id: input_boolean.someone_home
+        state: 'off'
+        for:
+          minutes: 10
       - service: light.turn_off
         entity_id: group.all_lights
