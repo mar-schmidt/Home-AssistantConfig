@@ -140,14 +140,14 @@ zone:
 
 switch:
 
-xiaomi:
+xiaomi_aqara:
   gateways:
     - sid:
   #- sid: '34:CE:00:81:2B:DE'
       key: !secret xiaomi
 
 vacuum:
-  - platform: xiaomi
+  - platform: xiaomi_miio
     name: 'Vacuum Thord'
     host: 192.168.1.193
     token: 316f3931457031436f6d686e315a304d
@@ -168,9 +168,9 @@ alarm_control_panel:
   trigger_time: 45
   disarm_after_trigger: false
 
-recorder:
-  purge_days: 7
-  db_url: !secret recorder_db_url
+#recorder:
+#  purge_days: 7
+#  db_url: !secret recorder_db_url
 
 #restore_states:
 
