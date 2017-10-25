@@ -128,10 +128,10 @@ device_tracker:
 #    password: !secret icloud_katarina_passwd
 #    account_name: Katarina
 #    icloud_set_interval: 30
-  - platform: asuswrt
-    host: 192.168.1.1
-    username: admin
-    password: !secret asuswrt_password
+#  - platform: asuswrt
+#    host: 192.168.1.1
+#    username: admin
+#    password: !secret asuswrt_password
 
 zone:
   name: Work

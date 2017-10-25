@@ -27,6 +27,17 @@ script:
       - service: homeassistant.turn_on
         entity_id: input_boolean.someone_home
 
+        # This is a Condition, everything after this sequence 
+        # will only be triggered if condition is true
+      - condition: sun
+        after: sunset
+        after_offset: "-1:00:00"
+
+      - service: scene.turn_on
+        entity_id: scene.livingroom_low
+      - service: scene.turn_on
+        entity_id: scene.bedroom_normal
+
 
 input_boolean:
   someone_home:
