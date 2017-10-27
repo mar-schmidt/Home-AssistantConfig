@@ -2,28 +2,28 @@ volvooncall:
   username: karl.marcus.schmidt@gmail.com
   password: !secret volvooncall_password
   name:
-    ete881: 'ETE881'
+    rkx422: 'RKX422'
 
 camera:
   name: car_location
   platform: generic
-  still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.volvo_ete881.attributes.latitude }},{{ states.device_tracker.volvo_ete881.attributes.longitude }}&zoom=13&size=500x500&maptype=roadmap&markers=color:blue%7Clabel:P%7C{{ states.device_tracker.volvo_ete881.attributes.latitude }},{{ states.device_tracker.volvo_ete881.attributes.longitude }}
+  still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.volvo_rkx422.attributes.latitude }},{{ states.device_tracker.volvo_rkx422.attributes.longitude }}&zoom=13&size=500x500&maptype=roadmap&markers=color:blue%7Clabel:P%7C{{ states.device_tracker.volvo_rkx422.attributes.latitude }},{{ states.device_tracker.volvo_rkx422.attributes.longitude }}
   limit_refetch_to_url_change: true
 
 sensor:
   - platform: car_milage_per_month
-    odometer_sensor: sensor.ete881_odometer
+    odometer_sensor: sensor.rkx422_odometer
     scan_interval: 3600
     unit_of_measurement: 'km'
 
   - platform: template
     sensors:
-      ete881_odometer_template:
+      rkx422_odometer_template:
         unit_of_measurement: 'mil'
-        value_template: '{{ states.sensor.ete881_odometer.state | multiply(1) / 10 }}'
-      ete881_range_template:
+        value_template: '{{ states.sensor.rkx422_odometer.state | multiply(1) / 10 }}'
+      rkx422_range_template:
         unit_of_measurement: 'mil'
-        value_template: '{{ states.sensor.ete881_range.state | multiply(1) / 10 }}'
+        value_template: '{{ states.sensor.rkx422_range.state | multiply(1) / 10 }}'
       car_milage_per_month_template:
         unit_of_measurement: 'mil'
         value_template: '{{ states.sensor.car_milage_per_month.state | multiply(1) / 10 }}'
@@ -40,22 +40,22 @@ automation:
   - alias: "VoC Heater notification start"
     trigger:
       - platform: state
-        entity_id: switch.ete881_heater
+        entity_id: switch.rkx422_heater
         to: 'on'
     action:
       - service: notify.ios_marcus_iphone
         data:
           title: Volvo on Call
-          message: 'Värmare för ETE881 har startats'
+          message: 'Värmare för RKX422 har startats'
 
 # Heater stopped notification
   - alias: "VoC Heater notification stop"
     trigger:
       - platform: state
-        entity_id: switch.ete881_heater
+        entity_id: switch.rkx422_heater
         to: 'off'
     action:
       - service: notify.ios_marcus_iphone
         data:
           title: Volvo on Call
-          message: 'Värmare för ETE881 har stoppats'
+          message: 'Värmare för RKX422 har stoppats'

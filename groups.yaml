@@ -2,7 +2,7 @@ default_view:
   view: yes
   icon: mdi:home 
   entities:
-    - device_tracker.volvo_ete881
+    - device_tracker.volvo_rkx422
     - device_tracker.katarinas_iphone
     - device_tracker.marcus_iphone
     - sensor.speedtest_download
@@ -262,19 +262,19 @@ car:
   entities:
     - sensor.car_model
     - sensor.car_regnr
-    - sensor.ete881_odometer_template
+    - sensor.rkx422_odometer_template
     - sensor.car_milage_per_month_template
-    - sensor.ete881_fuel_level
-    - sensor.ete881_range_template
+    - sensor.rkx422_fuel_level
+    - sensor.rkx422_range_template
     - sensor.car_locked
-    - lock.ete881_lock
-    - switch.ete881_heater
-    - binary_sensor.ete881_brake_fluid
-    - binary_sensor.ete881_bulbs
-    - binary_sensor.ete881_doors
-    - binary_sensor.ete881_service
-    - binary_sensor.ete881_washer_fluid
-    - binary_sensor.ete881_windows
+    - lock.rkx422_lock
+    - switch.rkx422_heater
+    - binary_sensor.rkx422_brake_fluid
+    - binary_sensor.rkx422_bulbs
+    - binary_sensor.rkx422_doors
+    - binary_sensor.rkx422_service
+    - binary_sensor.rkx422_washer_fluid
+    - binary_sensor.rkx422_windows
     - camera.car_location
 
 

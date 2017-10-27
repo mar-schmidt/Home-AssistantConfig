@@ -329,19 +329,19 @@ zone.work:
 # Volvo on Call
 #
 ############################################################
-sensor.ete881_range_template:
+sensor.rkx422_range_template:
     friendly_name: Distans till tom tank
     icon: mdi:ruler
 
-sensor.ete881_fuel_level:
+sensor.rkx422_fuel_level:
     friendly_name: Bränslenivå
     icon: mdi:gas-station
 
-sensor.ete881_odometer_template:
+sensor.rkx422_odometer_template:
     friendly_name: Totalt antal mil
     icon: mdi:gauge
 
-sensor.ete881_fuel_amount:
+sensor.rkx422_fuel_amount:
     hidden: true
     homebridge_hidden: true
 
@@ -368,55 +368,55 @@ sensor.car_location_longitude:
     hidden: true
     homebridge_hidden: true
 
-binary_sensor.ete881_brake_fluid:
+binary_sensor.rkx422_brake_fluid:
     friendly_name: Status Bromstvätska
     hidden: true
     homebridge_hidden: true
 
-binary_sensor.ete881_bulbs:
+binary_sensor.rkx422_bulbs:
     friendly_name: Status Trasiga lampor
     hidden: true
     homebridge_hidden: true
 
-binary_sensor.ete881_service:
+binary_sensor.rkx422_service:
     friendly_name: Status Tid för service
     hidden: true
     homebridge_hidden: true
 
-binary_sensor.ete881_washer_fluid:
+binary_sensor.rkx422_washer_fluid:
     friendly_name: Status Spolarvätska
     hidden: true
     homebridge_hidden: true
 
-binary_sensor.ete881_windows:
+binary_sensor.rkx422_windows:
     friendly_name: Status Fönster öppna
     hidden: true
     homebridge_hidden: true
 
-binary_sensor.ete881_doors:
+binary_sensor.rkx422_doors:
     hidden: true
     homebridge_hidden: true
 
 camera.car_location:
-    friendly_name: ETE881
+    friendly_name: rkx422
 
-sensor.ete881_odometer:
+sensor.rkx422_odometer:
     hidden: true
     homebridge_hidden: true
 
-sensor.ete881_range:
+sensor.rkx422_range:
     hidden: true
     homebridge_hidden: true
 
-switch.ete881_heater:
+switch.rkx422_heater:
     friendly_name: Motorvärmare
     assumed_state: false
 
-lock.ete881_lock:
+lock.rkx422_lock:
     friendly_name: Lås
     assumed_state: false
 
-device_tracker.volvo_ete881:
+device_tracker.volvo_rkx422:
     entity_picture: /local/volvo.jpg
     homebridge_hidden: true
 
