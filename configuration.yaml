@@ -116,7 +116,7 @@ logger:
 
 device_tracker:
   - platform: owntracks_http
-    max_gps_accuracy: 200
+    max_gps_accuracy: 100
 #  - platform: icloud
 #    username: marcus.ronelius@gmail.com
 #    password: !secret icloud_marcus_passwd
