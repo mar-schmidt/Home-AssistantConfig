@@ -34,7 +34,7 @@ script:
         after_offset: "-1:00:00"
 
       - service: scene.turn_on
-        entity_id: scene.livingroom_low
+        entity_id: scene.livingroom_normal
       - service: scene.turn_on
         entity_id: scene.bedroom_normal
 

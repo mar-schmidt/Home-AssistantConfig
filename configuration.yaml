@@ -24,6 +24,8 @@ http:
 # Checks for available updates
 updater:
 
+map:
+
 # Discover some devices automatically
 #discovery:
 
@@ -116,7 +118,7 @@ logger:
 
 device_tracker:
   - platform: owntracks_http
-    max_gps_accuracy: 100
+    max_gps_accuracy: 150
 #  - platform: icloud
 #    username: marcus.ronelius@gmail.com
 #    password: !secret icloud_marcus_passwd
