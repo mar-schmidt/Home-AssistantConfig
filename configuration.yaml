@@ -199,6 +199,5 @@ alarm_control_panel:
 group: !include groups.yaml
 
 script: !include_dir_merge_named scripts
-shell_command:
-  backup_hass: '/home/pi/.homeassistant/scripts/backup_hass.sh'
+
 

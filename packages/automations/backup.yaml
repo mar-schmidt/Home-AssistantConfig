@@ -10,3 +10,6 @@ automation:
       at: '05:00:00'
     action:
       service: shell_command.backup_hass
+
+shell_command:
+  backup_hass: '/home/pi/.homeassistant/scripts/backup_hass.sh'
