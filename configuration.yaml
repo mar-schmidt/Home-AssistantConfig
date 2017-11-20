@@ -163,9 +163,9 @@ apple_tv:
     credentials: "EBB9921C76AF30BD:699E00EDA9D28AD67550133E22653DC6E99CB07AC42B421EDD95D9002CC4E646"
 
 xiaomi_aqara:
+  discovery_retry: 10
+  #interface: '192.168.1.100'
   gateways:
-#    - sid:
-  #- sid: '34:CE:00:81:2B:DE'
       key: !secret xiaomi
 
 vacuum:
@@ -199,5 +199,3 @@ alarm_control_panel:
 group: !include groups.yaml
 
 script: !include_dir_merge_named scripts
-
-
