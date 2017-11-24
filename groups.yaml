@@ -1,6 +1,6 @@
 default_view:
   view: yes
-  icon: mdi:home 
+  icon: mdi:home
   entities:
     - device_tracker.volvo_rkx422
     - device_tracker.katarinas_iphone
@@ -23,6 +23,7 @@ default_view:
     - group.weather_data
     - script.morning_news
     - alarm_control_panel.alarm
+    - media_player.kok
     - media_player.spotify
 
 ############################################################
@@ -81,6 +82,7 @@ kitchen_view:
     - group.kitchen_scene
     - group.kitchen_environment_badge
     - group.flowers_badge
+    - media_player.kok
 
 flowers_view:
   view: yes
@@ -94,6 +96,7 @@ mediaplayers_view:
   entities:
     - group.livingroom_mediaplayers
     - group.bedroom_mediaplayers
+    - media_player.kok
 
 scenes_view:
   view: yes
@@ -127,7 +130,7 @@ all_sensors:
 
 all_scenes:
   name: Belysning
-  entities: 
+  entities:
     - input_select.scene_livingroom
     - input_select.scene_kitchen
     - input_select.scene_bedroom
@@ -156,7 +159,7 @@ bathroom_sensors:
     - binary_sensor.door_window_sensor_158d00018379dd
 bathroom_scene:
   name: Belysning
-  entities: 
+  entities:
     - input_select.scene_bathroom
 
 #####################
@@ -195,7 +198,7 @@ livingroom_sensors:
 
 livingroom_scene:
   name: Belysning
-  entities: 
+  entities:
     - input_select.scene_livingroom
 
 #####################
@@ -233,6 +236,7 @@ kitchen_environment_badge:
   name: Kök
   entities:
     - group.kitchen_environment
+    - media_player.kok
 kitchen_environment:
   entities:
     - sensor.miflower_kitchenflower_temperature

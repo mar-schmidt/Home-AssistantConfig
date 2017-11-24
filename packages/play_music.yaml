@@ -1,0 +1,22 @@
+script:
+  spotifydemo:
+    alias: 'Spotify on Sonos'
+    sequence:
+      - service: media_player.select_source
+        data:
+          entity_id: media_player.spotify
+          source: Kök
+      - service: media_player.play_media
+        data:
+          entity_id: media_player.spotify
+          media_content_type: playlist
+        data_template:
+          media_content_id: >
+            {%- set plists = ["spotify:user:11144951548:playlist:5V1Rdyv0XPhOCR4TayA0PA",
+              "spotify:user:p3_sverigesradio:playlist:1dpM5cbIYcQcV3IIpTbXep",
+              "spotify:user:spotify:playlist:37i9dQZF1DX3rxVfibe1L0",
+              "spotify:user:spotify:playlist:37i9dQZF1DXcwkNsfYPDPQ",
+              "spotify:user:spotify:playlist:37i9dQZF1DWWGRfB2jBjnV",
+               ] -%}
+              {% set pindex =  (range(0, (plists | length - 1 ) )|random) -%}
+              {{ plists[pindex] }}
