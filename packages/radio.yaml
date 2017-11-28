@@ -7,7 +7,7 @@ input_select:
       - P3
       - NRJ
 
-  speaker:
+  speaker_radio:
     name: 'Select Speaker:'
     icon: mdi:speaker-wireless
     options:
@@ -23,9 +23,9 @@ script:
       - service: shell_command.radio
         data_template:
           mediaplayer: >
-            {% if is_state("input_select.speaker", "Sovrum") %}
+            {% if is_state("input_select.speaker_radio", "Sovrum") %}
               Sovrum
-            {% elif is_state("input_select.speaker", "Vardagsrum") %}
+            {% elif is_state("input_select.speaker_radio", "Vardagsrum") %}
               Vardagsrum
             {% endif %}
           station: >
