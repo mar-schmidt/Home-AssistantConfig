@@ -11,11 +11,9 @@
 ############################################################
 input_boolean.trigger_first_morning:
     hidden: true
-    homebridge_hidden: true
 
 input_boolean.someone_home:
     hidden: true
-    homebridge_hidden: true
 
 
 ############################################################
@@ -25,7 +23,6 @@ input_boolean.someone_home:
 ############################################################
 script.radioscript:
     friendly_name: ''
-    homebridge_hidden: true
     icon: mdi:play
 
 ############################################################
@@ -35,45 +32,38 @@ script.radioscript:
 ############################################################
 zwave.zwaveme_razberry_controller_2016_zwave:
     hidden: true
-    homebridge_hidden: true
 
 #######################
 #
-# Z-Wave Multisensor 6 
+# Z-Wave Multisensor 6
 #
 #######################
 zwave.aeotec_zw100_multisensor_6:
     hidden: true
-    homebridge_hidden: true
 
 sensor.aeotec_zw100_multisensor_6_alarm_level:
     hidden: true
-    homebridge_hidden: true
 
 sensor.aeotec_zw100_multisensor_6_alarm_type:
     hidden: true
-    homebridge_hidden: true
 
 sensor.aeotec_zw100_multisensor_6_burglar:
     hidden: true
-    homebridge_hidden: true
 
 sensor.aeotec_zw100_multisensor_6_sourcenodeid:
     hidden: true
-    homebridge_hidden: true
 
 sensor.aeotec_zw100_multisensor_6_ultraviolet:
     hidden: true
-    homebridge_hidden: true
 
 binary_sensor.aeotec_zw100_multisensor_6_sensor:
     friendly_name: Rörelsesensor
     hidden: true
-    homebridge_hidden: true
 
 sensor.aeotec_zw100_multisensor_6_luminance:
     friendly_name: Ljus
     icon: mdi:theme-light-dark
+    homebridge_hidden: false
 
 sensor.aeotec_zw100_multisensor_6_relative_humidity:
     friendly_name: Luftfuktighet
@@ -82,6 +72,7 @@ sensor.aeotec_zw100_multisensor_6_relative_humidity:
 sensor.aeotec_zw100_multisensor_6_temperature:
     friendly_name: Temperatur
     icon: mdi:temperature-celsius
+    homebridge_hidden: false
 
 ############################################################
 #
@@ -89,19 +80,14 @@ sensor.aeotec_zw100_multisensor_6_temperature:
 #
 ############################################################
 
-
-
 sensor.speedtest_download:
     friendly_name: Nedladdning
-    homebridge_hidden: true
 
 sensor.speedtest_upload:
     friendly_name: Uppladdning
-    homebridge_hidden: true
 
 sensor.car_milage_per_month_template:
     friendly_name: Antal km denna månad
-    homebridge_hidden: true
 
 ############################################################
 #
@@ -111,83 +97,63 @@ sensor.car_milage_per_month_template:
 
 automation.christmasstar_battery_notification:
     hidden: true
-    homebridge_hidden: true
 
 automation.christmasstar_moisture_notification:
     hidden: true
-    homebridge_hidden: true
 
 automation.katarina_battery_notification:
     hidden: true
-    homebridge_hidden: true
 
 automation.marcus_battery_notification:
     hidden: true
-    homebridge_hidden: true
 
 automation.mediaplayer_livingroom_pausedstopped:
     hidden: true
-    homebridge_hidden: true
 
 automation.mediaplayer_livingroom_playing:
     hidden: true
-    homebridge_hidden: true
 
 automation.voc_heater_notification_start:
     hidden: true
-    homebridge_hidden: true
 
 automation.voc_heater_notification_stop:
     hidden: true
-    homebridge_hidden: true
 
 automation.lights_off_in_livingroom_when_bedtime:
     hidden: true
-    homebridge_hidden: true
 
 automation.multisensor_livingroom_battery_notification:
     hidden: true
-    homebridge_hidden: true
 
 automation.livingroom_lights_turn_on_to_low_light_scene_if_light_is_above_3_and_below_7_and_me_andor_katarina_is_home:
     hidden: true
-    homebridge_hidden: true
 
 automation.livingroom_lights_turn_on_to_normal_light_scene_if_light_is_below_5_and_me_andor_katarina_is_home:
     hidden: true
-    homebridge_hidden: true
 
 automation.disable_first_morning_trigger:
     hidden: true
-    homebridge_hidden: true
 
 automation.enable_first_morning_trigger:
     hidden: true
-    homebridge_hidden: true
 
 automation.first_morning_motion_livingroom:
     hidden: true
-    homebridge_hidden: true
 
 automation.family_away:
     hidden: true
-    homebridge_hidden: true
 
 automation.family_home:
     hidden: true
-    homebridge_hidden: true
 
 automation.lights_off_when_no_one_is_home:
     hidden: true
-    homebridge_hidden: true
 
 automation.backup_home_assistant_configuration_files:
     hidden: true
-    homebridge_hidden: true
 
 automation.scene_livingroom:
     hidden: true
-    homebridge_hidden: true
 
 
 ############################################################
@@ -198,7 +164,6 @@ automation.scene_livingroom:
 
 plant.miflower_christmasstar:
     friendly_name: Status
-    homebridge_hidden: true
 
 
 ############################################################
@@ -209,22 +174,18 @@ plant.miflower_christmasstar:
 
 scene.livingroom_normal:
     hidden: true
-    homebridge_hidden: true
     friendly_name: Normal belysning
 
 scene.livingroom_movie:
     hidden: true
-    homebridge_hidden: true
     friendly_name: Filmbelysning
 
 scene.livingroom_low:
     hidden: true
-    homebridge_hidden: true
     friendly_name: Låg belysning
 
 scene.livingroom_off:
     hidden: true
-    homebridge_hidden: true
 
 
 ############################################################
@@ -235,19 +196,12 @@ scene.livingroom_off:
 
 group.all_lights:
     hidden: true
-    homebridge_hidden: true
 
 group.all_automations:
     hidden: true
-    homebridge_hidden: true
-
-#group.all_plants:
-#    friendly_name: Växter
-#    homebridge_hidden: true
 
 group.family_devices:
     hidden: true
-    homebridge_hidden: true
 
 
 ############################################################
@@ -258,24 +212,30 @@ group.family_devices:
 
 light.hue_color_lamp_1:
     friendly_name: Fönsterlampa
+    homebridge_hidden: false
 
 light.hue_color_lamp_2:
     friendly_name: Golvlampa
+    homebridge_hidden: false
 
 light.hue_color_lamp_3:
     friendly_name: Taklampa
+    homebridge_hidden: false
 
 light.kok:
     hidden: true
-    homebridge_hidden: true
 
 light.sovrum:
     hidden: true
-    homebridge_hidden: true
 
 light.vardagsrum:
     hidden: true
-    homebridge_hidden: true
+
+light.nattduksbord_katarina:
+    homebridge_hidden: false
+
+light.nattduksbord_marcus:
+    homebridge_hidden: false
 
 
 ############################################################
@@ -285,6 +245,7 @@ light.vardagsrum:
 ############################################################
 vacuum.vacuum_thord:
     friendly_name: Dammsugar-Thord
+    homebridge_hidden: false
 
 
 ############################################################
@@ -295,17 +256,20 @@ vacuum.vacuum_thord:
 
 media_player.apple_tv_sovrum:
     friendly_name: Apple TV Sovrum
+    homebridge_hidden: false
 
 media_player.apple_tv_vardagsrum:
     friendly_name: Apple TV Vardagsrum
+    homebridge_hidden: false
+
+media_player.kok:
+    homebridge_hidden: false
 
 remote.apple_tv_vardagsrum:
     hidden: true
-    homebridge_hidden: true
 
 remote.apple_tv_sovrum:
     hidden: true
-    homebridge_hidden: true
 
 
 ############################################################
@@ -336,6 +300,7 @@ sensor.rkx422_range_template:
 sensor.rkx422_fuel_level:
     friendly_name: Bränslenivå
     icon: mdi:gas-station
+    homebridge_hidden: false
 
 sensor.rkx422_odometer_template:
     friendly_name: Totalt antal mil
@@ -343,9 +308,8 @@ sensor.rkx422_odometer_template:
 
 sensor.rkx422_fuel_amount:
     hidden: true
-    homebridge_hidden: true
 
-sensor.car_model: 
+sensor.car_model:
     friendly_name: Modell
     icon: mdi:car
 
@@ -355,70 +319,60 @@ sensor.car_regnr:
 
 sensor.car_locked_state:
     hidden: true
-    homebridge_hidden: true
 
 sensor.car_locked:
     icon: mdi:lock-open
 
 sensor.car_location_latitude:
     hidden: true
-    homebridge_hidden: true
 
 sensor.car_location_longitude:
     hidden: true
-    homebridge_hidden: true
 
 binary_sensor.rkx422_brake_fluid:
     friendly_name: Status Bromstvätska
     hidden: true
-    homebridge_hidden: true
 
 binary_sensor.rkx422_bulbs:
     friendly_name: Status Trasiga lampor
     hidden: true
-    homebridge_hidden: true
 
 binary_sensor.rkx422_service:
     friendly_name: Status Tid för service
     hidden: true
-    homebridge_hidden: true
 
 binary_sensor.rkx422_washer_fluid:
     friendly_name: Status Spolarvätska
     hidden: true
-    homebridge_hidden: true
 
 binary_sensor.rkx422_windows:
     friendly_name: Status Fönster öppna
     hidden: true
-    homebridge_hidden: true
 
 binary_sensor.rkx422_doors:
     hidden: true
-    homebridge_hidden: true
 
 camera.car_location:
     friendly_name: rkx422
 
 sensor.rkx422_odometer:
     hidden: true
-    homebridge_hidden: true
 
 sensor.rkx422_range:
     hidden: true
-    homebridge_hidden: true
 
 switch.rkx422_heater:
     friendly_name: Motorvärmare
     assumed_state: false
+    homebridge_hidden: false
 
 lock.rkx422_lock:
     friendly_name: Lås
     assumed_state: false
+    homebridge_hidden: false
 
 device_tracker.volvo_rkx422:
     entity_picture: /local/volvo.jpg
-    homebridge_hidden: true
 
 
 
@@ -438,11 +392,9 @@ sensor.marcus_iphone_battery_level:
 
 sensor.marcus_iphone_battery_state:
     hidden: true
-    homebridge_hidden: true
 
 sensor.katarinas_iphone_battery_state:
     hidden: true
-    homebridge_hidden: true
 
 
 
@@ -474,6 +426,7 @@ sensor.weather_pressure:
 
 sensor.weather_temperature:
     friendly_name: Temperatur
+    homebridge_hidden: false
 
 sensor.weather_wind_direction_cmd:
     friendly_name: Vindriktning
@@ -481,15 +434,14 @@ sensor.weather_wind_direction_cmd:
 
 sensor.weather_wind_direction:
     hidden: true
-    homebridge_hidden: true
 
 sensor.weather_wind_direction_template:
     hidden: true
-    homebridge_hidden: true
 
 sensor.weather_wind_speed:
     friendly_name: Vindhastighet
     icon: mdi:weather-windy
+    homebridge_hidden: false
 
 
 
@@ -502,22 +454,23 @@ sensor.weather_wind_speed:
 sensor.miflower_kitchenflower_moisture:
     friendly_name: Julstjärna
     icon: mdi:water-percent
+    homebridge_hidden: false
 
 sensor.miflower_kitchenflower_battery:
     hidden: true
-    homebridge_hidden: true
 
 sensor.miflower_kitchenflower_temperature:
     friendly_name: Temperatur
     icon: mdi:temperature-celsius
+    homebridge_hidden: false
 
 sensor.miflower_kitchenflower_light_intensity:
     friendly_name: Ljus
     icon: mdi:theme-light-dark
+    homebridge_hidden: false
 
 sensor.miflower_kitchenflower_conductivity:
     hidden: true
-    homebridge_hidden: true
 
 
 
@@ -529,74 +482,51 @@ sensor.miflower_kitchenflower_conductivity:
 
 device_tracker.marcusmbp:
     hidden: true
-    homebridge_hidden: true
 
 device_tracker.philipshue:
     hidden: true
-    homebridge_hidden: true
 
 device_tracker.philipstv:
     hidden: true
-    homebridge_hidden: true
 
 device_tracker.raspberrypi:
     hidden: true
-    homebridge_hidden: true
 
 device_tracker.sovrum:
     hidden: true
-    homebridge_hidden: true
 
 device_tracker.vardagsrum:
     hidden: true
-    homebridge_hidden: true
 
 device_tracker.malinsiphone:
     hidden: true
-    homebridge_hidden: true
 
 device_tracker.malinsiphone_2:
     hidden: true
-    homebridge_hidden: true
 
 device_tracker.robertsiphone:
     hidden: true
-    homebridge_hidden: true
 
 device_tracker.dansiniphone:
     hidden: true
-    homebridge_hidden: true
 
 device_tracker.desktopm1n5h56:
     hidden: true
-    homebridge_hidden: true
 
 device_tracker.maronw10:
     hidden: true
-    homebridge_hidden: true
-
-device_tracker.marcus_iphone:
-    homebridge_hidden: true
-
-device_tracker.katarinas_iphone:
-    homebridge_hidden: true
 
 device_tracker.kristiansiphone:
     hidden: true
-    homebridge_hidden: true
 
 device_tracker.tgotp2747:
     hidden: true
-    homebridge_hidden: true
 
 device_tracker.kalleboosiphone:
     hidden: true
-    homebridge_hidden: true
 
 device_tracker.samsunggalaxys7:
     hidden: true
-    homebridge_hidden: true
 
 device_tracker.lumigatewayv3_miio56297789:
     hidden: true
-    homebridge_hidden: true
