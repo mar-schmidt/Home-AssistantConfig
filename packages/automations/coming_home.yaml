@@ -3,40 +3,60 @@ automation:
   # Will trigger if any of the below are 'home'
     trigger:
       - platform: state
-        entity_id: device_tracker.marcus_iphone
+        entity_id:
+          - device_tracker.marcus_iphone
+          - device_tracker.katarinas_iphone
+        from: 'not_home'
         to: 'home'
-      - platform: state
-        entity_id: device_tracker.katarinas_iphone
-        to: 'home'
+        for: '00:00:10'
     condition:
       condition: and
       conditions:
         - condition: time
           after: '06:30'
           before: '23:30'
-        - condition: state
-          entity_id: input_boolean.someone_home    
-          state: 'off'
-    action:
-        service: script.family_home
 
+    action:
+      - service: script.family_home
+      - service: script.turn_on
+        entity_id: script.speech_engine
+        data_template:
+          variables:
+            personarriving: >
+              {% set person = trigger.entity_id.split('.')[1]|replace('_', ' ')|replace('iphone', '') %}
+              {%- macro greeting_sentence(person) -%}
+              {{ [
+              "Välkommen hem " ~ person + ".",
+              person + " har kommit hem.",
+              "Välkommen hem " ~ person + ". Vi har saknat dig, eller i alla fall Molle",
+              "Äntligen hemma " ~ person + ".",
+              "Hallå där " ~ person + ", välkommen hem.",
+              "Skönt att ha dig hemma igen " ~ person + "."
+              ] | random }}
+              {%- endmacro -%}
+              {{ greeting_sentence(person) }}
+            call_no_announcement: 1
 
 script:
   family_home:
     sequence:
-      - service: homeassistant.turn_on
-        entity_id: input_boolean.someone_home
-
-        # This is a Condition, everything after this sequence 
+        # This is a Condition, everything after this sequence
         # will only be triggered if condition is true
       - condition: sun
         after: sunset
         after_offset: "-1:00:00"
 
+      - condition: state
+        entity_id: input_boolean.someone_home
+        state: 'off'
+
       - service: scene.turn_on
         entity_id: scene.livingroom_normal
       - service: scene.turn_on
         entity_id: scene.bedroom_normal
+
+      - service: homeassistant.turn_on
+        entity_id: input_boolean.someone_home
 
 
 input_boolean:
