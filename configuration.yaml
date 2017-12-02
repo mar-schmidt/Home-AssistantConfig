@@ -66,10 +66,10 @@ sensor:
     monitored_conditions:
       - download
       - upload
-
   - platform: yr
     name: "weather"
     friendly_name: "Väder"
+    forecast: 8
     monitored_conditions:
       - temperature
       - symbol
@@ -79,12 +79,27 @@ sensor:
       - humidity
       - fog
       - cloudiness
-
   - platform: command_line
     name: weather wind direction cmd
     command: 'sh /home/pi/.homeassistant/scripts/wind_direction.sh {{ states.sensor.weather_wind_direction.state }}'
     unit_of_measurement: "Riktning"
 
+  #- platform: command_line
+  #  name: rss news feed cmd
+  #  command: 'sh /home/pi/.homeassistant/scripts/rss_run.sh https://www.svd.se/?service=rss'
+
+  - platform: google_travel_time
+    api_key: AIzaSyCvzmBlgFwT-yScm71pgOCJ72OJV8muxrY
+    origin: zone.home
+    destination: zone.work
+    name: home to work
+    departure_time: 08:00:00
+
+  - platform: rss_feed
+    name: rss news feed cmd
+    command: 'sh /home/pi/.homeassistant/scripts/rss_run.sh https://www.svd.se/?service=rss'
+
+news:
 
 panel_custom:
   - name: alarm
@@ -108,9 +123,10 @@ logger:
     homeassistant.components.media_player.spotify: info
     #custom_components.restore_states: debug
 #    homeassistant.components.apple_tv: debug
-    #custom_components.sensor.car_milage_per_month: debug
+    custom_components.sensor.rss_feed: debug
+    custom_components.news: debug
 #    homeassistant.components.xiaomi: debug
-#    homeassistant.components.sensor.command_line: debug
+    homeassistant.components.sensor.command_line: debug
 #    homeassistant.components.shell_command: debug
 #    miflora.miflora_poller: debug
 #    homeassistant.components.sensor.miflora: debug
@@ -192,7 +208,6 @@ alarm_control_panel:
   pending_time: 45
   trigger_time: 45
   disarm_after_trigger: false
-
 
 
 #recorder:

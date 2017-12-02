@@ -4,6 +4,8 @@ automation:
     trigger:
       - platform: state
         entity_id: group.family_devices
+        from: 'home'
+        to: 'not_home'
     condition:
       condition: and
       conditions:
@@ -46,13 +48,11 @@ script:
       - service: logbook.log
         data_template:
           name: Family away delay
-          message: Waiting 10 minutes to turn off lights
+          message: Waiting 10 minutes to turn off lights (only if someone still not home)
       - delay:
           minutes: 10
-#      - condition: state
-#        entity_id: input_boolean.someone_home
-#        state: 'off'
-#        for:
-#          minutes: 10
+      - condition: state
+        entity_id: group.family_devices
+        state: 'not_home'
       - service: light.turn_off
         entity_id: group.all_lights

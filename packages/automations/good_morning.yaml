@@ -11,8 +11,8 @@ automation:
   - alias: Enable Can trigger good morning
     trigger:
         platform: time
-        at: '5:00'
-    action: 
+        at: '6:00'
+    action:
         service: homeassistant.turn_on
         entity_id: input_boolean.can_trigger_good_morning
 
@@ -21,7 +21,7 @@ automation:
         platform: sun
         event: sunrise
         offset: "04:00:00"
-    action: 
+    action:
         service: homeassistant.turn_off
         entity_id: input_boolean.can_trigger_good_morning
 
@@ -51,11 +51,8 @@ automation:
         - condition: state
           entity_id: group.livingroom_lights
           state: 'off'
-        # ++++++
-        # Keep adding sensors that can trigger good morning
-        # ++++++
 
-    action: 
+    action:
         service: script.good_morning
 
 
@@ -69,8 +66,52 @@ script:
       - service: scene.turn_on
         entity_id: scene.livingroom_low
 
+      - service: script.turn_on
+        entity_id: script.speech_engine
+        data_template:
+          variables:
+            goodmorninggreeting: >
+              {{ [
+                "God morgon. Hoppas du har sovit gott. ",
+                "God morgon. ",
+                "Hallå där, hoppas du sovit gott. ",
+                "God morgon. Ny dag, nya möjligheter. ",
+                "God morgon. Idag kommer bli en bra dag. "
+              ] | random }}
 
+              {% if states('sensor.weather_cloudiness')|int <= 20 %}
+                {{ [
+                  "Det ser ut att bli en fin dag med lite moln. Temperaturen kommer ungefär att vara " ~ states.sensor.weather_temperature.state + " grader.",
+                  "Idag blir det en fin dag med inte så mycket moln. Vi kommer få en temperatur på ungefär " ~ states.sensor.weather_temperature.state + " grader.",
+                  "Idag kommer solen att skina. Temperaturen hamnar ungefär på " ~ states.sensor.weather_temperature.state + " grader."
+                ] | random }}
+              {% endif %}
 
+              {% if states('sensor.weather_cloudiness')|int > 20 and states('sensor.weather_cloudiness')|int <= 50 %}
+                {{ [
+                  "Idag blir det halvklart väder. Temperaturen ligger ungefär runt " ~ states.sensor.weather_temperature.state + " grader.",
+                  "Det kommer att vara halvklart väder med en del moln. Vi kommer få en temperatur på ungefär " ~ states.sensor.weather_temperature.state + " grader.",
+                  "Vädret idag kommer bara halvklart till molnigt. Temperaturen hamnar ungefär på " ~ states.sensor.weather_temperature.state + " grader."
+                ] | random }}
+              {% endif %}
+
+              {% if states('sensor.weather_cloudiness')|int > 50 %}
+                {{ [
+                  "Vi har en del moln idag. Temperaturen kommer ungefär att vara " ~ states.sensor.weather_temperature.state + " grader.",
+                  "Idag blir det mulet. Vi kommer få en temperatur på ungefär " ~ states.sensor.weather_temperature.state + " grader.",
+                  "Vi kommer få en hel del moln idag. Temperaturen kommer ungefär att ligga på " ~ states.sensor.weather_temperature.state + " grader.",
+                  "Vädret idag kommer bli ordentligt molnigt. Temperaturen är ungefär " ~ states.sensor.weather_temperature.state + " grader.",
+                  "Molnen ligger tätt idag. Temperaturen hamnar ungefär på " ~ states.sensor.weather_temperature.state + " grader."
+                ] | random }}
+              {% endif %}
+
+              {% if now().weekday() in (0,1,2,3,4) %}
+                {{ [
+                  "Det kommer ungefär att ta " ~ states.sensor.home_to_work + " att åka till jobbet.",
+                  "Med nuvarande trafikläge så kommer det ungefär att ta " ~ states.sensor.home_to_work.attributes.duration_in_traffic + " att åka till jobbet.",
+                  "När du åker till jobbet så kommer det ungefär att ta " ~ states.sensor.home_to_work.attributes.duration_in_traffic + "."
+                ] | random }}
+              {% endif %}
 
 
 input_boolean:
