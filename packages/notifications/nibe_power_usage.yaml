@@ -1,0 +1,36 @@
+automation:
+  - alias: 'Nibe power usage notification'
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.44615_43084
+        above: 0
+    action:
+      - service: notify.notify
+        data_template:
+          title: 'Solbacken 44'
+          message: >
+            Luftvärmepumpen har börjat använda extra ström. Just nu {{ trigger.to_state.state }}
+
+      - service: notify.tv_livingroom_upstairs
+        data_template:
+          title: 'Solbacken 44'
+          message: >
+            Luftvärmepumpen har börjat använda extra ström. Just nu {{ trigger.to_state.state }}
+
+  - alias: 'Nibe power usage stop notification'
+    trigger:
+      - platform: state
+        entity_id: sensor.44615_43084
+        to: '0.0'
+    action:
+      - service: notify.notify
+        data_template:
+          title: 'Solbacken 44'
+          message: >
+            Luftvärmepumpen har slutat använda extra ström
+
+      - service: notify.tv_livingroom_upstairs
+        data_template:
+          title: 'Solbacken 44'
+          message: >
+            Luftvärmepumpen har slutat använda extra ström

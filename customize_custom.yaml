@@ -1,9 +1,18 @@
+group.nibe_f730:
+  hidden: false
+
+svtplay_dl.link:
+  hidden: true
+
 ###########################################################
 #
 # Home Assistant Customisations
 #
 ############################################################
-
+cover.qubino_zmnhod1_flush_shutter_dc_level_2:
+  friendly_name: 'Rullgardin Vänster Fönster'
+cover.qubino_zmnhod1_flush_shutter_dc_level:
+  friendly_name: 'Rullgardin Höger Fönster'
 ############################################################
 #
 # Input_Boolean
@@ -80,81 +89,105 @@ sensor.aeotec_zw100_multisensor_6_temperature:
 #
 ############################################################
 
+alarm_control_panel.solbacken_44_alarm:
+  friendly_name: Solbacken 44
+
+sensor.electricity_price_solbacken_44:
+  friendly_name: Nuvarande Elpris
+
+sensor.pihole_ads_blocked_today:
+  friendly_name: Blockerad reklam idag
+
 sensor.speedtest_download:
     friendly_name: Nedladdning
 
 sensor.speedtest_upload:
     friendly_name: Uppladdning
 
+sensor.car_milage_per_month:
+  hidden: true
+
 sensor.car_milage_per_month_template:
     friendly_name: Antal km denna månad
 
-############################################################
-#
-# Automations
-#
-############################################################
+sensor.home_to_work:
+  hidden: true
 
-automation.christmasstar_battery_notification:
-    hidden: true
+sensor.qubino_zmnhod1_flush_shutter_dc_energy:
+  hidden: true
 
-automation.christmasstar_moisture_notification:
-    hidden: true
+sensor.qubino_zmnhod1_flush_shutter_dc_power:
+  hidden: true
 
-automation.katarina_battery_notification:
-    hidden: true
+sensor.qubino_zmnhod1_flush_shutter_dc_previous_reading:
+  hidden: true
 
-automation.marcus_battery_notification:
-    hidden: true
+sensor.rkx422_fuel_consumption:
+  hidden: true
 
-automation.mediaplayer_livingroom_pausedstopped:
-    hidden: true
+sensor.vacuum_tord_status:
+  hidden: true
 
-automation.mediaplayer_livingroom_playing:
-    hidden: true
+sensor.fibaro_system_fgwpef_wall_plug_gen5_power_3:
+  friendly_name: Tvättmaskin
+  device_class: power
 
-automation.voc_heater_notification_start:
-    hidden: true
+sensor.fibaro_system_fgwpef_wall_plug_gen5_power:
+  friendly_name: Torktumlare
+  device_class: power
 
-automation.voc_heater_notification_stop:
-    hidden: true
-
-automation.lights_off_in_livingroom_when_bedtime:
-    hidden: true
-
-automation.multisensor_livingroom_battery_notification:
-    hidden: true
-
-automation.livingroom_lights_turn_on_to_low_light_scene_if_light_is_above_3_and_below_7_and_me_andor_katarina_is_home:
-    hidden: true
-
-automation.livingroom_lights_turn_on_to_normal_light_scene_if_light_is_below_5_and_me_andor_katarina_is_home:
-    hidden: true
-
-automation.disable_first_morning_trigger:
-    hidden: true
-
-automation.enable_first_morning_trigger:
-    hidden: true
-
-automation.first_morning_motion_livingroom:
-    hidden: true
-
-automation.family_away:
-    hidden: true
-
-automation.family_home:
-    hidden: true
-
-automation.lights_off_when_no_one_is_home:
-    hidden: true
-
-automation.backup_home_assistant_configuration_files:
-    hidden: true
-
-automation.scene_livingroom:
-    hidden: true
-
+binary_sensor.altandorr_kok:
+  friendly_name: Altandörr (Kök)
+  device_class: door
+binary_sensor.altandorr_vardagsrum:
+  friendly_name: Altandörr
+  device_class: door
+binary_sensor.badrumsfonster:
+  friendly_name: Fönster Badrum (Nere)
+  device_class: window
+binary_sensor.balkongdorr_allrum_overvaning:
+  friendly_name: Balkongdörr
+  device_class: door
+binary_sensor.entredorr:
+  friendly_name: Entrédörr
+  device_class: door
+binary_sensor.fonster_hoger_sovrum:
+  friendly_name: Fönster Gästrum
+  device_class: window
+binary_sensor.sovrum_overvaning_vanster:
+  friendly_name: Fönster Barnrum
+  device_class: window
+binary_sensor.fonster_kok_framsida:
+  friendly_name: Fönster Kök
+  device_class: window
+binary_sensor.fonster_vardagsrum_baksida:
+  friendly_name: Fönster Vardagsrum
+  device_class: window
+binary_sensor.refrigerator:
+  friendly_name: Kylskåp
+  device_class: door
+sensor.kitchentemperature:
+  friendly_name: Temperatur
+sensor.closettemperature:
+  friendly_name: Temperatur
+sensor.hallwaytemperature:
+  friendly_name: Temperatur
+sensor.bathroomdownstairstemperature:
+  friendly_name: Temperatur
+sensor.laundryroomtemperature:
+  friendly_name: Temperatur
+sensor.livingroomdownstairsdinnerareatemperature:
+  friendly_name: Temperatur
+sensor.childrensroomtemperature:
+  friendly_name: Temperatur
+sensor.guestroomtemperature:
+  friendly_name: Temperatur
+sensor.livingroomupstairstemperature:
+  friendly_name: Temperatur
+sensor.bathroomupstairstemperature:
+  friendly_name: Temperatur
+sensor.bedroomtemperature:
+  friendly_name: Temperatur
 
 ############################################################
 #
@@ -203,6 +236,14 @@ group.all_automations:
 group.family_devices:
     hidden: true
 
+group.all_switches:
+  hidden: true
+
+group.flowers:
+  hidden: true
+
+group.phone_status:
+  hidden: true
 
 ############################################################
 #
@@ -210,32 +251,152 @@ group.family_devices:
 #
 ############################################################
 
-light.hue_color_lamp_1:
-    friendly_name: Fönsterlampa
-    homebridge_hidden: false
-
-light.hue_color_lamp_2:
-    friendly_name: Golvlampa
-    homebridge_hidden: false
-
-light.hue_color_lamp_3:
-    friendly_name: Taklampa
-    homebridge_hidden: false
-
-light.kok:
-    hidden: true
-
-light.sovrum:
-    hidden: true
-
-light.vardagsrum:
-    hidden: true
-
 light.nattduksbord_katarina:
     homebridge_hidden: false
 
 light.nattduksbord_marcus:
     homebridge_hidden: false
+
+light.barnrum:
+  homebridge_hidden: false
+  friendly_name: Molnlampa
+  icon: 'mdi:amazon-clouddrive'
+
+light.bathroomdownstairsmirror:
+  homebridge_hidden: false
+  friendly_name: Spegel
+
+light.bathroomdownstairsspotlights:
+  homebridge_hidden: false
+  friendly_name: Tak
+  icon: 'mdi:blur-radial'
+
+light.bathroomdownstairswindowspotlights:
+  homebridge_hidden: false
+  friendly_name: Fönstersmyg
+  icon: 'mdi:border-all'
+
+light.bathroomupstairsmirror:
+  homebridge_hidden: false
+  friendly_name: Spegel
+
+light.bathroomupstairsspotlights:
+  homebridge_hidden: false
+  friendly_name: Tak
+  icon: 'mdi:blur-radial'
+
+light.bedroomrooflight:
+  homebridge_hidden: false
+  friendly_name: Tak
+  icon: 'mdi:ceiling-light'
+
+light.bedroomwindows:
+  homebridge_hidden: false
+  friendly_name: Fönster
+  icon: 'mdi:border-all'
+
+light.childrensroomrooflight:
+  homebridge_hidden: false
+  friendly_name: Tak
+  icon: 'mdi:ceiling-light'
+
+light.childrensroomwindow:
+  homebridge_hidden: false
+  friendly_name: Fönster
+  icon: 'mdi:border-all'
+
+light.closetspotlights:
+  homebridge_hidden: false
+  friendly_name: Klädkammare
+  icon: 'mdi:blur-radial'
+
+light.facadelightbackyard:
+  homebridge_hidden: false
+  friendly_name: Baksida
+  icon: 'mdi:border-horizontal'
+
+light.facadelightbalcony:
+  homebridge_hidden: false
+  friendly_name: Balkong
+  icon: 'mdi:border-horizontal'
+
+light.facadelightfrontyard:
+  homebridge_hidden: false
+  friendly_name: Framsida
+  icon: 'mdi:border-horizontal'
+
+light.facadelightstorehouse:
+  homebridge_hidden: false
+  friendly_name: Förråd
+  icon: 'mdi:border-horizontal'
+
+light.gastrum_fonster:
+  homebridge_hidden: false
+  friendly_name: Bordslampa Fönster
+
+light.guestroomrooflight:
+  homebridge_hidden: false
+  friendly_name: Tak
+  icon: 'mdi:ceiling-light'
+
+light.guestroomwindow:
+  homebridge_hidden: false
+  friendly_name: Fönster
+  icon: 'mdi:border-all'
+
+light.hallwayspotlights:
+  homebridge_hidden: false
+  friendly_name: Tak
+  icon: 'mdi:blur-radial'
+
+light.kitchenislandspotlights:
+  homebridge_hidden: false
+  friendly_name: Köksö
+  icon: 'mdi:blur-radial'
+
+light.kitchenspotlights:
+  homebridge_hidden: false
+  friendly_name: Tak och arbetsyta
+  icon: 'mdi:blur-radial'
+
+light.kitchenwindowspotlights:
+  homebridge_hidden: false
+  friendly_name: Fönstersmyg
+  icon: 'mdi:border-all'
+
+light.laundryroomspotlights:
+  homebridge_hidden: false
+  friendly_name: Tak
+  icon: 'mdi:blur-radial'
+
+light.livingroomdownstairsdinnerareaspotlights:
+  homebridge_hidden: false
+  friendly_name: Matbord
+  icon: 'mdi:blur-radial'
+
+light.livingroomdownstairswindowsspotlights:
+  homebridge_hidden: false
+  friendly_name: Fönstersmygar
+  icon: 'mdi:border-all'
+
+light.livingroomupstairsspotlights:
+  homebridge_hidden: false
+  friendly_name: Tak
+  icon: 'mdi:blur-radial'
+
+light.livingroomupstairswindowspotlights:
+  homebridge_hidden: false
+  friendly_name: Fönstersmyg
+  icon: 'mdi:border-all'
+
+light.stairwellspotlights:
+  homebridge_hidden: false
+  friendly_name: Tak
+  icon: 'mdi:blur-radial'
+
+light.vardagsrum_nedervaning_soffgrupp:
+  homebridge_hidden: false
+  friendly_name: Golvlampa Soffgrupp
 
 
 ############################################################
@@ -243,7 +404,7 @@ light.nattduksbord_marcus:
 # Vacuum
 #
 ############################################################
-vacuum.vacuum_thord:
+vacuum.thord:
     friendly_name: Dammsugar-Thord
     homebridge_hidden: false
 
@@ -254,16 +415,19 @@ vacuum.vacuum_thord:
 #
 ############################################################
 
-media_player.apple_tv_sovrum:
-    friendly_name: Apple TV Sovrum
+media_player.apple_tv_vardagsrum_overvaning:
+    friendly_name: Apple TV Vardagsrum Övervåning
     homebridge_hidden: false
 
-media_player.apple_tv_vardagsrum:
-    friendly_name: Apple TV Vardagsrum
+media_player.apple_tv_vardagsrum_nedervaning:
+    friendly_name: Apple TV Vardagsrum Nedervåning
     homebridge_hidden: false
 
-media_player.kok:
+media_player.kitchen:
     homebridge_hidden: false
+
+media_player.tv_livingroom_upstairs:
+  friendly_name: TV Vardagsrum Övervåning
 
 remote.apple_tv_vardagsrum:
     hidden: true
@@ -398,6 +562,13 @@ sensor.katarinas_iphone_battery_state:
 
 
 
+############################################################
+#
+# Switch
+#
+############################################################
+switch.qubino_zmnhod1_flush_shutter_dc_switch:
+  hidden: true
 
 ############################################################
 #
@@ -530,3 +701,12 @@ device_tracker.samsunggalaxys7:
 
 device_tracker.lumigatewayv3_miio56297789:
     hidden: true
+
+device_tracker.dandahp:
+  hidden: true
+
+device_tracker.dansiniphone_2:
+  hidden: true
+
+device_tracker.sel32994w7u:
+  hidden: true

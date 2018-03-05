@@ -1,58 +1,30 @@
 automation:
-#######################
-#
-# Normal light if lumiance below 5
-# Rooms: Livingroom
-#
-#######################
-  - alias: 'Normal light if lumiance below 5'
+  - alias: 'Turn on livingroom light when its getting dark (based on facade light)'
     trigger:
-      - platform: numeric_state
-        entity_id: sensor.aeotec_zw100_multisensor_6_luminance
-        below: 6
       - platform: state
-        entity_id: input_boolean.someone_home
+        entity_id: light.livingroomdownstairswindowsspotlights
         to: 'on'
     condition:
       - condition: and
         conditions:
-        - condition: time
-          after: '08:00'
-          before: '23:00'
         - condition: state
-          entity_id: input_boolean.someone_home
-          state: 'on'
+          entity_id: group.family_devices
+          state: 'home'
     action:
       service: scene.turn_on
       entity_id: scene.livingroom_normal
 
-
-
-#######################
-#
-# Low light if lumiance between 4 and 10
-# Rooms: Livingroom
-#
-#######################
-  - alias: 'Low light if lumiance between 4 and 10'
+  - alias: 'Turn on livingroom light when getting home if its already dark (based on facade light)'
     trigger:
-      - platform: numeric_state
-        entity_id: sensor.aeotec_zw100_multisensor_6_luminance
-        above: 5
-        below: 10
       - platform: state
-        entity_id: input_boolean.someone_home
-        to: 'on'
+        entity_id: group.family_devices
+        to: 'home'
     condition:
       - condition: and
         conditions:
-        - condition: time
-          after: '08:00'
-          before: '23:00'
         - condition: state
-          entity_id: input_boolean.someone_home
+          entity_id: light.livingroomdownstairswindowsspotlights
           state: 'on'
     action:
       service: scene.turn_on
-      entity_id: scene.livingroom_low
-
+      entity_id: scene.livingroom_normal

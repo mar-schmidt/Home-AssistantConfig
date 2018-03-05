@@ -3,42 +3,90 @@ automation:
   # Will trigger if any of the below are 'home'
     trigger:
       - platform: state
-        entity_id:
-          - device_tracker.marcus_iphone
-          - device_tracker.katarinas_iphone
+        entity_id: group.family_devices
         from: 'not_home'
         to: 'home'
-        for: '00:00:10'
     condition:
       condition: and
       conditions:
         - condition: time
           after: '06:30'
-          before: '23:30'
+          before: '22:30'
 
     action:
-      - service: script.family_home
-      - service: script.turn_on
-        entity_id: script.speech_engine
-        data_template:
-          variables:
-            personarriving: >
-              {% set person = trigger.entity_id.split('.')[1]|replace('_', ' ')|replace('iphone', '') %}
-              {%- macro greeting_sentence(person) -%}
-              {{ [
-              "Välkommen hem " ~ person + ".",
-              person + " har kommit hem.",
-              "Välkommen hem " ~ person + ". Vi har saknat dig, eller i alla fall Molle",
-              "Äntligen hemma " ~ person + ".",
-              "Hallå där " ~ person + ", välkommen hem.",
-              "Skönt att ha dig hemma igen " ~ person + "."
-              ] | random }}
-              {%- endmacro -%}
-              {{ greeting_sentence(person) }}
-            call_no_announcement: 1
+      - service: script.family_home_alarm_off
+      # Greeting
+      #- service: script.family_home_tts_greeting
+      # Music
+      #- service: script.family_home_music
+      # Lights
+      #- service: script.family_home_adjust_lights
+
+
+
 
 script:
-  family_home:
+  family_home_alarm_off:
+    sequence:
+      - service: alarm_control_panel.alarm_disarm
+        entity_id: alarm_control_panel.solbacken_44_alarm
+        data:
+          code: !secret alarm_code
+  family_home_tts_greeting:
+    sequence:
+      - service: script.turn_on
+        entity_id: script.speech_processing
+        data_template:
+          variables:
+            speech_message: >
+              {{ [
+                "Välkommen hem.",
+                "Äntligen är ni hemma, Molle har väntat så.",
+                "Välkommen hem. Vi har saknat dig, eller i alla fall Molle.",
+                "Äntligen hemma.",
+                "Hallå där, välkommen hem.",
+                "Skönt att ha er hemma igen."
+              ] | random }}
+
+  family_home_music:
+    sequence:
+      # - service: input_select.select_option
+      #   data:
+      #     entity_id: input_select.playlist
+      #     option: 'Feeling good låtar!'
+      # - service: input_select.select_option
+      #   data:
+      #     entity_id: input_select.speaker
+      #     option: 'Kök'
+      - service: script.turn_on
+        entity_id: script.speech_processing
+        data_template:
+          variables:
+            speech_message: >
+              {{ [
+                "Jag sätter igång lite musik att njuta till.",
+                "Jag sätter igång lite musik",
+                "Här kommer lite musik",
+                "Jag börjar spela lite musik nu",
+                "Jag tänkte att vi kunde sätta igång lite musik"
+              ] | random }}
+      - service: media_player.select_source
+        data:
+          entity_id: media_player.kitchen
+          source: 'Feeling good låtar!'
+      - service: media_player.shuffle_set
+        data:
+          entity_id: media_player.kitchen
+          shuffle: true
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.kitchen
+          volume_level: 0.2
+      - service: media_player.media_play
+        data:
+          entity_id: media_player.kitchen
+
+  family_home_adjust_lights:
     sequence:
         # This is a Condition, everything after this sequence
         # will only be triggered if condition is true
@@ -46,19 +94,7 @@ script:
         after: sunset
         after_offset: "-1:00:00"
 
-      - condition: state
-        entity_id: input_boolean.someone_home
-        state: 'off'
-
       - service: scene.turn_on
         entity_id: scene.livingroom_normal
       - service: scene.turn_on
         entity_id: scene.bedroom_normal
-
-      - service: homeassistant.turn_on
-        entity_id: input_boolean.someone_home
-
-
-input_boolean:
-  someone_home:
-    initial: on

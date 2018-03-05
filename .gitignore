@@ -27,3 +27,4 @@ ip_bans.yaml
 .gitignore
 /scripts/backup_hass.sh
 milage.json
+xknx.yaml

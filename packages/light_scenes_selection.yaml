@@ -1,14 +1,25 @@
 input_select:
-  scene_livingroom:
-    name: 'Belysning Vardagsrum:'
-    icon: mdi:sofa
+  scene_hallway:
+    name: 'Belysning Hall:'
+    icon: mdi:door-open
     initial: Välj
     options:
       - Välj
       - Normal
-      - Dimmad
-      - Film
+      - Stämning
+      - Städ
       - Av
+
+  scene_bathroom_downstairs:
+    name: 'Belysning Badrum (Nedervåning):'
+    icon: mdi:water-pump
+    initial: Välj
+    options:
+      - Välj
+      - Normal
+      - Stämning
+      - Av
+
   scene_kitchen:
     name: 'Belysning Kök:'
     icon: mdi:food-fork-drink
@@ -19,6 +30,42 @@ input_select:
       - Stämning
       - Städ
       - Av
+
+  scene_livingroom_downstairs:
+    name: 'Belysning Vardagsrum (Nedervåning):'
+    icon: mdi:sofa
+    initial: Välj
+    options:
+      - Välj
+      - Normal
+      - Middag
+      - Dimmad
+      - Film
+      - Av
+
+  scene_stairwell:
+    name: 'Belysning Trapphus:'
+    icon: mdi:stairs
+    initial: Välj
+    options:
+      - Välj
+      - Normal
+      - Dimmad
+      - Film
+      - Städ
+      - Av
+
+  scene_livingroom_upstairs:
+    name: 'Belysning Vardagsrum (Övervåning):'
+    icon: mdi:sofa
+    initial: Välj
+    options:
+      - Välj
+      - Normal
+      - Dimmad
+      - Film
+      - Av
+
   scene_bedroom:
     name: 'Belysning Sovrum:'
     icon: mdi:hotel
@@ -29,40 +76,99 @@ input_select:
       - Stämning
       - Godmorgon
       - Godnatt
-  scene_bathroom:
-    name: 'Belysning Badrum:'
+      - Av
+
+  scene_bathroom_upstairs:
+    name: 'Belysning Badrum (Övervåning):'
     icon: mdi:water-pump
     initial: Välj
     options:
       - Välj
       - Normal
+      - Stämning
+      - Av
+
+  scene_guestroom:
+    name: 'Belysning Gästrum:'
+    icon: mdi:hotel
+    initial: Välj
+    options:
+      - Välj
+      - Normal
+      - Stämning
+      - Godmorgon
+      - Godnatt
+      - Av
+
+  scene_childrensroom:
+    name: 'Belysning Gästrum:'
+    icon: mdi:hotel
+    initial: Välj
+    options:
+      - Välj
+      - Normal
+      - Stämning
+      - Godmorgon
+      - Godnatt
+      - Av
+
+  scene_outside:
+    name: 'Belysning Husfasad och Trädgård:'
+    icon: mdi:home
+    initial: Välj
+    options:
+      - Välj
+      - Normal
+      - Alarm
       - Av
 
 automation:
-  - alias: Light Scene Livingroom
+  # Hallway
+  - alias: light scene hallway
     trigger:
         platform: state
-        entity_id: input_select.scene_livingroom
+        entity_id: input_select.scene_hallway
     action:
       - service: scene.turn_on
         data_template:
           entity_id: >
-            {% if is_state( "input_select.scene_livingroom", "Dimmad" ) %}
-              scene.livingroom_low
-            {%-elif is_state( "input_select.scene_livingroom", "Film" ) %}
-              scene.livingroom_movie
-            {%-elif is_state( "input_select.scene_livingroom", "Normal" ) %}
-              scene.livingroom_normal
-            {%-elif is_state( "input_select.scene_livingroom", "Av" ) %}
-              scene.livingroom_off
+            {% if is_state( "input_select.scene_hallway", "Stämning" ) %}
+              scene.hallway_mood
+            {%-elif is_state( "input_select.scene_hallway", "Städ" ) %}
+              scene.hallway_cleaning
+            {%-elif is_state( "input_select.scene_hallway", "Normal" ) %}
+              scene.hallway_normal
+            {%-elif is_state( "input_select.scene_hallway", "Av" ) %}
+              scene.hallway_off
             {% endif %}
       - service: input_select.select_option
         data:
-          entity_id: input_select.scene_livingroom
+          entity_id: input_select.scene_hallway
           option: Välj
 
+  # Bathroom downstairs
+  - alias: light scene bathroom downstairs
+    trigger:
+        platform: state
+        entity_id: input_select.scene_bathroom_downstairs
+    action:
+      - service: scene.turn_on
+        data_template:
+          entity_id: >
+            {% if is_state( "input_select.scene_bathroom_downstairs", "Normal" ) %}
+              scene.bathroom_downstairs_normal
+            {% elif is_state( "input_select.scene_bathroom_downstairs", "Stämning" ) %}
+              scene.bathroom_downstairs_mood
+            {%-elif is_state( "input_select.scene_bathroom_downstairs", "Av" ) %}
+              scene.bathroom_downstairs_off
+            {% endif %}
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.scene_bathroom_downstairs
+          option: Välj
 
-  - alias: Light Scene Kitchen
+  # Kitchen
+  - alias: light scene kitchen
     trigger:
         platform: state
         entity_id: input_select.scene_kitchen
@@ -85,7 +191,82 @@ automation:
           option: Välj
 
 
-  - alias: Light Scene Bedroom
+  # Livingroom downstairs
+  - alias: light scene livingroom downstairs
+    trigger:
+        platform: state
+        entity_id: input_select.scene_livingroom_downstairs
+    action:
+      - service: scene.turn_on
+        data_template:
+          entity_id: >
+            {% if is_state( "input_select.scene_livingroom_downstairs", "Dimmad" ) %}
+              scene.livingroom_downstairs_dimmed
+            {%-elif is_state( "input_select.scene_livingroom_downstairs", "Film" ) %}
+              scene.livingroom_downstairs_movie
+            {%-elif is_state( "input_select.scene_livingroom_downstairs", "Middag" ) %}
+              scene.livingroom_downstairs_dinner
+            {%-elif is_state( "input_select.scene_livingroom_downstairs", "Normal" ) %}
+              scene.livingroom_downstairs_normal
+            {%-elif is_state( "input_select.scene_livingroom_downstairs", "Av" ) %}
+              scene.livingroom_downstairs_off
+            {% endif %}
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.scene_livingroom_downstairs
+          option: Välj
+
+
+  # Stairwell
+  - alias: light scene stairwell
+    trigger:
+        platform: state
+        entity_id: input_select.scene_stairwell
+    action:
+      - service: scene.turn_on
+        data_template:
+          entity_id: >
+            {% if is_state( "input_select.scene_stairwell", "Dimmad" ) %}
+              scene.stairwell_dimmed
+            {%-elif is_state( "input_select.scene_stairwell", "Film" ) %}
+              scene.stairwell_movie
+            {%-elif is_state( "input_select.scene_stairwell", "Normal" ) %}
+              scene.stairwell_normal
+            {%-elif is_state( "input_select.scene_stairwell", "Städ" ) %}
+              scene.stairwell_cleaning
+            {%-elif is_state( "input_select.scene_stairwell", "Av" ) %}
+              scene.stairwell_off
+            {% endif %}
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.scene_stairwell
+          option: Välj
+
+  # Livingroom upstairs
+  - alias: light scene livingroom upstairs
+    trigger:
+        platform: state
+        entity_id: input_select.scene_livingroom_upstairs
+    action:
+      - service: scene.turn_on
+        data_template:
+          entity_id: >
+            {% if is_state( "input_select.scene_livingroom_upstairs", "Dimmad" ) %}
+              scene.livingroom_upstairs_dimmed
+            {%-elif is_state( "input_select.scene_livingroom_upstairs", "Film" ) %}
+              scene.livingroom_upstairs_movie
+            {%-elif is_state( "input_select.scene_livingroom_upstairs", "Normal" ) %}
+              scene.livingroom_upstairs_normal
+            {%-elif is_state( "input_select.scene_livingroom_upstairs", "Av" ) %}
+              scene.livingroom_upstairs_off
+            {% endif %}
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.scene_livingroom_upstairs
+          option: Välj
+
+  # Bedroom
+  - alias: light scene bedroom
     trigger:
         platform: state
         entity_id: input_select.scene_bedroom
@@ -97,6 +278,8 @@ automation:
               scene.bedroom_mood
             {%-elif is_state( "input_select.scene_bedroom", "Godnatt" ) %}
               scene.bedroom_off
+            {%-elif is_state( "input_select.scene_bedroom", "Av" ) %}
+              scene.bedroom_off
             {%-elif is_state( "input_select.scene_bedroom", "Normal" ) %}
               scene.bedroom_normal
             {%-elif is_state( "input_select.scene_bedroom", "Godmorgon" ) %}
@@ -107,21 +290,95 @@ automation:
           entity_id: input_select.scene_bedroom
           option: Välj
 
-
-  - alias: Light Scene Bathroom
+  # Bathroom upstairs
+  - alias: light scene bathroom upstairs
     trigger:
         platform: state
-        entity_id: input_select.scene_bathroom
+        entity_id: input_select.scene_bathroom_upstairs
     action:
       - service: scene.turn_on
         data_template:
           entity_id: >
-            {% if is_state( "input_select.scene_bathroom", "Normal" ) %}
-              scene.bathroom_normal
-            {%-elif is_state( "input_select.scene_bathroom", "Av" ) %}
-              scene.bathroom_off
+            {% if is_state( "input_select.scene_bathroom_upstairs", "Normal" ) %}
+              scene.bathroom_upstairs_normal
+            {%-elif is_state( "input_select.scene_bathroom_upstairs", "Stämning" ) %}
+              scene.bathroom_upstairs_mood
+            {%-elif is_state( "input_select.scene_bathroom_upstairs", "Av" ) %}
+              scene.bathroom_upstairs_off
             {% endif %}
       - service: input_select.select_option
         data:
-          entity_id: input_select.scene_bathroom
+          entity_id: input_select.scene_bathroom_upstairs
+          option: Välj
+
+  # Bedroom
+  - alias: light scene guestroom
+    trigger:
+        platform: state
+        entity_id: input_select.scene_guestroom
+    action:
+      - service: scene.turn_on
+        data_template:
+          entity_id: >
+            {% if is_state( "input_select.scene_guestroom", "Stämning" ) %}
+              scene.guestroom_mood
+            {%-elif is_state( "input_select.scene_guestroom", "Godnatt" ) %}
+              scene.guestroom_off
+            {%-elif is_state( "input_select.scene_guestroom", "Av" ) %}
+              scene.guestroom_off
+            {%-elif is_state( "input_select.scene_guestroom", "Normal" ) %}
+              scene.guestroom_normal
+            {%-elif is_state( "input_select.scene_guestroom", "Godmorgon" ) %}
+              scene.guestroom_goodmorning
+            {% endif %}
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.scene_guestroom
+          option: Välj
+
+  # Childrensroom
+  - alias: light scene childrensroom
+    trigger:
+        platform: state
+        entity_id: input_select.scene_childrensroom
+    action:
+      - service: scene.turn_on
+        data_template:
+          entity_id: >
+            {% if is_state( "input_select.scene_childrensroom", "Stämning" ) %}
+              scene.childrensroom_mood
+            {%-elif is_state( "input_select.scene_childrensroom", "Godnatt" ) %}
+              scene.childrensroom_off
+            {%-elif is_state( "input_select.scene_childrensroom", "Av" ) %}
+              scene.childrensroom_off
+            {%-elif is_state( "input_select.scene_childrensroom", "Normal" ) %}
+              scene.childrensroom_normal
+            {%-elif is_state( "input_select.scene_childrensroom", "Godmorgon" ) %}
+              scene.childrensroom_goodmorning
+            {% endif %}
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.scene_childrensroom
+          option: Välj
+
+
+  # Outside
+  - alias: light scene outside
+    trigger:
+        platform: state
+        entity_id: input_select.scene_outside
+    action:
+      - service: scene.turn_on
+        data_template:
+          entity_id: >
+            {% if is_state( "input_select.scene_outside", "Alarm" ) %}
+              scene.outside_alarm
+            {%-elif is_state( "input_select.scene_outside", "Av" ) %}
+              scene.outside_off
+            {%-elif is_state( "input_select.scene_outside", "Normal" ) %}
+              scene.outside_normal
+            {% endif %}
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.scene_outside
           option: Välj

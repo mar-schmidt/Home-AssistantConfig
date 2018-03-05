@@ -1,7 +1,31 @@
 automation:
+  - alias: Alarm on when bedroom covers goes down
+    trigger:
+      - platform: state
+        entity_id: cover.qubino_zmnhod1_flush_shutter_dc_level
+        from: 'open'
+        to: 'closed'
+    condition:
+      condition: and
+      conditions:
+        - condition: time
+          after: '20:00'
+    action:
+      - service: alarm_control_panel.alarm_arm_home
+        entity_id: alarm_control_panel.solbacken_44_alarm
+        data:
+          code: !secret alarm_code
+
+  - alias: KNX scene All Off also include other indoor lights
+    trigger:
+      - platform: state
+        entity_id: switch.alllightsoff
+    action:
+      - service: scene.turn_on
+        entity_id: scene.indoor_off
 ############################
 #
-# Automatic Bedtime if no movement for 
+# Automatic Bedtime if no movement for
 # 10 minutes and time is after 22:00
 #
 ############################
@@ -43,7 +67,7 @@ automation:
       condition: and
       conditions:
         - condition: state
-          entity_id: input_boolean.someone_home    
+          entity_id: input_boolean.someone_home
           state: 'on'
         - condition: state
           entity_id: light.vardagsrum

@@ -1,0 +1,52 @@
+input_select:
+  playlist:
+    name: 'Select Spotify Playlist:'
+    options:
+      - "Sweden Top 50"
+      - "Middagsbjudningen"
+      - "Mood Booster"
+      - "Feeling good låtar!"
+      - "Akustisk Vinter"
+
+  speaker:
+    name: 'Select Speaker:'
+    icon: mdi:speaker-wireless
+    options:
+      - "Kök"
+
+script:
+  play_spotify_playlist:
+    alias: 'Play'
+    sequence:
+      - service: logbook.log
+        data_template:
+          name: Music
+          message: 'Starting playing music...'
+      # - service: media_player.volume_set
+      #   data_template:
+      #     entity_id: >
+      #       {% if is_state("input_select.speaker", "Kök") %}
+      #         media_player.kitchen
+      #       {% endif %}
+      #   data:
+      #     volume_level: 0.3
+#       Select source from "Sonos Favorites" list (must exist). Uses "select_source"
+#       More info: https://community.home-assistant.io/t/sonos-the-easiest-way-of-setting-playlist-or-radio-streams/9347
+#       Even more: https://home-assistant.io/components/media_player/#service-media_playerselect_source
+      - service: media_player.select_source
+        data_template:
+          entity_id: >
+            {% if is_state("input_select.speaker", "Kök") %}
+              media_player.kitchen
+            {% endif %}
+          source: "{{ states.input_select.playlist.state }}"
+      - service: media_player.shuffle_set
+        data:
+          entity_id: media_player.kitchen
+          shuffle: true
+      - service: media_player.media_play
+        data_template:
+          entity_id: >
+            {% if is_state("input_select.speaker", "Kök") %}
+              media_player.kitchen
+            {% endif %}

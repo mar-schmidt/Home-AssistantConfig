@@ -1,0 +1,19 @@
+automation:
+
+# Front door opened
+  - alias: "Kylskåp öppet för länge"
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.refrigerator
+        to: 'on'
+        for:
+          minutes: 5
+    action:
+      - service: notify.notify
+        data:
+          title: Solbacken 44
+          message: 'Kylskåpet har inte stängts ordentligt'
+      - service: notify.tv_livingroom_upstairs
+        data:
+          title: Solbacken 44
+          message: 'Kylskåpet har inte stängts ordentligt'

@@ -1,21 +1,33 @@
 automation:
-  - alias: 'Lights on in bedroom 45 mins before sunset'
+  - alias: 'Turn on bedroom nightstand lights based on KNX window light'
     trigger:
-      - platform: sun
-        event: sunset
-        offset: "-00:45:00"
       - platform: state
-        entity_id: input_boolean.someone_home
+        entity_id: light.bedroomwindows
         to: 'on'
+    action:
+      service: scene.turn_on
+      entity_id: scene.bedroom_normal
+
+  - alias: 'Turn off bedroom nightstand lights based on KNX window light'
+    trigger:
+      - platform: state
+        entity_id: light.bedroomwindows
+        to: 'off'
+    action:
+      service: scene.turn_on
+      entity_id: scene.bedroom_off
+
+  - alias: 'Dim down bedroom nightstand lights based on KNX window light'
+    trigger:
+      - platform: state
+        entity_id: cover.qubino_zmnhod1_flush_shutter_dc_level
+        to: 'closed'
     condition:
       - condition: and
         conditions:
-        - condition: sun
-          after: sunset
-          after_offset: "-00:45:00"
         - condition: state
-          entity_id: input_boolean.someone_home
+          entity_id: light.nattduksbord_marcus
           state: 'on'
     action:
       service: scene.turn_on
-      entity_id: scene.bedroom_normal_slow
+      entity_id: scene.bedroom_low

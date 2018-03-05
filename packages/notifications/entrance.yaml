@@ -1,0 +1,57 @@
+automation:
+
+# Front door opened
+  - alias: "Ytterdörr öppnad"
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.entredorr
+        to: 'on'
+    action:
+      - service: notify.tv_livingroom_upstairs
+        data:
+          title: Solbacken 44
+          message: 'Ytterdörren öppnades precis'
+
+  - alias: "Altandörr öppnad"
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.altandorr_vardagsrum
+        to: 'on'
+    action:
+      - service: notify.tv_livingroom_upstairs
+        data:
+          title: Solbacken 44
+          message: 'Altandörren öppnades precis'
+
+  - alias: "Altandörr kök öppnad"
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.altandorr_kok
+        to: 'on'
+    action:
+      - service: notify.tv_livingroom_upstairs
+        data:
+          title: Solbacken 44
+          message: 'Altandörren vid köket öppnades precis'
+
+
+  - alias: "Ytterdörr ej låst"
+    trigger:
+      - platform: state
+        entity_id: lock.entredorr
+        to: 'unlocked'
+        for:
+          minutes: 20
+    condition:
+      condition: state
+      entity_id: binary_sensor.entredorr
+      state: 'off'
+    action:
+      - service: notify.notify
+        data:
+          title: Solbacken 44
+          message: 'Ytterdörren är inte låst'
+      - service: notify.tv_livingroom_upstairs
+        data:
+          title: Solbacken 44
+          message: 'Ytterdörren är inte låst'

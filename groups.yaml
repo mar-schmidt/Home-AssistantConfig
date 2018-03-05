@@ -8,61 +8,135 @@ default_view:
     - sensor.speedtest_download
     - sensor.speedtest_upload
     - sensor.weather_symbol
-    - group.radio
+    - sensor.electricity_price_solbacken_44
+    - sensor.pihole_ads_blocked_today
+    #- group.radio
     - group.play_spotify_playlist
     - group.all_sensors_badge
-    - group.livingroom_environment_badge
-    - group.livingroom_lights
-    - group.bedroom_lights
-    - group.livingroom_mediaplayers
+    - group.livingroom_upstairs_environment_badge
+    - group.livingroom_downstairs_environment_badge
+    - group.livingroom_downstairs_mediaplayers
+    - group.livingroom_upstairs_mediaplayers
     - group.all_scenes
-    - group.bedroom_mediaplayers
-    - group.kitchen_environment_badge
-    - group.flowers_badge
     - group.car
     - group.phone_status_badge
     - group.weather_data
     - script.morning_news
-    - alarm_control_panel.alarm
-    - media_player.kok
-    - media_player.spotify
+    - alarm_control_panel.solbacken_44_alarm
+    - media_player.kitchen
+    - group.bedroom_covers
+
 
 ############################################################
 #
 # Views
 #
 ############################################################
+outside_view:
+  view: yes
+  name: Trädgård
+  entities:
+    - group.outside_sensors_badge
+    - group.outside_lights
+    - group.outside_scene
+
 hallway_view:
   view: yes
   name: Hall
   entities:
     - group.hallway_sensors_badge
+    - group.hallway_lights
+    - group.hallway_scene
 
-bathroom_view:
+bathroom_downstairs_view:
   view: yes
-  name: Badrum
+  name: Badrum Nedervåning
   entities:
-    - group.bathroom_scene
-    - group.bathroom_sensors_badge
+    - group.bathroom_downstairs_sensors_badge
+    - group.bathroom_downstairs_lights
+    - group.bathroom_downstairs_scene
 
-livingroom_view:
+laundryroom_view:
   view: yes
-  name: Vardagsrum
+  name: Tvättstuga
   entities:
-    - group.livingroom_scene
-    - group.livingroom_environment_badge
-    - group.livingroom_lights
-    - group.livingroom_mediaplayers
-    - group.livingroom_sensors_badge
+    - group.laundryroom_sensors_badge
+    - group.laundryroom_lights
+    - group.nibe_f730
+
+kitchen_view:
+  view: yes
+  name: Kök
+  entities:
+#    - group.kitchen_environment_badge
+    - group.kitchen_sensors_badge
+    - group.kitchen_mediaplayers
+    - group.play_spotify_playlist
+    - group.kitchen_lights
+    - group.kitchen_scene
+
+livingroom_downstairs_view:
+  view: yes
+  name: Vardagsrum Nedervåning
+  entities:
+    - group.livingroom_downstairs_environment_badge
+    - group.livingroom_downstairs_mediaplayers
+    - group.livingroom_downstairs_sensors_badge
+    - group.livingroom_downstairs_lights
+    - group.livingroom_downstairs_scene
+
+stairwell_view:
+  view: yes
+  name: Trapphus
+  entities:
+    - group.stairwell_sensors_badge
+    - group.stairwell_lights
+    - group.stairwell_scene
+
+livingroom_upstairs_view:
+  view: yes
+  name: Vardagsrum Övervåning
+  entities:
+    - group.livingroom_upstairs_environment_badge
+    - group.livingroom_upstairs_sensors_badge
+    - group.livingroom_upstairs_mediaplayers
+    - group.livingroom_upstairs_lights
+    - group.livingroom_upstairs_scene
+
+bathroom_upstairs_view:
+  view: yes
+  name: Badrum Övervåning
+  entities:
+    - group.bathroom_upstairs_sensors_badge
+    - group.bathroom_upstairs_lights
+    - group.bathroom_upstairs_scene
 
 bedroom_view:
   view: yes
   name: Sovrum
   entities:
-    - group.bedroom_scene
-    - group.bedroom_lights
-    - group.bedroom_mediaplayers
+#    - group.bedroom_mediaplayers
     - group.bedroom_sensors_badge
+    - group.bedroom_lights
+    - group.bedroom_scene
+    - group.bedroom_covers
+    - group.bedroom_flowers_badge
+
+guestroom_view:
+  view: yes
+  name: Gästrum
+  entities:
+    - group.guestroom_sensors_badge
+    - group.guestroom_lights
+    - group.guestroom_scene
+
+childrensroom_view:
+  view: yes
+  name: Barnrum
+  entities:
+    - group.childrensroom_sensors_badge
+    - group.childrensroom_lights
+    - group.childrensroom_scene
 
 car_view:
   view: yes
@@ -70,34 +144,21 @@ car_view:
   entities:
     - group.car
 
-family_view:
-  view: yes
-  name: Familj
-  entities:
-    - group.phone_status_badge
-
-kitchen_view:
-  view: yes
-  name: Kök
-  entities:
-    - group.kitchen_scene
-    - group.kitchen_environment_badge
-    - group.flowers_badge
-    - media_player.kok
 
 flowers_view:
   view: yes
   name: Växter
   entities:
-    - group.flowers_badge
+    - group.bedroom_flowers_badge
 
 mediaplayers_view:
   view: yes
   name: Mediaspelare
   entities:
-    - group.livingroom_mediaplayers
-    - group.bedroom_mediaplayers
-    - media_player.kok
+    - group.livingroom_downstairs_mediaplayers
+    - group.livingroom_upstairs_mediaplayers
+#    - group.bedroom_mediaplayers
+    - group.kitchen_mediaplayers
 
 scenes_view:
   view: yes
@@ -111,12 +172,12 @@ scenes_view:
 # Groups
 #
 ############################################################
-radio:
-  name: Radio
-  entities:
-  - input_select.radio_station
-  - input_select.speaker
-  - script.radioscript
+#radio:
+#  name: Radio
+#  entities:
+#  - input_select.radio_station
+#  - input_select.speaker
+#  - script.radioscript
 
 play_spotify_playlist:
   name: Spotify on Sonos
@@ -129,20 +190,120 @@ all_sensors_badge:
   name: Alla sensorer
   entities:
     - group.all_sensors
+
 all_sensors:
   entities:
-    - binary_sensor.door_window_sensor_158d00018383cc # Hallway
-    - binary_sensor.door_window_sensor_158d00018379dd # Bathroom
-    - binary_sensor.door_window_sensor_158d00018374aa # Livingroom
-    - binary_sensor.door_window_sensor_158d0001837372 # Bedroom
+    - binary_sensor.altandorr_kok
+    - binary_sensor.altandorr_vardagsrum
+    - binary_sensor.badrumsfonster
+    - binary_sensor.balkongdorr_allrum_overvaning
+    - binary_sensor.entredorr
+    - binary_sensor.fonster_hoger_sovrum
+    - binary_sensor.sovrum_overvaning_vanster
+    - binary_sensor.fonster_kok_framsida
+    - binary_sensor.fonster_vardagsrum_baksida
+    - binary_sensor.door_laundryroom
+    - binary_sensor.door_winecooler
+    - binary_sensor.door_bathroom_upstairs
+    - binary_sensor.door_bathroom_downstairs
+    - binary_sensor.motion_bathroom_downstairs
+    - binary_sensor.motion_bathroom_upstairs
+    - binary_sensor.motion_bedroom
+    - binary_sensor.motion_guestroom
+    - binary_sensor.motion_kitchen
+    - binary_sensor.motion_laundryroom
+    - binary_sensor.motion_livingroom_upstairs
+    - binary_sensor.motion_stairs
+    - binary_sensor.refrigerator
 
 all_scenes:
   name: Belysning
   entities:
-    - input_select.scene_livingroom
+    - input_select.scene_hallway
+    - input_select.scene_bathroom_downstairs
     - input_select.scene_kitchen
+    - input_select.scene_livingroom_downstairs
+    - input_select.scene_stairwell
+    - input_select.scene_livingroom_upstairs
     - input_select.scene_bedroom
-    - input_select.scene_bathroom
+    - input_select.scene_bathroom_upstairs
+    - input_select.scene_guestroom
+    - input_select.scene_childrensroom
+    - input_select.scene_outside
+
+all_indoor_lights:
+  entities:
+    - light.hue
+    - light.barnrum
+    - light.bathroomdownstairsmirror
+    - light.bathroomdownstairsspotlights
+    - light.bathroomupstairsmirror
+    - light.bathroomupstairsspotlights
+    - light.bedroomrooflight
+    - light.childrensroomrooflight
+    - light.closetspotlights
+    - light.gastrum_fonster
+    - light.guestroomrooflight
+    - light.hallwayspotlights
+    - light.kitchenislandspotlights
+    - light.kitchenspotlights
+    - light.laundryroomspotlights
+    - light.livingroomdownstairsdinnerareaspotlights
+    - light.livingroomupstairsspotlights
+    - light.stairwellspotlights
+
+downstairs_lights:
+  entities:
+    - light.bathroomdownstairsmirror
+    - light.bathroomdownstairsspotlights
+    - group.hallway_lights
+    - light.kitchenislandspotlights
+    - light.kitchenspotlights
+    - light.vardagsrum_nedervaning_soffgrupp
+    - light.livingroomdownstairsdinnerareaspotlights
+    - group.laundryroom_lights
+
+upstairs_lights:
+  entities:
+    - group.bathroom_upstairs_lights
+    - group.childrensroom_lights
+    - group.guestroom_lights
+    - group.livingroom_upstairs_lights
+    - group.bedroom_lights
+
+#####################
+# Outside
+#####################
+outside_sensors_badge:
+  name: Sensorer
+  entities:
+    - group.outside_sensors
+
+outside_sensors:
+  entities:
+    - binary_sensor.mailbox
+    - sensor.weather_temperature
+    - sensor.weather_cloudiness
+    - sensor.weather_fog
+    - sensor.weather_humidity
+    - sensor.weather_pressure
+    - sensor.weather_wind_direction_cmd
+    - sensor.weather_wind_speed
+
+outside_lights:
+  name: Lampor
+  entities:
+    - light.facadelightall
+    - light.facadelightbackyard
+    - light.facadelightbalcony
+    - light.facadelightfrontyard
+    - light.facadelightstorehouse
+
+outside_scene:
+  name: Belysning
+  entities:
+    - input_select.scene_outside
+
 
 #####################
 # Hallway
@@ -151,63 +312,250 @@ hallway_sensors_badge:
   name: Sensorer
   entities:
     - group.hallway_sensors
+
 hallway_sensors:
   entities:
-    - binary_sensor.door_window_sensor_158d00018383cc
+    - alarm_control_panel.solbacken_44_alarm
+    - binary_sensor.entredorr
+    - lock.entredorr
+    - sensor.hallwaytemperature
 
-#####################
-# Bathroom
-#####################
-bathroom_sensors_badge:
-  name: Sensorer
-  entities:
-    - group.bathroom_sensors
-bathroom_sensors:
-  entities:
-    - binary_sensor.door_window_sensor_158d00018379dd
-bathroom_scene:
-  name: Belysning
-  entities:
-    - input_select.scene_bathroom
-
-#####################
-# Livingroom
-#####################
-livingroom_environment_badge:
-  name: Vardagsrum
-  entities:
-    - group.livingroom_environment
-livingroom_environment:
-  entities:
-    - sensor.aeotec_zw100_multisensor_6_temperature
-    - sensor.aeotec_zw100_multisensor_6_luminance
-    - sensor.aeotec_zw100_multisensor_6_relative_humidity
-    - vacuum.vacuum_thord
-
-livingroom_lights:
+hallway_lights:
   name: Lampor
   entities:
-    - light.hue_color_lamp_1
-    - light.hue_color_lamp_2
-    - light.hue_color_lamp_3
+    - light.hallwayspotlights
 
-livingroom_mediaplayers:
-  name: Mediaspelare
-  entities:
-    - media_player.apple_tv_vardagsrum
-
-livingroom_sensors_badge:
-  name: Sensorer
-  entities:
-    - group.livingroom_sensors
-livingroom_sensors:
-  entities:
-    - binary_sensor.door_window_sensor_158d00018374aa
-
-livingroom_scene:
+hallway_scene:
   name: Belysning
   entities:
-    - input_select.scene_livingroom
+    - input_select.scene_hallway
+
+
+#####################
+# Bathroom Downstairs
+#####################
+bathroom_downstairs_sensors_badge:
+  name: Sensorer
+  entities:
+    - group.bathroom_downstairs_sensors
+bathroom_downstairs_sensors:
+  entities:
+    - binary_sensor.motion_bathroom_downstairs
+    - binary_sensor.door_bathroom_downstairs
+    - binary_sensor.badrumsfonster
+    - sensor.bathroomdownstairstemperature
+
+bathroom_downstairs_lights:
+  name: Lampor
+  entities:
+    - light.bathroomdownstairsmirror
+    - light.bathroomdownstairsspotlights
+    - light.bathroomdownstairswindowspotlights
+
+bathroom_downstairs_scene:
+  name: Belysning
+  entities:
+    - input_select.scene_bathroom_downstairs
+
+
+#####################
+# Laundryroom
+#####################
+laundryroom_sensors_badge:
+  name: Sensorer
+  entities:
+    - group.laundryroom_sensors
+
+laundryroom_lights:
+  name: Lampor
+  entities:
+    - light.laundryroomspotlights
+
+laundryroom_sensors:
+  entities:
+    - binary_sensor.motion_laundryroom
+    - binary_sensor.door_laundryroom
+    - sensor.fibaro_system_fgwpef_wall_plug_gen5_power_3
+    - sensor.fibaro_system_fgwpef_wall_plug_gen5_power
+    - sensor.laundryroomtemperature
+
+
+#####################
+# Kitchen
+#####################
+#kitchen_environment_badge:
+#  name: Kök
+#  entities:
+#    - group.kitchen_environment
+
+#kitchen_environment:
+#  entities:
+
+kitchen_sensors_badge:
+  name: Sensorer
+  entities:
+    - group.kitchen_sensors
+
+kitchen_sensors:
+  entities:
+    - binary_sensor.motion_kitchen
+    - binary_sensor.fonster_kok_framsida
+    - binary_sensor.door_winecooler
+    - sensor.kitchentemperature
+    - binary_sensor.refrigerator
+
+kitchen_mediaplayers:
+  name: Mediaspelare
+  entities:
+    - media_player.kitchen
+
+kitchen_lights:
+  name: Lampor
+  entities:
+    - light.kitchenislandspotlights
+    - light.kitchenspotlights
+    - light.kitchenwindowspotlights
+
+kitchen_scene:
+  name: Belysning
+  entities:
+    - input_select.scene_kitchen
+
+
+#####################
+# Livingroom downstairs
+#####################
+livingroom_downstairs_environment_badge:
+  name: Vardagsrum Nedervåning
+  entities:
+    - group.livingroom_downstairs_environment
+
+livingroom_downstairs_environment:
+  entities:
+    - sensor.vardagsrum_humidity
+    - sensor.vardagsrum_temperature
+    - vacuum.thord
+
+livingroom_downstairs_lights:
+  name: Lampor
+  entities:
+    - light.vardagsrum_nedervaning_soffgrupp
+    - light.livingroomdownstairsdinnerareaspotlights
+    - light.livingroomdownstairswindowsspotlights
+
+livingroom_downstairs_mediaplayers:
+  name: Mediaspelare
+  entities:
+    - media_player.apple_tv_vardagsrum_nedervaning
+
+livingroom_downstairs_sensors_badge:
+  name: Sensorer
+  entities:
+    - group.livingroom_downstairs_sensors
+livingroom_downstairs_sensors:
+  entities:
+    - binary_sensor.altandorr_vardagsrum
+    - binary_sensor.altandorr_kok
+    - binary_sensor.fonster_vardagsrum_baksida
+
+livingroom_downstairs_scene:
+  name: Belysning
+  entities:
+    - input_select.scene_livingroom_downstairs
+
+
+
+#####################
+# Stairwell
+#####################
+stairwell_sensors_badge:
+  name: Sensorer
+  entities:
+    - group.stairwell_sensors
+
+stairwell_sensors:
+  entities:
+    - binary_sensor.motion_stairs
+    - sensor.trapphus_temperature
+
+stairwell_lights:
+  name: Lampor
+  entities:
+    - light.stairwellspotlights
+
+stairwell_scene:
+  name: Belysning
+  entities:
+    - input_select.scene_stairwell
+
+
+
+#####################
+# Livingroom upstairs
+#####################
+livingroom_upstairs_environment_badge:
+  name: Vardagsrum Övervåning
+  entities:
+    - group.livingroom_upstairs_environment
+
+livingroom_upstairs_environment:
+  entities:
+    - sensor.allrum_overvaning_temperature
+    - sensor.allrum_overvaning_humidity
+
+livingroom_upstairs_lights:
+  name: Lampor
+  entities:
+    - light.livingroomupstairsspotlights
+    - light.livingroomupstairswindowspotlights
+
+livingroom_upstairs_mediaplayers:
+  name: Mediaspelare
+  entities:
+    - media_player.tv_livingroom_upstairs
+    - media_player.apple_tv_vardagsrum_overvaning
+
+livingroom_upstairs_sensors_badge:
+  name: Sensorer
+  entities:
+    - group.livingroom_upstairs_sensors
+
+livingroom_upstairs_sensors:
+  entities:
+    - binary_sensor.motion_livingroom_upstairs
+    - binary_sensor.balkongdorr_allrum_overvaning
+
+livingroom_upstairs_scene:
+  name: Belysning
+  entities:
+    - input_select.scene_livingroom_upstairs
+
+
+#####################
+# Bathroom Upstairs
+#####################
+bathroom_upstairs_sensors_badge:
+  name: Sensorer
+  entities:
+    - group.bathroom_upstairs_sensors
+
+bathroom_upstairs_sensors:
+  entities:
+    - binary_sensor.motion_bathroom_upstairs
+    - binary_sensor.door_bathroom_upstairs
+    - sensor.bathroomupstairstemperature
+
+bathroom_upstairs_lights:
+  name: Lampor
+  entities:
+    - light.bathroomupstairsmirror
+    - light.bathroomupstairsspotlights
+
+bathroom_upstairs_scene:
+  name: Belysning
+  entities:
+    - input_select.scene_bathroom_upstairs
+
 
 #####################
 # Bedroom
@@ -217,54 +565,99 @@ bedroom_lights:
   entities:
     - light.nattduksbord_marcus
     - light.nattduksbord_katarina
+    - light.bedroomrooflight
+    - light.bedroomwindows
+    - light.closetspotlights
 
-bedroom_mediaplayers:
-  name: Mediaspelare
-  entities:
-    - media_player.apple_tv_sovrum
+#bedroom_mediaplayers:
+#  name: Mediaspelare
+#  entities:
 
 bedroom_sensors_badge:
   name: Sensorer
   entities:
     - group.bedroom_sensors
+
 bedroom_sensors:
   entities:
-    - binary_sensor.door_window_sensor_158d0001837372
+    - binary_sensor.motion_bedroom
+    - sensor.bedroomtemperature
 
 bedroom_scene:
   name: Belysning
   entities:
     - input_select.scene_bedroom
 
-
-#####################
-# Kitchen
-#####################
-kitchen_environment_badge:
-  name: Kök
+bedroom_covers:
+  name: Mörkläggning
   entities:
-    - group.kitchen_environment
-    - media_player.kok
-kitchen_environment:
-  entities:
-    - sensor.miflower_kitchenflower_temperature
-    - sensor.miflower_kitchenflower_light_intensity
+    - cover.qubino_zmnhod1_flush_shutter_dc_level
+    - cover.qubino_zmnhod1_flush_shutter_dc_level_2
 
-kitchen_scene:
-  name: Belysning
-  entities:
-    - input_select.scene_kitchen
-
-#####################
-# Flowers
-#####################
-flowers_badge:
+bedroom_flowers_badge:
   name: Växter
   entities:
-    - group.flowers
-flowers:
+    - group.bedroom_flowers
+
+bedroom_flowers:
   entities:
     - sensor.miflower_kitchenflower_moisture
+
+
+
+#####################
+# Childrensroom
+#####################
+childrensroom_sensors_badge:
+  name: Sensorer
+  entities:
+    - group.childrensroom_sensors
+
+childrensroom_sensors:
+  entities:
+    - binary_sensor.sovrum_overvaning_vanster
+    - sensor.childrensroomtemperature
+
+childrensroom_lights:
+  name: Lampor
+  entities:
+    - light.barnrum
+    - light.childrensroomrooflight
+    - light.childrensroomwindow
+
+childrensroom_scene:
+  name: Belysning
+  entities:
+    - input_select.scene_childrensroom
+
+
+#####################
+# Guestroom
+#####################
+guestroom_sensors_badge:
+  name: Sensorer
+  entities:
+    - group.guestroom_sensors
+
+guestroom_sensors:
+  entities:
+    - binary_sensor.motion_guestroom
+    - binary_sensor.fonster_hoger_sovrum
+    - sensor.guestroomtemperature
+
+guestroom_lights:
+  name: Lampor
+  entities:
+    - light.gastrum_fonster
+    - light.guestroomrooflight
+    - light.guestroomwindow
+
+guestroom_scene:
+  name: Belysning
+  entities:
+    - input_select.scene_guestroom
+
+
 
 #####################
 # Car

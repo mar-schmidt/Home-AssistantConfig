@@ -1,0 +1,5 @@
+scene:
+  - name: AllOff
+    platform: knx
+    address: 1/0/2
+    scene_number: 1

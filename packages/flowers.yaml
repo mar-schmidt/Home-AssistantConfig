@@ -19,7 +19,7 @@ automation:
     action:
       - service: notify.notify
         data:
-          title: 'Ulfsparregatan 11D'
+          title: 'Solbacken 44'
           message: 'Julstjärnan i köket behöver vattnas, just nu {{ states.sensor.miflower_kitchenflower_moisture.state }}% fuktighet'
 
 # Christmasstar low battery
@@ -31,5 +31,5 @@ automation:
     action:
       - service: notify.notify
         data:
-          title: 'Ulfsparregatan 11D'
+          title: 'Solbacken 44'
           message: 'Julstjärnans sensor har låg batterinivå. Nuvarande nivå {{ states.sensor.miflower_kitchenflower_battery.state }}%'

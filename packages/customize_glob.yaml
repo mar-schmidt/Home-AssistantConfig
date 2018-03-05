@@ -1,5 +1,8 @@
 homeassistant:
   customize_glob:
+    "automation.*":
+      hidden: true
+
     "light.*":
       custom_ui_state_card: state-card-custom-ui
       state_card_mode: break-slider
@@ -8,43 +11,78 @@ homeassistant:
       show_last_changed: true
     "*.*":
       custom_ui_state_card: state-card-custom-ui
-    group.livingroom_environment:
+    group.livingroom_upstairs_environment:
+      state_card_mode: badges
+    group.livingroom_downstairs_environment:
       state_card_mode: badges
     group.kitchen_environment:
       state_card_mode: badges
+
+
     group.all_sensors:
       state_card_mode: badges
     group.hallway_sensors:
       state_card_mode: badges
-    group.bathroom_sensors:
+    group.bathroom_upstairs_sensors:
       state_card_mode: badges
-    group.livingroom_sensors:
+    group.bathroom_downstairs_sensors:
+      state_card_mode: badges
+    group.livingroom_upstairs_sensors:
+      state_card_mode: badges
+    group.livingroom_downstairs_sensors:
       state_card_mode: badges
     group.bedroom_sensors:
+      state_card_mode: badges
+    group.laundryroom_sensors:
+      state_card_mode: badges
+    group.kitchen_sensors:
+      state_card_mode: badges
+    group.stairwell_sensors:
+      state_card_mode: badges
+    group.guestroom_sensors:
+      state_card_mode: badges
+    group.childrensroom_sensors:
+      state_card_mode: badges
+
+
+    group.bedroom_flowers:
       state_card_mode: badges
     group.flowers:
       state_card_mode: badges
     group.phone_status:
       state_card_mode: badges
+    group.outside_sensors:
+      state_card_mode: badges
 
     # Device-aware attributes
-    binary_sensor.door_window_sensor_158d00018383cc: # Hallway
-      friendly_name: Entrédörr
+    binary_sensor.door_laundryroom:
+      friendly_name: Tvättstuga
+      device_class: door
       group:
-        group.hallway_sensors:
-          friendly_name: Entrédörr
-    binary_sensor.door_window_sensor_158d00018379dd: # Bathroom
-      friendly_name: Badrumsdörr
-      group:
-        group.bathroom_sensors:
+        group.laundryroom_sensors:
           friendly_name: Dörr
-    binary_sensor.door_window_sensor_158d00018374aa: # Livingroom
-      friendly_name: Fönster Vardagsrum
+
+    binary_sensor.door_winecooler:
+      friendly_name: Vinkyl
+      device_class: door
       group:
-        group.livingroom_sensors:
-          friendly_name: Fönster
-    binary_sensor.door_window_sensor_158d0001837372: # Bedroom
-      friendly_name: Fönster Sovrum
+        group.kitchen_sensors:
+          friendly_name: Vinkyl
+
+    binary_sensor.door_bathroom_upstairs:
+      friendly_name: Badrum (Uppe)
+      device_class: door
       group:
-        group.bedroom_sensors:
-          friendly_name: Fönster
+        group.bathroom_upstairs_sensors:
+          friendly_name: Dörr
+
+    binary_sensor.door_bathroom_downstairs:
+      friendly_name: Badrum (Nere)
+      device_class: door
+      group:
+        group.bathroom_downstairs_sensors:
+          friendly_name: Dörr
+
+    binary_sensor.mailbox:
+      friendly_name: Brevlåda
+      device_class: occupancy

@@ -1,0 +1,40 @@
+automation:
+  - alias: 'Close covers in bedroom on KNX switch'
+    trigger:
+      - platform: state
+        entity_id: switch.bedroomcover
+        to: 'on'
+    condition:
+      - condition: and
+        conditions:
+        - condition: state
+          entity_id: cover.qubino_zmnhod1_flush_shutter_dc_level
+          state: 'open'
+        - condition: state
+          entity_id: cover.qubino_zmnhod1_flush_shutter_dc_level_2
+          state: 'open'
+    action:
+      - service: cover.close_cover
+        entity_id: cover.qubino_zmnhod1_flush_shutter_dc_level
+      - service: cover.close_cover
+        entity_id: cover.qubino_zmnhod1_flush_shutter_dc_level_2
+
+  - alias: 'Open covers in bedroom on KNX switch'
+    trigger:
+      - platform: state
+        entity_id: switch.bedroomcover
+        to: 'off'
+    condition:
+      - condition: and
+        conditions:
+        - condition: state
+          entity_id: cover.qubino_zmnhod1_flush_shutter_dc_level
+          state: 'closed'
+        - condition: state
+          entity_id: cover.qubino_zmnhod1_flush_shutter_dc_level_2
+          state: 'closed'
+    action:
+      - service: cover.open_cover
+        entity_id: cover.qubino_zmnhod1_flush_shutter_dc_level
+      - service: cover.open_cover
+        entity_id: cover.qubino_zmnhod1_flush_shutter_dc_level_2

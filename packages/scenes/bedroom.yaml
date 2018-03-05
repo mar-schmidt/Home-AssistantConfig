@@ -47,6 +47,18 @@ scene:
         state: on
         transition: 2
         brightness: 5
+  - name: bedroom_low
+    entities:
+      # Marcus
+      light.nattduksbord_marcus:
+        state: on
+        transition: 2
+        brightness: 10
+      # Katarina
+      light.nattduksbord_katarina:
+        state: on
+        transition: 2
+        brightness: 10
   - name: bedroom_off
     entities:
       # Marcus

@@ -1,0 +1,7 @@
+scene:
+  - name: indoor_off
+    entities:
+      light.hue:
+        state: off
+      light.tradfri:
+        state: off

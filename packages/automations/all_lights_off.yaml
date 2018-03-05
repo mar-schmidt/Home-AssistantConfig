@@ -1,0 +1,15 @@
+automation:
+  - alias: 'All indoor lights off'
+    trigger:
+      platform: event
+      event_type: call_service
+      event_data:
+        service_data:
+          entity_id: scene.alloff
+        domain: scene
+        service: turn_on
+    action:
+      - service: scene.turn_on
+        entity_id: scene.downstairs_off
+      - service: scene.turn_on
+        entity_id: scene.upstairs_off

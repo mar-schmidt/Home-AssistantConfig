@@ -1,0 +1,5 @@
+scene:
+  - name: downstairs_off
+    entities:
+      group.downstairs_lights:
+        state: off

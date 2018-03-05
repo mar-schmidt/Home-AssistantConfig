@@ -1,0 +1,57 @@
+      name: Solbacken 44
+      image: /local/custom_ui/floorplan/solbacken.svg
+      stylesheet: /local/custom_ui/floorplan/floorplan.css
+
+      last_motion_entity: sensor.template_last_motion
+      last_motion_class: last-motion
+
+      groups:
+        - name: Alarm
+          entities:
+            - alarm_control_panel.solbacken_44_alarm
+          states:
+            - state: 'armed_away'
+              class: 'alarm-armed'
+            - state: 'armed_home'
+              class: 'alarm-armed'
+            - state: 'disarmed'
+              class: 'alarm-disarmed'
+
+        - name: Lights
+          entities:
+            - light.vardagsrum_nedervaning_soffgrupp
+          states:
+            - state: 'on'
+              class: 'light-on'
+            - state: 'off'
+              class: 'light-off'
+
+        - name: Temperature
+          entities:
+            - sensor.vardagsrum_temperature
+          text_template: '${entity.state ? Math.ceil(entity.state) + "°": "undefined"}'
+          class_template: 'return "static-temp";'
+
+        - name: Sonos
+          entities:
+            - media_player.kitchen
+          states:
+            - state: 'off'
+              class: 'squeezebox-off'
+            - state: 'idle'
+              class: 'squeezebox-off'
+            - state: 'paused'
+              class: 'squeezebox-off'
+            - state: 'playing'
+              class: 'squeezebox-on'
+
+        - name: Vacuum
+          entities:
+            - vacuum.thord
+          states:
+            - state: 'off'
+              class: 'squeezebox-off'
+            - state: 'Charging'
+              class: 'squeezebox-off'
+            - state: 'Cleaning'
+              class: 'squeezebox-on'

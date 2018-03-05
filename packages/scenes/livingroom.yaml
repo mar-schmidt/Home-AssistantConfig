@@ -1,69 +1,29 @@
 scene:
   - name: livingroom_normal
     entities:
-      #Fönsterlampa
-      light.hue_color_lamp_1:
-        state: on
-        transition: 2
-        brightness: 80
-        rgb_color: [255, 214, 170]
-      #Golvlampa
-      light.hue_color_lamp_2:
+      light.vardagsrum_nedervaning_soffgrupp:
         state: on
         transition: 2
         brightness: 140
-        rgb_color: [255, 214, 170]
-      #Taklampa
-      light.hue_color_lamp_3:
-        state: on
-        transition: 2
-        brightness: 80
-        rgb_color: [255, 214, 170]
   - name: livingroom_movie
     entities:
       #Fönsterlampa
-      light.hue_color_lamp_1:
+      light.vardagsrum_nedervaning_soffgrupp:
         state: on
         transition: 2
         brightness: 50
-        rgb_color: [255, 214, 170]
-      #Golvlampa
-      light.hue_color_lamp_2:
-        state: on
-        transition: 2
-        brightness: 75
-        rgb_color: [255, 214, 170]
-      #Taklampa
-      light.hue_color_lamp_3:
-        state: off
   - name: livingroom_low
     entities:
       #Fönsterlampa
-      light.hue_color_lamp_1:
+      light.vardagsrum_nedervaning_soffgrupp:
         state: on
         transition: 2
-        brightness: 60
-        rgb_color: [255, 214, 170]
-      #Golvlampa
-      light.hue_color_lamp_2:
-        state: on
-        transition: 2
-        brightness: 90
-        rgb_color: [255, 214, 170]
-      #Taklampa
-      light.hue_color_lamp_3:
-        state: on
-        transition: 2
-        brightness: 40
-        rgb_color: [255, 214, 170]
+        brightness: 80
   - name: livingroom_off
     entities:
       #Fönsterlampa
-      light.hue_color_lamp_1:
+      group.livingroom_downstairs_lights:
         state: off
       #Golvlampa
-      light.hue_color_lamp_2:
-        state: off
-      #Taklampa
-      light.hue_color_lamp_3:
+      light.livingroomdownstairsdinnerareaspotlights:
         state: off

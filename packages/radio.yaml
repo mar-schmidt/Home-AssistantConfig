@@ -7,13 +7,6 @@ input_select:
       - P3
       - NRJ
 
-  speaker_radio:
-    name: 'Select Speaker:'
-    icon: mdi:speaker-wireless
-    options:
-      - Sovrum
-      - Vardagsrum
-
 shell_command:
   radio: '/home/pi/.homeassistant/scripts/radio.sh {{ mediaplayer }} {{ station }}'
 

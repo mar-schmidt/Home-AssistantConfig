@@ -1,0 +1,16 @@
+automation:
+
+  - alias: 'Car milage per month exceeded'
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.car_milage_per_month_template
+        above: 166
+    action:
+      - service: notify.notify
+        data:
+          title: 'RKX422'
+          message: 'Antalet mil per månad (166) har överstigits'
+      - service: notify.tv_livingroom_upstairs
+        data:
+          title: 'RKX422'
+          message: 'Antalet mil per månad (166) har överstigits'

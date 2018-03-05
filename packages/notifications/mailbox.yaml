@@ -1,0 +1,17 @@
+automation:
+
+# Front door opened
+  - alias: "Brevlåda öppnad"
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.mailbox
+        to: 'on'
+    action:
+      - service: notify.notify
+        data:
+          title: Solbacken 44
+          message: 'Posten har kommit'
+      - service: notify.tv_livingroom_upstairs
+        data:
+          title: Solbacken 44
+          message: 'Posten har kommit'

@@ -6,15 +6,6 @@ automation:
         entity_id: group.family_devices
         from: 'home'
         to: 'not_home'
-    condition:
-      condition: and
-      conditions:
-        - condition: time
-          after: '06:30'
-          before: '23:30'
-        - condition: state
-          entity_id: input_boolean.someone_home
-          state: 'on'
     action:
           service: script.family_away
 
@@ -22,25 +13,28 @@ automation:
 script:
   family_away:
     sequence:
-      - service: homeassistant.turn_off
-        entity_id: input_boolean.someone_home
 
       - service: script.turn_on
         entity_id: script.family_away_lights_off
-#      - delay:
-#        minutes: 5
+
+      - service: alarm_control_panel.alarm_arm_home
+        entity_id: alarm_control_panel.solbacken_44_alarm
+        data: 
+          code: !secret alarm_code
+      # - delay:
+      #   minutes: 5
         # This is a Condition, everything after this sequence
         # will only be triggered if condition is true
-      - condition: state
-        entity_id: binary_sensor.door_window_sensor_158d00018379dd # Badrumsdörr
-        state: 'off'
+      # - condition: state
+      #   entity_id: binary_sensor.door_window_sensor_158d00018379dd # Badrumsdörr
+      #   state: 'off'
         # If Badrumsdörr is closed (which is state off)
         # send a notification because Molle needs to be able
         # to do his popo in the bathroom when family is not home
-      - service: notify.notify
-        data:
-          title: 'Ulfsparregatan 11D'
-          message: 'Badrumsdörren är stängd, åk hem igen och öppna den åt Molle'
+      # - service: notify.notify
+      #   data:
+      #     title: 'Solbacken 44'
+      #     message: 'Badrumsdörren är stängd, åk hem igen och öppna den åt Molle'
 
 
   family_away_lights_off:
@@ -48,11 +42,11 @@ script:
       - service: logbook.log
         data_template:
           name: Family away delay
-          message: Waiting 10 minutes to turn off lights (only if someone still not home)
+          message: Waiting 5 minutes to turn off lights (only if someone still not home)
       - delay:
-          minutes: 10
+          minutes: 5
       - condition: state
         entity_id: group.family_devices
         state: 'not_home'
       - service: light.turn_off
-        entity_id: group.all_lights
+        entity_id: group.all_indoor_lights

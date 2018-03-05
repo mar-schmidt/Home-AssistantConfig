@@ -1,0 +1,44 @@
+automation:
+  - alias: Music on kitchen knx switch pressed
+  # Will trigger if any of the below are 'home'
+    trigger:
+      - platform: state
+        entity_id: switch.kitchenmusic
+        to: 'on'
+    action:
+      - service: media_player.select_source
+        data:
+          entity_id: media_player.kitchen
+          source: 'Feeling good låtar!'
+      - service: media_player.shuffle_set
+        data:
+          entity_id: media_player.kitchen
+          shuffle: true
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.kitchen
+          volume_level: 0.25
+      - service: media_player.media_play
+        data:
+          entity_id: media_player.kitchen
+
+  - alias: Music off kitchen knx switch pressed
+  # Will trigger if any of the below are 'home'
+    trigger:
+      - platform: state
+        entity_id: switch.kitchenmusic
+        to: 'off'
+    action:
+      - service: media_player.media_pause
+        data:
+          entity_id: media_player.kitchen
+
+  - alias: Music next track kitchen knx switch pressed
+  # Will trigger if any of the below are 'home'
+    trigger:
+      - platform: state
+        entity_id: switch.kitchenmusicnexttrack
+    action:
+      - service: media_player.media_next_track
+        data:
+          entity_id: media_player.kitchen

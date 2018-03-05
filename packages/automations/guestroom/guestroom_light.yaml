@@ -1,0 +1,18 @@
+automation:
+  - alias: 'Turn on guestroom light based on KNX window light'
+    trigger:
+      - platform: state
+        entity_id: light.guestroomwindow
+        to: 'on'
+    action:
+      service: scene.turn_on
+      entity_id: scene.guestroom_normal
+
+  - alias: 'Turn off guestroom light based on KNX window light'
+    trigger:
+      - platform: state
+        entity_id: light.guestroomwindow
+        to: 'off'
+    action:
+      service: scene.turn_on
+      entity_id: scene.guestroom_off

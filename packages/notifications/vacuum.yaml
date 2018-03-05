@@ -1,0 +1,42 @@
+sensor:
+# Create a template for vacuum's status, this way we can create automation in a
+# much more cleaner way
+  - platform: template
+    sensors:
+      vacuum_tord_status:
+        entity_id: vacuum.thord
+        value_template: '{{ states.vacuum.thord.attributes.status }}'
+
+automation:
+
+# Cleaning completed
+  - alias: "Vacuum cleaning completed"
+    trigger:
+      - platform: state
+        entity_id: sensor.vacuum_tord_status
+        to: 'Charging'
+    action:
+      - service: notify.notify
+        data:
+          title: Solbacken 44
+          message: 'Thord har dammsugit klart'
+      - service: notify.tv_livingroom_upstairs
+        data:
+          title: Solbacken 44
+          message: 'Thord har dammsugit klart'
+
+# Cleaning started
+  - alias: "Vacuum cleaning started"
+    trigger:
+      - platform: state
+        entity_id: sensor.vacuum_tord_status
+        to: 'Cleaning'
+    action:
+      - service: notify.notify
+        data:
+          title: Solbacken 44
+          message: 'Thord har börjat dammsuga...'
+      - service: notify.tv_livingroom_upstairs
+        data:
+          title: Solbacken 44
+          message: 'Thord har börjat dammsuga...'

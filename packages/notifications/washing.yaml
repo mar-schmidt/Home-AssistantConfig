@@ -1,0 +1,70 @@
+automation:
+#######################
+# Washing machine
+#######################
+  - alias: 'Washing machine start notification'
+    initial_state: false
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.fibaro_system_fgwpef_wall_plug_gen5_power_3
+        above: 4
+    action:
+      - service: notify.notify
+        data:
+          title: 'Solbacken 44'
+          message: 'Tvättmaskinen har startat'
+      - service: notify.tv_livingroom_upstairs
+        data:
+          title: 'Solbacken 44'
+          message: 'Tvättmaskinen har startat'
+
+  - alias: 'Washing machine stop notification'
+    initial_state: false
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.fibaro_system_fgwpef_wall_plug_gen5_power_3
+        below: 4
+    action:
+      - service: notify.notify
+        data:
+          title: 'Solbacken 44'
+          message: 'Tvättmaskinen är klar'
+      - service: notify.tv_livingroom_upstairs
+        data:
+          title: 'Solbacken 44'
+          message: 'Tvättmaskinen är klar'
+
+#######################
+# Dryer
+#######################
+  - alias: 'Dryer start notification'
+    initial_state: false
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.fibaro_system_fgwpef_wall_plug_gen5_power
+        above: 2
+    action:
+      - service: notify.notify
+        data:
+          title: 'Solbacken 44'
+          message: 'Torktumlaren har startat'
+      - service: notify.tv_livingroom_upstairs
+        data:
+          title: 'Solbacken 44'
+          message: 'Torktumlaren har startat'
+
+  - alias: 'Dryer stop notification'
+    initial_state: false
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.fibaro_system_fgwpef_wall_plug_gen5_power
+        below: 2
+    action:
+      - service: notify.notify
+        data:
+          title: 'Solbacken 44'
+          message: 'Torktumlaren är klar'
+      - service: notify.tv_livingroom_upstairs
+        data:
+          title: 'Solbacken 44'
+          message: 'Torktumlaren är klar'

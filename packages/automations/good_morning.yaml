@@ -81,27 +81,27 @@ script:
 
               {% if states('sensor.weather_cloudiness')|int <= 20 %}
                 {{ [
-                  "Det ser ut att bli en fin dag med lite moln. Temperaturen kommer ungefär att vara " ~ states.sensor.weather_temperature.state + " grader.",
-                  "Idag blir det en fin dag med inte så mycket moln. Vi kommer få en temperatur på ungefär " ~ states.sensor.weather_temperature.state + " grader.",
-                  "Idag kommer solen att skina. Temperaturen hamnar ungefär på " ~ states.sensor.weather_temperature.state + " grader."
+                  "Det ser ut att bli en fin dag med lite moln. Temperaturen kommer ungefär att vara " ~ states.sensor.weather_temperature.state | int + " grader.",
+                  "Idag blir det en fin dag med inte så mycket moln. Vi kommer få en temperatur på ungefär " ~ states.sensor.weather_temperature.state | int + " grader.",
+                  "Idag kommer solen att skina. Temperaturen hamnar ungefär på " ~ states.sensor.weather_temperature.state | int + " grader."
                 ] | random }}
               {% endif %}
 
               {% if states('sensor.weather_cloudiness')|int > 20 and states('sensor.weather_cloudiness')|int <= 50 %}
                 {{ [
-                  "Idag blir det halvklart väder. Temperaturen ligger ungefär runt " ~ states.sensor.weather_temperature.state + " grader.",
-                  "Det kommer att vara halvklart väder med en del moln. Vi kommer få en temperatur på ungefär " ~ states.sensor.weather_temperature.state + " grader.",
-                  "Vädret idag kommer bara halvklart till molnigt. Temperaturen hamnar ungefär på " ~ states.sensor.weather_temperature.state + " grader."
+                  "Idag blir det halvklart väder. Temperaturen ligger ungefär runt " ~ states.sensor.weather_temperature.state | int + " grader.",
+                  "Det kommer att vara halvklart väder med en del moln. Vi kommer få en temperatur på ungefär " ~ states.sensor.weather_temperature.state | int + " grader.",
+                  "Vädret idag kommer bara halvklart till molnigt. Temperaturen hamnar ungefär på " ~ states.sensor.weather_temperature.state | int + " grader."
                 ] | random }}
               {% endif %}
 
               {% if states('sensor.weather_cloudiness')|int > 50 %}
                 {{ [
-                  "Vi har en del moln idag. Temperaturen kommer ungefär att vara " ~ states.sensor.weather_temperature.state + " grader.",
-                  "Idag blir det mulet. Vi kommer få en temperatur på ungefär " ~ states.sensor.weather_temperature.state + " grader.",
-                  "Vi kommer få en hel del moln idag. Temperaturen kommer ungefär att ligga på " ~ states.sensor.weather_temperature.state + " grader.",
-                  "Vädret idag kommer bli ordentligt molnigt. Temperaturen är ungefär " ~ states.sensor.weather_temperature.state + " grader.",
-                  "Molnen ligger tätt idag. Temperaturen hamnar ungefär på " ~ states.sensor.weather_temperature.state + " grader."
+                  "Vi har en del moln idag. Temperaturen kommer ungefär att vara " ~ states.sensor.weather_temperature.state | int + " grader.",
+                  "Idag blir det mulet. Vi kommer få en temperatur på ungefär " ~ states.sensor.weather_temperature.state | int + " grader.",
+                  "Vi kommer få en hel del moln idag. Temperaturen kommer ungefär att ligga på " ~ states.sensor.weather_temperature.state | int + " grader.",
+                  "Vädret idag kommer bli ordentligt molnigt. Temperaturen är ungefär " ~ states.sensor.weather_temperature.state | int + " grader.",
+                  "Molnen ligger tätt idag. Temperaturen hamnar ungefär på " ~ states.sensor.weather_temperature.state | int + " grader."
                 ] | random }}
               {% endif %}
 
