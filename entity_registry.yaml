@@ -1,201 +1,272 @@
 remote.apple_tv_vardagsrum_overvaning:
+  name:
   platform: apple_tv
   unique_id: 6ea13d7ee6970decd87c6ae82c8909ff42b170b08172b5ff46f66b279ec9b2bb
 remote.apple_tv_vardagsrum_nedervaning:
+  name:
   platform: apple_tv
   unique_id: 3d56985a7fb178e8eb469ddb59bb65505aef642e7047e5cd54e1597e11ede3e8
 binary_sensor.motion_bathroom_upstairs:
+  name: Rörelse Badrum (Uppe)
   platform: deconz
   unique_id: 00:15:8d:00:01:aa:80:6d-01-0406
 binary_sensor.motion_kitchen:
+  name: Rörelse Kök
   platform: deconz
   unique_id: 00:15:8d:00:01:a9:88:18-01-0406
 binary_sensor.motion_livingroom_upstairs:
+  name: Rörelse Vardagsrum (Uppe)
   platform: deconz
   unique_id: 00:15:8d:00:01:db:bb:20-01-0406
 binary_sensor.motion_bathroom_downstairs:
+  name: Rörelse Badrum (Nere)
   platform: deconz
   unique_id: 00:15:8d:00:01:a9:04:db-01-0406
 binary_sensor.motion_laundryroom:
+  name: Rörelse Tvättstuga
   platform: deconz
   unique_id: 00:15:8d:00:01:a9:eb:23-01-0406
 binary_sensor.door_bathroom_upstairs:
+  name:
   platform: deconz
   unique_id: 00:15:8d:00:01:83:74:aa-01-0006
 binary_sensor.motion_guestroom:
+  name: Rörelse Gästrum
   platform: deconz
   unique_id: 00:15:8d:00:01:a9:89:73-01-0406
 binary_sensor.door_bathroom_downstairs:
+  name: Dörr Badrum (Nere)
   platform: deconz
   unique_id: 00:15:8d:00:01:83:73:72-01-0006
 binary_sensor.motion_bedroom:
+  name: Rörelse Sovrum
   platform: deconz
   unique_id: 00:15:8d:00:01:db:26:82-01-0406
 binary_sensor.door_laundryroom:
+  name:
   platform: deconz
   unique_id: 00:15:8d:00:01:83:83:cc-01-0006
 binary_sensor.door_winecooler:
+  name:
   platform: deconz
   unique_id: 00:15:8d:00:01:83:79:dd-01-0006
 binary_sensor.mailbox:
+  name:
   platform: deconz
   unique_id: 00:15:8d:00:01:e7:62:db-01-0006
 binary_sensor.motion_stairs:
+  name: Rörelse Trappa
   platform: deconz
   unique_id: 00:15:8d:00:01:d5:82:45-01-0406
 light.nattduksbord_marcus:
+  name:
   platform: deconz
   unique_id: 00:0b:57:ff:fe:99:d8:06-01
 light.gastrum_fonster:
+  name:
   platform: deconz
   unique_id: 00:0b:57:ff:fe:89:d5:14-01
 light.nattduksbord_katarina:
+  name:
   platform: deconz
   unique_id: 00:0b:57:ff:fe:9b:4d:a0-01
 light.barnrum:
+  name:
   platform: deconz
   unique_id: 00:0b:57:ff:fe:9b:f0:bc-01
 light.vardagsrum_nedervaning_soffgrupp:
+  name:
   platform: deconz
   unique_id: 00:17:88:01:10:4a:a1:f6-0b
 media_player.kitchen:
+  name: Högtalare Kök
   platform: sonos
   unique_id: RINCON_7828CA01205E01400
 media_player.apple_tv_vardagsrum_overvaning:
+  name:
   platform: apple_tv
   unique_id: 6ea13d7ee6970decd87c6ae82c8909ff42b170b08172b5ff46f66b279ec9b2bb
 media_player.apple_tv_vardagsrum_nedervaning:
+  name:
   platform: apple_tv
   unique_id: 3d56985a7fb178e8eb469ddb59bb65505aef642e7047e5cd54e1597e11ede3e8
 sensor.katarinas_iphone_battery_state:
+  name:
   platform: ios
   unique_id: state_katarinas_iphone
 sensor.marcus_iphone_battery_state:
+  name:
   platform: ios
   unique_id: state_marcus_iphone
 sensor.marcus_iphone_battery_level:
+  name:
   platform: ios
   unique_id: level_marcus_iphone
 sensor.katarinas_iphone_battery_level:
+  name:
   platform: ios
   unique_id: level_katarinas_iphone
 binary_sensor.aeotec_zw100_multisensor_6_sensor:
+  name:
   platform: zwave
   unique_id: 3-72057594093240320
 sensor.aeotec_zw100_multisensor_6_temperature:
+  name:
   platform: zwave
   unique_id: 3-72057594093256722
 sensor.aeotec_zw100_multisensor_6_luminance:
+  name:
   platform: zwave
   unique_id: 3-72057594093256754
 sensor.aeotec_zw100_multisensor_6_relative_humidity:
+  name:
   platform: zwave
   unique_id: 3-72057594093256786
 sensor.aeotec_zw100_multisensor_6_ultraviolet:
+  name:
   platform: zwave
   unique_id: 3-72057594093257138
 sensor.aeotec_zw100_multisensor_6_alarm_type:
+  name:
   platform: zwave
   unique_id: 3-72057594094305281
 sensor.aeotec_zw100_multisensor_6_alarm_level:
+  name:
   platform: zwave
   unique_id: 3-72057594094305297
 sensor.aeotec_zw100_multisensor_6_sourcenodeid:
+  name:
   platform: zwave
   unique_id: 3-72057594094305313
 sensor.aeotec_zw100_multisensor_6_burglar:
+  name:
   platform: zwave
   unique_id: 3-72057594094305441
 cover.qubino_zmnhod1_flush_shutter_dc_switch:
+  name:
   platform: zwave
   unique_id: 4-72057594109837312
 switch.qubino_zmnhod1_flush_shutter_dc_switch:
+  name:
   platform: zwave
   unique_id: 4-72057594109837312
 cover.qubino_zmnhod1_flush_shutter_dc_level:
+  name:
   platform: zwave
   unique_id: 4-72057594109853697
 sensor.qubino_zmnhod1_flush_shutter_dc_energy:
+  name:
   platform: zwave
   unique_id: 4-72057594110050306
 sensor.qubino_zmnhod1_flush_shutter_dc_previous_reading:
+  name:
   platform: zwave
   unique_id: 4-72057594110050322
 sensor.qubino_zmnhod1_flush_shutter_dc_power:
+  name:
   platform: zwave
   unique_id: 4-72057594110050434
 cover.qubino_zmnhod1_flush_shutter_dc_switch_2:
+  name:
   platform: zwave
   unique_id: 5-72057594126614528
 switch.qubino_zmnhod1_flush_shutter_dc_switch_2:
+  name:
   platform: zwave
   unique_id: 5-72057594126614528
 cover.qubino_zmnhod1_flush_shutter_dc_level_2:
+  name:
   platform: zwave
   unique_id: 5-72057594126630913
 sensor.qubino_zmnhod1_flush_shutter_dc_energy_2:
+  name:
   platform: zwave
   unique_id: 5-72057594126827522
 sensor.qubino_zmnhod1_flush_shutter_dc_previous_reading_2:
+  name:
   platform: zwave
   unique_id: 5-72057594126827538
 sensor.qubino_zmnhod1_flush_shutter_dc_power_2:
+  name:
   platform: zwave
   unique_id: 5-72057594126827650
 switch.fibaro_system_fgwpef_wall_plug_gen5_switch:
+  name:
   platform: zwave
   unique_id: 6-72057594143391744
 sensor.fibaro_system_fgwpef_wall_plug_gen5_power:
+  name:
   platform: zwave
   unique_id: 6-72057594143588418
 sensor.fibaro_system_fgwpef_wall_plug_gen5_energy:
+  name:
   platform: zwave
   unique_id: 6-72057594143604738
 sensor.fibaro_system_fgwpef_wall_plug_gen5_power_2:
+  name:
   platform: zwave
   unique_id: 6-72057594143604866
 sensor.fibaro_system_fgwpef_wall_plug_gen5_exporting:
+  name:
   platform: zwave
   unique_id: 6-72057594143605248
 sensor.fibaro_system_fgwpef_wall_plug_gen5_alarm_type:
+  name:
   platform: zwave
   unique_id: 6-72057594144636929
 sensor.fibaro_system_fgwpef_wall_plug_gen5_alarm_level:
+  name:
   platform: zwave
   unique_id: 6-72057594144636945
 sensor.fibaro_system_fgwpef_wall_plug_gen5_sourcenodeid:
+  name:
   platform: zwave
   unique_id: 6-72057594144636961
 sensor.fibaro_system_fgwpef_wall_plug_gen5_power_management:
+  name:
   platform: zwave
   unique_id: 6-72057594144637105
 switch.fibaro_system_fgwpef_wall_plug_gen5_switch_2:
+  name:
   platform: zwave
   unique_id: 7-72057594160168960
 sensor.fibaro_system_fgwpef_wall_plug_gen5_power_3:
+  name:
   platform: zwave
   unique_id: 7-72057594160365634
 sensor.fibaro_system_fgwpef_wall_plug_gen5_energy_2:
+  name:
   platform: zwave
   unique_id: 7-72057594160381954
 sensor.fibaro_system_fgwpef_wall_plug_gen5_power_4:
+  name:
   platform: zwave
   unique_id: 7-72057594160382082
 sensor.fibaro_system_fgwpef_wall_plug_gen5_exporting_2:
+  name:
   platform: zwave
   unique_id: 7-72057594160382464
 sensor.fibaro_system_fgwpef_wall_plug_gen5_alarm_type_2:
+  name:
   platform: zwave
   unique_id: 7-72057594161414145
 sensor.fibaro_system_fgwpef_wall_plug_gen5_alarm_level_2:
+  name:
   platform: zwave
   unique_id: 7-72057594161414161
 sensor.fibaro_system_fgwpef_wall_plug_gen5_sourcenodeid_2:
+  name:
   platform: zwave
   unique_id: 7-72057594161414177
 sensor.fibaro_system_fgwpef_wall_plug_gen5_power_management_2:
+  name:
   platform: zwave
   unique_id: 7-72057594161414321
 binary_sensor.refrigerator:
+  name:
   platform: deconz
   unique_id: 00:15:8d:00:01:9e:16:2b-01-0006
+sensor.electricity_price_solbacken_44:
+  name:
+  platform: tibber
+  unique_id: '735999134000161181'
