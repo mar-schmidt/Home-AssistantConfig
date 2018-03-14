@@ -1,0 +1,42 @@
+automation:
+#######################
+#
+# Normal light when mediaplayer paused/stopped
+# Rooms: Livingroom
+#
+#######################
+  - alias: 'Mediaplayer (livingroom upstairs) paused/stopped'
+    trigger:
+      - platform: state
+        entity_id: media_player.apple_tv_vardagsrum_overvaning
+        from: 'playing'
+        to: 'paused'
+    condition:
+      - condition: state
+        entity_id: light.livingroomupstairswindowspotlights
+        state: 'on'
+    action:
+        service: scene.turn_on
+        entity_id: scene.livingroom_upstairs_normal
+
+
+
+#######################
+#
+# Low light when mediaplayer playing
+# Rooms: Livingroom
+#
+#######################
+  - alias: "Mediaplayer (livingroom upstairs) playing"
+    trigger:
+      - platform: state
+        entity_id: media_player.apple_tv_vardagsrum_overvaning
+        to: 'playing'
+        from: 'paused'
+    condition:
+      - condition: state
+        entity_id: light.livingroomupstairswindowspotlights
+        state: 'on'
+    action:
+        service: scene.turn_on
+        entity_id: scene.livingroom_upstairs_movie

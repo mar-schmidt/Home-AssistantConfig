@@ -270,3 +270,7 @@ sensor.electricity_price_solbacken_44:
   name:
   platform: tibber
   unique_id: '735999134000161181'
+light.tvbank_overvaning:
+  name:
+  platform: deconz
+  unique_id: 00:17:88:01:10:4a:a2:22-0b

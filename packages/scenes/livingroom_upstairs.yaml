@@ -1,0 +1,29 @@
+scene:
+  - name: livingroom_upstairs_normal
+    entities:
+      light.tvbank_overvaning:
+        state: on
+        transition: 2
+        brightness: 30
+      light.livingroomupstairsspotlights:
+        state: on
+        transition: 2
+        brightness: 10
+
+  - name: livingroom_upstairs_movie
+    entities:
+      light.tvbank_overvaning:
+        state: off
+        transition: 2
+      light.livingroomupstairsspotlights:
+        state: off
+        transition: 2
+
+  - name: livingroom_upstairs_off
+    entities:
+      light.tvbank_overvaning:
+        state: off
+        transition: 2
+      light.livingroomupstairsspotlights:
+        state: off
+        transition: 2

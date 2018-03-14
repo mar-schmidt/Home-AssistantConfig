@@ -250,6 +250,7 @@ all_indoor_lights:
     - light.laundryroomspotlights
     - light.livingroomdownstairsdinnerareaspotlights
     - light.livingroomupstairsspotlights
+    - light.tvbank_overvaning
     - light.stairwellspotlights
 
 downstairs_lights:
@@ -508,6 +509,7 @@ livingroom_upstairs_lights:
   entities:
     - light.livingroomupstairsspotlights
     - light.livingroomupstairswindowspotlights
+    - light.tvbank_overvaning
 
 livingroom_upstairs_mediaplayers:
   name: Mediaspelare

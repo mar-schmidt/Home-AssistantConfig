@@ -62,7 +62,6 @@ input_select:
     options:
       - Välj
       - Normal
-      - Dimmad
       - Film
       - Av
 
@@ -251,9 +250,7 @@ automation:
       - service: scene.turn_on
         data_template:
           entity_id: >
-            {% if is_state( "input_select.scene_livingroom_upstairs", "Dimmad" ) %}
-              scene.livingroom_upstairs_dimmed
-            {%-elif is_state( "input_select.scene_livingroom_upstairs", "Film" ) %}
+            {%-if is_state( "input_select.scene_livingroom_upstairs", "Film" ) %}
               scene.livingroom_upstairs_movie
             {%-elif is_state( "input_select.scene_livingroom_upstairs", "Normal" ) %}
               scene.livingroom_upstairs_normal
