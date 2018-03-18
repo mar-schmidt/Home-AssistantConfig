@@ -54,7 +54,15 @@ zwave:
 #    country: SE
 
 homekit:
-  pincode: !secret homekit_pin
+  auto_start: True
+  filter:
+#    include_domains: []
+#    include_entities: []
+#    exclude_domains: ['nibe']
+    exclude_entities: [sensor.44615_10033,sensor.44615_47214,sensor.44615_43081,sensor.44615_43084,sensor.44615_47212,sensor.44615_43161,sensor.44615_43009,sensor.44615_40071,sensor.44615_40008,sensor.44615_40033,sensor.44615_10012,sensor.44615_43416,sensor.44615_43437,sensor.44615_40017,sensor.44615_40012,sensor.44615_40020,sensor.44615_40018,sensor.44615_40019,sensor.44615_40022,sensor.44615_43420,sensor.44615_43424,sensor.44615_43123,sensor.44615_43122,sensor.44615_43136,sensor.44615_43124,sensor.44615_41026,sensor.44615_43125,sensor.44615_48745,sensor.44615_0,sensor.44615_0,sensor.44615_0,sensor.44615_47411,sensor.44615_47410,sensor.44615_47409,sensor.44615_47408,sensor.44615_47407,sensor.44615_47412,sensor.44615_40067,sensor.44615_40014,sensor.44615_40013,sensor.44615_40004,sensor.44615_40083,sensor.44615_40081,sensor.44615_40079,sensor.44615_43005,sensor.44615_10001,sensor.44615_40025,sensor.44615_40026]
+  entity_config:
+    alarm_control_panel.solbacken_44_alarm:
+      code: !secret alarm_code
 
 sensor:
   - platform: pi_hole
@@ -233,11 +241,11 @@ logger:
 #    homeassistant.components.automation: info
 #    homeassistant.components.zwave: debug
 #    homeassistant.components.hue: debug
-#    homeassistant.components.vacuum: debug
-    homeassistant.components.knx: debug
+    homeassistant.components.homekit: debug
+#    homeassistant.components.knx: debug
     #homeassistant.components.notify: debug
-    homeassistant.components.script: debug
-    homeassistant.components.recorder: debug
+#    homeassistant.components.script: debug
+#    homeassistant.components.recorder: debug
 #    homeassistant.components.device_tracker.owntracks_http: debug
 #    homeassistant.components.media_player.spotify: info
     #custom_components.restore_states: debug
