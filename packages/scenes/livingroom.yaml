@@ -5,10 +5,18 @@ scene:
         state: on
         transition: 2
         brightness: 140
+      light.ljusslinga_tvbank_nedervaning:
+        state: on
+        transition: 2
+        brightness: 140
   - name: livingroom_movie
     entities:
       #Fönsterlampa
       light.vardagsrum_nedervaning_soffgrupp:
+        state: on
+        transition: 2
+        brightness: 50
+      light.ljusslinga_tvbank_nedervaning:
         state: on
         transition: 2
         brightness: 50
@@ -19,9 +27,12 @@ scene:
         state: on
         transition: 2
         brightness: 80
+      light.ljusslinga_tvbank_nedervaning:
+        state: on
+        transition: 2
+        brightness: 80
   - name: livingroom_off
     entities:
-      #Fönsterlampa
       group.livingroom_downstairs_lights:
         state: off
       #Golvlampa

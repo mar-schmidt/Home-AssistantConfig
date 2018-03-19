@@ -234,7 +234,7 @@ all_scenes:
 all_indoor_lights:
   entities:
     - light.hue
-    - light.barnrum
+    - light.tradfri
     - light.bathroomdownstairsmirror
     - light.bathroomdownstairsspotlights
     - light.bathroomupstairsmirror
@@ -242,7 +242,6 @@ all_indoor_lights:
     - light.bedroomrooflight
     - light.childrensroomrooflight
     - light.closetspotlights
-    - light.gastrum_fonster
     - light.guestroomrooflight
     - light.hallwayspotlights
     - light.kitchenislandspotlights
@@ -250,7 +249,6 @@ all_indoor_lights:
     - light.laundryroomspotlights
     - light.livingroomdownstairsdinnerareaspotlights
     - light.livingroomupstairsspotlights
-    - light.tvbank_overvaning
     - light.stairwellspotlights
 
 downstairs_lights:
@@ -263,6 +261,7 @@ downstairs_lights:
     - light.vardagsrum_nedervaning_soffgrupp
     - light.livingroomdownstairsdinnerareaspotlights
     - group.laundryroom_lights
+    - light.ljusslinga_tvbank_nedervaning
 
 upstairs_lights:
   entities:
@@ -441,6 +440,7 @@ livingroom_downstairs_lights:
   name: Lampor
   entities:
     - light.vardagsrum_nedervaning_soffgrupp
+    - light.ljusslinga_tvbank_nedervaning
     - light.livingroomdownstairsdinnerareaspotlights
     - light.livingroomdownstairswindowsspotlights
 
