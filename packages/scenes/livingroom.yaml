@@ -5,32 +5,36 @@ scene:
         state: on
         transition: 2
         brightness: 140
+        color_temp: 340
       light.ljusslinga_tvbank_nedervaning:
         state: on
         transition: 2
         brightness: 140
+        color_temp: 340
   - name: livingroom_movie
     entities:
-      #Fönsterlampa
       light.vardagsrum_nedervaning_soffgrupp:
         state: on
         transition: 2
         brightness: 50
+        color_temp: 340
       light.ljusslinga_tvbank_nedervaning:
         state: on
         transition: 2
         brightness: 50
+        color_temp: 340
   - name: livingroom_low
     entities:
-      #Fönsterlampa
       light.vardagsrum_nedervaning_soffgrupp:
         state: on
         transition: 2
         brightness: 80
+        color_temp: 340
       light.ljusslinga_tvbank_nedervaning:
         state: on
         transition: 2
         brightness: 80
+        color_temp: 340
   - name: livingroom_off
     entities:
       group.livingroom_downstairs_lights:

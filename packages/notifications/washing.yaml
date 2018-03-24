@@ -8,6 +8,12 @@ automation:
       - platform: numeric_state
         entity_id: sensor.fibaro_system_fgwpef_wall_plug_gen5_power_3
         above: 4
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: zwave.fibaro_system_fgwpef_wall_plug_gen5_2
+          state: ready
     action:
       - service: notify.notify
         data:
@@ -24,6 +30,12 @@ automation:
       - platform: numeric_state
         entity_id: sensor.fibaro_system_fgwpef_wall_plug_gen5_power_3
         below: 4
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: zwave.fibaro_system_fgwpef_wall_plug_gen5_2
+          state: ready
     action:
       - service: notify.notify
         data:
@@ -43,6 +55,12 @@ automation:
       - platform: numeric_state
         entity_id: sensor.fibaro_system_fgwpef_wall_plug_gen5_power
         above: 2
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: zwave.fibaro_system_fgwpef_wall_plug_gen5
+          state: ready
     action:
       - service: notify.notify
         data:
@@ -59,6 +77,12 @@ automation:
       - platform: numeric_state
         entity_id: sensor.fibaro_system_fgwpef_wall_plug_gen5_power
         below: 2
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: zwave.fibaro_system_fgwpef_wall_plug_gen5
+          state: ready
     action:
       - service: notify.notify
         data:
