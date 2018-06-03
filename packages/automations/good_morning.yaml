@@ -4,10 +4,28 @@
 #
 #######################
 
-# --------------
-# Prerequisites. Make sure we dont trigger main scene more than once
-# --------------
 automation:
+  - alias: Alarm off when going downstairs in the morning
+    trigger:
+        platform: state
+        entity_id: group.downstairs_sensors
+        to: 'on'
+    condition:
+      - condition: and
+        conditions:
+        # Can trigger?
+        - condition: time
+          after: '06:00:00'
+          before: '13:00:00'
+        - condition: state
+          entity_id: group.family_devices
+          state: 'home'
+    action:
+        - service: alarm_control_panel.alarm_disarm
+          entity_id: alarm_control_panel.solbacken_44_alarm
+          data:
+            code: !secret alarm_code
+
   - alias: Enable Can trigger good morning
     trigger:
         platform: time

@@ -263,6 +263,14 @@ downstairs_lights:
     - group.laundryroom_lights
     - light.ljusslinga_tvbank_nedervaning
 
+downstairs_sensors:
+  entities:
+    - group.kitchen_sensors
+    - group.laundryroom_sensors
+    - group.livingroom_downstairs_sensors
+    - group.bathroom_downstairs_sensors
+    - group.stairwell_sensors
+
 upstairs_lights:
   entities:
     - group.bathroom_upstairs_lights
