@@ -1,4 +1,11 @@
 scene:
+  - name: livingroom_upstairs_low
+    entities:
+      light.tvbank_overvaning:
+        state: on
+        transition: 2
+        brightness: 10
+
   - name: livingroom_upstairs_normal
     entities:
       light.tvbank_overvaning:

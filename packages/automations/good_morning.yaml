@@ -8,12 +8,11 @@ automation:
   - alias: Alarm off when going downstairs in the morning
     trigger:
         platform: state
-        entity_id: group.downstairs_sensors
+        entity_id: binary_sensor.motion_stairs
         to: 'on'
     condition:
       - condition: and
         conditions:
-        # Can trigger?
         - condition: time
           after: '06:00:00'
           before: '13:00:00'

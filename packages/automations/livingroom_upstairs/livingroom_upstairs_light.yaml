@@ -1,0 +1,30 @@
+automation:
+  - alias: 'Turn on livingroom upstairs light when its getting dark (based on facade light)'
+    trigger:
+      - platform: state
+        entity_id: light.livingroomdownstairswindowsspotlights
+        to: 'on'
+    condition:
+      - condition: and
+        conditions:
+        - condition: state
+          entity_id: group.family_devices
+          state: 'home'
+    action:
+      service: scene.turn_on
+      entity_id: scene.livingroom_upstairs_low
+
+  - alias: 'Turn on livingroom upstairs light when getting home if its already dark (based on facade light)'
+    trigger:
+      - platform: state
+        entity_id: group.family_devices
+        to: 'home'
+    condition:
+      - condition: and
+        conditions:
+        - condition: state
+          entity_id: light.livingroomdownstairswindowsspotlights
+          state: 'on'
+    action:
+      service: scene.turn_on
+      entity_id: scene.livingroom_upstairs_low
