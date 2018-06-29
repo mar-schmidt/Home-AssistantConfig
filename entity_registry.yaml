@@ -278,3 +278,7 @@ light.ljusslinga_tvbank_nedervaning:
   name:
   platform: deconz
   unique_id: 00:17:88:01:03:e1:14:90-0b
+light.ljusslinga_tvbank_overvaning:
+  name:
+  platform: deconz
+  unique_id: 00:17:88:01:03:f5:33:2c-0b
