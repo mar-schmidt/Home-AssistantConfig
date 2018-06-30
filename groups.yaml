@@ -519,6 +519,7 @@ livingroom_upstairs_lights:
     - light.livingroomupstairsspotlights
     - light.livingroomupstairswindowspotlights
     - light.tvbank_overvaning
+    - light.ljusslinga_tvbank_overvaning
 
 livingroom_upstairs_mediaplayers:
   name: Mediaspelare

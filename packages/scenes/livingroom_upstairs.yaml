@@ -5,6 +5,11 @@ scene:
         state: on
         transition: 2
         brightness: 10
+      light.ljusslinga_tvbank_overvaning:
+        state: on
+        transition: 2
+        brightness: 300
+        color_temp: 67       
 
   - name: livingroom_upstairs_normal
     entities:

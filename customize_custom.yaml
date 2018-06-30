@@ -251,6 +251,9 @@ group.phone_status:
 #
 ############################################################
 
+light.gardenbackyard:
+    friendly_name: Altanbelysning
+
 light.nattduksbord_katarina:
     homebridge_hidden: false
 
