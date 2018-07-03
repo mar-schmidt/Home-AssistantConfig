@@ -1,20 +1,20 @@
 automation:
-  - alias: Alarm on when bedroom covers goes down
-    trigger:
-      - platform: state
-        entity_id: cover.qubino_zmnhod1_flush_shutter_dc_level
-        from: 'open'
-        to: 'closed'
-    condition:
-      condition: and
-      conditions:
-        - condition: time
-          after: '20:00'
-    action:
-      - service: alarm_control_panel.alarm_arm_home
-        entity_id: alarm_control_panel.solbacken_44_alarm
-        data:
-          code: !secret alarm_code
+#  - alias: Alarm on when bedroom covers goes down
+#    trigger:
+#      - platform: state
+#        entity_id: cover.qubino_zmnhod1_flush_shutter_dc_level
+#        from: 'open'
+#        to: 'closed'
+#    condition:
+#      condition: and
+#      conditions:
+#        - condition: time
+#          after: '20:00'
+#    action:
+#      - service: alarm_control_panel.alarm_arm_home
+#        entity_id: alarm_control_panel.solbacken_44_alarm
+#        data:
+#          code: !secret alarm_code
 
   - alias: KNX scene All Off also include other indoor lights
     trigger:
@@ -29,88 +29,86 @@ automation:
 # 10 minutes and time is after 22:00
 #
 ############################
-  - alias: Automatic bedtime
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.aeotec_zw100_multisensor_6_sensor
-        to: 'off'
-        for:
-          minutes: 10
-    condition:
-      condition: and
-      conditions:
-        - condition: time
-          after: '22:00'
-        - condition: state
-          entity_id: media_player.apple_tv_vardagsrum
-          state: 'paused'
-        - condition: state
-          entity_id: media_player.spotify
-          state: 'paused'
-        - condition: state
-          entity_id: light.vardagsrum
-          state: 'on'
-    action:
-          service: script.bedtime
-
+#  - alias: Automatic bedtime
+#    trigger:
+#      - platform: state
+#        entity_id: binary_sensor.aeotec_zw100_multisensor_6_sensor
+#        to: 'off'
+#        for:
+#          minutes: 10
+#    condition:
+#      condition: and
+#      conditions:
+#        - condition: time
+#          after: '22:00'
+#        - condition: state
+#          entity_id: media_player.apple_tv_vardagsrum
+#          state: 'paused'
+#        - condition: state
+#          entity_id: media_player.spotify
+#          state: 'paused'
+#        - condition: state
+#          entity_id: light.vardagsrum
+#          state: 'on'
+#    action:
+#          service: script.bedtime
+#
 ############################
 #
 # Send actionable notification asking
 # if bedtime
 #
 ############################
-  - alias: Actionable bedtime notification
-    trigger:
-      platform: time
-      at: '22:30'
-    condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: input_boolean.someone_home
-          state: 'on'
-        - condition: state
-          entity_id: light.vardagsrum
-          state: 'on'
-    action:
-      service: notify.notify
-      data:
-        title: "Läggdags"
-        message: "Snart dags för sängen"
-        data:
-          push:
-            badge: 0
-            category: "BEDTIME" # Needs to match the top level identifier you used in the ios configuration
-
-  - alias: Bedtime action goodnight tapped
-    trigger:
-      platform: event
-      event_type: ios.notification_action_fired
-      event_data:
-        actionName: BEDTIME_TRIGGER
-    action:
-      service: script.bedtime
-
-  - alias: Bedtime action snooze 15 tapped
-    trigger:
-      platform: event
-      event_type: ios.notification_action_fired
-      event_data:
-        actionName: BEDTIME_SNOOZE15
-    action:
-      service: script.bedtime_snooze15
-
-  - alias: Bedtime action snooze 30 tapped
-    trigger:
-      platform: event
-      event_type: ios.notification_action_fired
-      event_data:
-        actionName: BEDTIME_SNOOZE30
-    action:
-      service: script.bedtime_snooze30
-
-
-
+#  - alias: Actionable bedtime notification
+#    trigger:
+#      platform: time
+#      at: '22:30'
+#    condition:
+#      condition: and
+#      conditions:
+#        - condition: state
+#          entity_id: input_boolean.someone_home
+#          state: 'on'
+#        - condition: state
+#          entity_id: light.vardagsrum
+#          state: 'on'
+#    action:
+#      service: notify.notify
+#      data:
+#        title: "Läggdags"
+#        message: "Snart dags för sängen"
+#        data:
+#          push:
+#            badge: 0
+#            category: "BEDTIME" # Needs to match the top level identifier you used in the ios configuration
+#
+#  - alias: Bedtime action goodnight tapped
+#    trigger:
+#      platform: event
+#      event_type: ios.notification_action_fired
+#      event_data:
+#        actionName: BEDTIME_TRIGGER
+#    action:
+#      service: script.bedtime
+#
+#  - alias: Bedtime action snooze 15 tapped
+#    trigger:
+#      platform: event
+#      event_type: ios.notification_action_fired
+#      event_data:
+#        actionName: BEDTIME_SNOOZE15
+#    action:
+#      service: script.bedtime_snooze15
+#
+#  - alias: Bedtime action snooze 30 tapped
+#    trigger:
+#      platform: event
+#      event_type: ios.notification_action_fired
+#      event_data:
+#        actionName: BEDTIME_SNOOZE30
+#    action:
+#      service: script.bedtime_snooze30
+#
 
 
 script:

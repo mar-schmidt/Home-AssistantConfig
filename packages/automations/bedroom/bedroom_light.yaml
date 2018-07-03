@@ -6,7 +6,7 @@ automation:
         to: 'on'
     action:
       service: scene.turn_on
-      entity_id: scene.bedroom_normal
+      entity_id: scene.bedroom_low
 
   - alias: 'Turn off bedroom nightstand lights based on KNX window light'
     trigger:
@@ -17,17 +17,17 @@ automation:
       service: scene.turn_on
       entity_id: scene.bedroom_off
 
-  - alias: 'Dim down bedroom nightstand lights based on KNX window light'
-    trigger:
-      - platform: state
-        entity_id: cover.qubino_zmnhod1_flush_shutter_dc_level
-        to: 'closed'
-    condition:
-      - condition: and
-        conditions:
-        - condition: state
-          entity_id: light.nattduksbord_marcus
-          state: 'on'
-    action:
-      service: scene.turn_on
-      entity_id: scene.bedroom_low
+#  - alias: 'Dim down bedroom nightstand lights based on KNX window light'
+#    trigger:
+#      - platform: state
+#        entity_id: cover.qubino_zmnhod1_flush_shutter_dc_level
+#        to: 'closed'
+#    condition:
+#      - condition: and
+#        conditions:
+#        - condition: state
+#          entity_id: light.nattduksbord_marcus
+#          state: 'on'
+#    action:
+#      service: scene.turn_on
+#      entity_id: scene.bedroom_low
