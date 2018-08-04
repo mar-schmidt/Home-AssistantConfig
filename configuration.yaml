@@ -56,13 +56,26 @@ zwave:
 homekit:
   auto_start: True
   filter:
-#    include_domains: []
+    include_domains:
+      - cover
+      - light
+      - binary_sensor
+      - climate
+      - lock
+      - media_player
+      - sensor
+      - alarm_control_panel
+   
 #    include_entities: []
     exclude_domains:
       - automation
       - input_boolean
       - script
+      - switch
+      - device_tracker
     exclude_entities: 
+      - light.hue
+      - light.tradfri
       - sensor.44615_10033
       - sensor.44615_47214
       - sensor.44615_43081
@@ -111,6 +124,8 @@ homekit:
       - sensor.44615_40026
   entity_config:
     alarm_control_panel.solbacken_44_alarm:
+      code: !secret alarm_code
+    lock.entredorr:
       code: !secret alarm_code
 
 sensor:
@@ -220,14 +235,15 @@ knx:
     port: 3671
     local_ip: '192.168.1.6'
 
+sonos:
+  media_player:
+    - hosts: 192.168.1.60
 
 media_player:
   - platform: spotify
     client_id: !secret spotify_clientid
     client_secret: !secret spotify_secret
-  - platform: sonos
-    hosts:
-      - 192.168.1.60 #Kök
+
   - platform: webostv
     host: 192.168.1.22
     name: tv_livingroom_upstairs
