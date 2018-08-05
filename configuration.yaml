@@ -54,7 +54,7 @@ zwave:
 #    country: SE
 
 homekit:
-  auto_start: True
+  auto_start: False
   filter:
     include_domains:
       - cover
@@ -74,6 +74,11 @@ homekit:
       - switch
       - device_tracker
     exclude_entities: 
+      - binary_sensor.aeotec_zw100_multisensor_6_sensor
+      - sensor.miflower_kitchenflower_temperature
+      - sensor.aeotec_zw100_multisensor_6_temperature
+      - cover.qubino_zmnhod1_flush_shutter_dc_switch
+      - cover.qubino_zmnhod1_flush_shutter_dc_switch_2
       - light.hue
       - light.tradfri
       - sensor.44615_10033
@@ -237,7 +242,7 @@ knx:
 
 sonos:
   media_player:
-    - hosts: 192.168.1.60
+    hosts: 192.168.1.60
 
 media_player:
   - platform: spotify
