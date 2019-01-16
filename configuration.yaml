@@ -10,15 +10,21 @@ homeassistant:
   customize: !include customize_custom.yaml
 
 # Enables the frontend
-customizer:
-  custom_ui: local
+#customizer:
+#  custom_ui: local
 
 # Enables configuration UI
 config:
 
+frontend:
+  extra_html_url:
+    - /local/custom_ui/state-card-custom-ui.html
+  extra_html_url_es5:
+    - /local/custom_ui/state-card-custom-ui-es5.html
+
 http:
   base_url: !secret http_baseurl
-  api_password: !secret http_apipassword
+#  api_password: !secret http_apipassword
 
 # Checks for available updates
 updater:
@@ -65,7 +71,7 @@ homekit:
       - media_player
       - sensor
       - alarm_control_panel
-   
+
     include_entities:
       - sensor.leaf1karl_charges
       - sensor.leaf1karl_range
@@ -78,7 +84,7 @@ homekit:
       - script
       - switch
       - device_tracker
-    exclude_entities: 
+    exclude_entities:
       - binary_sensor.aeotec_zw100_multisensor_6_sensor
       - sensor.miflower_kitchenflower_temperature
       - sensor.aeotec_zw100_multisensor_6_temperature
@@ -138,11 +144,12 @@ homekit:
     lock.entredorr:
       code: !secret alarm_code
 
+tibber:
+  access_token: !secret tibber_access_token
+
 sensor:
   - platform: pi_hole
     host: 127.0.0.1:8081
-  - platform: tibber
-    access_token: !secret tibber_access_token
   - platform: speedtest
     minute:
       - 0
@@ -221,10 +228,9 @@ nissan_leaf:
     update_interval_climate: 5
     force_miles: false
 
-
-device_tracker:
-  - platform: owntracks_http
-    max_gps_accuracy: 150
+owntracks:
+  max_gps_accuracy: 150
+#device_tracker:
 #  - platform: icloud
 #    username: marcus.ronelius@gmail.com
 #    password: !secret icloud_marcus_passwd
