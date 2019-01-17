@@ -330,10 +330,13 @@ script: !include_dir_merge_named scripts
 logger:
   default: warning
   logs:
+    
 #    homeassistant.components.automation: info
 #    homeassistant.components.zwave: debug
 #    homeassistant.components.hue: debug
-    homeassistant.components.homekit: debug
+#    homeassistant.components.homekit: debug
+    pydeconz: debug
+    homeassistant.components.deconz: debug
 #    homeassistant.components.knx: debug
     #homeassistant.components.notify: debug
 #    homeassistant.components.script: debug

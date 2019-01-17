@@ -1,68 +1,68 @@
 light:
   # Downstairs
   - platform: knx
-    name: Hallway.Spotlights
+    name: HallwaySpotlights
     address: '1/1/1'
     brightness_address: '1/1/3'
     state_address: '1/1/4'
     brightness_state_address: '1/1/5'
 
   - platform: knx
-    name: Kitchen.Window.Spotlights
+    name: KitchenWindowSpotlights
     address: '1/1/6'
     state_address: '1/1/9'
 
   - platform: knx
-    name: Kitchen.Spotlights
+    name: KitchenSpotlights
     address: '1/1/11'
     brightness_address: '1/1/13'
     state_address: '1/1/14'
     brightness_state_address: '1/1/15'
 
   - platform: knx
-    name: Kitchen.Island.Spotlights
+    name: KitchenIslandSpotlights
     address: '1/1/21'
     brightness_address: '1/1/23'
     state_address: '1/1/24'
     brightness_state_address: '1/1/25'
 
   - platform: knx
-    name: Livingroom.Downstairs.Windows.Spotlights
+    name: LivingroomDownstairsWindowsSpotlights
     address: '1/1/36'
     state_address: '1/1/39'
 
   - platform: knx
-    name: Livingroom.Downstairs.Dinnerarea.Spotlights
+    name: LivingroomDownstairsDinnerareaSpotlights
     address: '1/1/31'
     brightness_address: '1/1/33'
     state_address: '1/1/34'
     brightness_state_address: '1/1/35'
 
   - platform: knx
-    name: Laundryroom.Spotlights
+    name: LaundryroomSpotlights
     address: '1/1/46'
     state_address: '1/1/49'
 
   - platform: knx
-    name: Bathroom.Downstairs.Spotlights
+    name: BathroomDownstairsSpotlights
     address: '1/1/51'
     brightness_address: '1/1/53'
     state_address: '1/1/54'
     brightness_state_address: '1/1/55'
 
   - platform: knx
-    name: Bathroom.Downstairs.Mirror
+    name: BathroomDownstairsMirror
     address: '1/1/56'
     state_address: '1/1/59'
 
   - platform: knx
-    name: Bathroom.Downstairs.Window.Spotlights
+    name: BathroomDownstairsWindowSpotlights
     address: '1/1/61'
     state_address: '1/1/64'
 
   # Stairwell
   - platform: knx
-    name: Stairwell.Spotlights
+    name: StairwellSpotlights
     address: '1/3/1'
     brightness_address: '1/3/3'
     state_address: '1/3/4'
@@ -70,148 +70,148 @@ light:
 
   # Upstairs
   - platform: knx
-    name: Livingroom.Upstairs.Spotlights
+    name: LivingroomUpstairsSpotlights
     address: '1/2/1'
     brightness_address: '1/2/3'
     state_address: '1/2/4'
     brightness_state_address: '1/2/5'
 
   - platform: knx
-    name: Livingroom.Upstairs.Window.Spotlights
+    name: LivingroomUpstairsWindowSpotlights
     address: '1/2/6'
     state_address: '1/2/9'
 
   - platform: knx
-    name: Bathroom.Upstairs.Spotlights
+    name: BathroomUpstairsSpotlights
     address: '1/2/11'
     brightness_address: '1/2/13'
     state_address: '1/2/14'
     brightness_state_address: '1/2/15'
 
   - platform: knx
-    name: Bathroom.Upstairs.Mirror
+    name: BathroomUpstairsMirror
     address: '1/2/16'
     state_address: '1/2/19'
 
   - platform: knx
-    name: Guestroom.Rooflight
+    name: GuestroomRooflight
     address: '1/2/21'
     state_address: '1/2/24'
 
   - platform: knx
-    name: Guestroom.Window
+    name: GuestroomWindow
     address: '1/2/26'
     state_address: '1/2/29'
 
   - platform: knx
-    name: Bedroom.Rooflight
+    name: BedroomRooflight
     address: '1/2/31'
     state_address: '1/2/34'
 
   - platform: knx
-    name: Bedroom.Windows
+    name: BedroomWindows
     address: '1/2/36'
     state_address: '1/2/39'
 
   - platform: knx
-    name: Childrensroom.Rooflight
+    name: ChildrensroomRooflight
     address: '1/2/41'
     state_address: '1/2/44'
 
   - platform: knx
-    name: Childrensroom.Window
+    name: ChildrensroomWindow
     address: '1/2/46'
     state_address: '1/2/49'
 
   - platform: knx
-    name: Closet.Spotlights
+    name: ClosetSpotlights
     address: '1/2/51'
     state_address: '1/2/54'
 
   # Outside
   - platform: knx
-    name: Facadelight.Backyard
+    name: FacadelightBackyard
     address: '1/4/6'
     state_address: '1/4/9'
 
   - platform: knx
-    name: Facadelight.Balcony
+    name: FacadelightBalcony
     address: '1/4/11'
     state_address: '1/4/14'
 
   - platform: knx
-    name: Facadelight.Frontyard
+    name: FacadelightFrontyard
     address: '1/4/16'
     state_address: '1/4/19'
 
   - platform: knx
-    name: Facadelight.Storehouse
+    name: FacadelightStorehouse
     address: '1/4/21'
     state_address: '1/4/24'
 
   - platform: knx
-    name: Garden.Backyard
+    name: GardenBackyard
     address: '1/4/1'
     state_address: '1/4/4'
 
 switch:
   - platform: knx
-    name: Kitchen.Music
+    name: KitchenMusic
     address: '1/1/70'
     state_address: '1/1/72'
   - platform: knx
-    name: Kitchen.Music.Next.Track
+    name: KitchenMusicNextTrack
     address: '1/1/73'
   - platform: knx
-    name: Bedroom.Cover
+    name: BedroomCover
     address: '1/2/75'
     state_address: '1/2/76'
   - platform: knx
-    name: Downstairs.Lights.Off
+    name: DownstairsLightsOff
     address: '1/1/90'
 
 sensor:
   - platform: knx
-    name: Kitchen.Temperature
+    name: KitchenTemperature
     address: '1/1/71'
     type: 'temperature'
   - platform: knx
-    name: Closet.Temperature
+    name: ClosetTemperature
     address: '1/2/70'
     type: 'temperature'
   - platform: knx
-    name: Hallway.Temperature
+    name: HallwayTemperature
     address: '1/1/74'
     type: 'temperature'
   - platform: knx
-    name: Bathroom.Downstairs.Temperature
+    name: BathroomDownstairsTemperature
     address: '1/1/75'
     type: 'temperature'
   - platform: knx
-    name: Laundryroom.Temperature
+    name: LaundryroomTemperature
     address: '1/1/76'
     type: 'temperature'
   - platform: knx
-    name: Livingroom.Downstairs.Dinnerarea.Temperature
+    name: LivingroomDownstairsDinnerareaTemperature
     address: '1/1/77'
     type: 'temperature'
   - platform: knx
-    name: Childrensroom.Temperature
+    name: ChildrensroomTemperature
     address: '1/1/78'
     type: 'temperature'
   - platform: knx
-    name: Guestroom.Temperature
+    name: GuestroomTemperature
     address: '1/1/79'
     type: 'temperature'
   - platform: knx
-    name: Livingroom.Upstairs.Temperature
+    name: LivingroomUpstairsTemperature
     address: '1/1/80'
     type: 'temperature'
   - platform: knx
-    name: Bathroom.Upstairs.Temperature
+    name: BathroomUpstairsTemperature
     address: '1/1/81'
     type: 'temperature'
   - platform: knx
-    name: Bedroom.Temperature
+    name: BedroomTemperature
     address: '1/1/82'
     type: 'temperature'
